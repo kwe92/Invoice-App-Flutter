@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
             leading: _stack2(radius: _radius),
             actions: _trailing(),
           ),
-          body: const SizedBox(),
+          body: _topIconListTile(),
         ),
       );
 }
@@ -109,4 +109,79 @@ List<Widget> _trailing() {
       ],
     )
   ];
+}
+
+// TODO: Decouple && Make the button smaller
+
+Widget _topIconListTile() {
+  const double sqrVal = 62;
+  const double factor = 2.5;
+  return Row(
+    mainAxisAlignment: MainAxisAlignment.center,
+    crossAxisAlignment: CrossAxisAlignment.center,
+    children: [
+      Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: const <Widget>[Text('Invoices'), Text('7 invocies')],
+      ),
+      Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: <Widget>[
+          const Text('Filter'),
+          Container(),
+          GestureDetector(
+            child: Container(
+              width: 185,
+              height: 90,
+              decoration: BoxDecoration(
+                color: CustomTheme.otherColors['purple0'],
+                borderRadius: BorderRadius.circular(50),
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                  Padding(
+                    padding: const EdgeInsets.only(left: 12.0),
+                    child: Container(
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(50),
+                        ),
+                        alignment: Alignment.center,
+                        width: sqrVal,
+                        height: sqrVal,
+                        //TODO: Use Image Instead??
+                        child: SizedBox(
+                          width: sqrVal / factor,
+                          height: sqrVal / factor,
+                          child: SvgPicture.asset(
+                            'assets/icon-plus.svg',
+                            colorFilter: ColorFilter.mode(
+                                CustomTheme.otherColors['purple0'] as Color,
+                                BlendMode.srcIn),
+                          ),
+                        )
+                        // const Icon(Icons.add, size: 34),
+                        ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(right: 24.0),
+                    child: Text(
+                      'New',
+                      style: TextStyle(
+                          fontSize: 32,
+                          color: CustomTheme.lightColors['shade3'],
+                          fontWeight: FontWeight.w400),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          )
+        ],
+      )
+    ],
+  );
 }
