@@ -13,7 +13,10 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) => SafeArea(
         child: Scaffold(
-          appBar: AppBar(
+          appBar:
+              // TODO: Fix Custom Appbar
+              // appBar: const CustomAppBar(),
+              AppBar(
             backgroundColor: CustomTheme.darkColors['shade3'],
             leading: _stack2(radius: _radius),
             actions: _trailing(),
