@@ -11,7 +11,8 @@ class TittleIconListTile extends StatelessWidget {
 }
 
 Widget _tittleIconListTile() => Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 18),
+      padding: const EdgeInsets.symmetric(
+          horizontal: CustomTheme.mainContentPadding),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [

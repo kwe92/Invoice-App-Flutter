@@ -10,10 +10,26 @@ import 'package:invoiceapp/theme/theme.dart';
 class InvoiceScreen extends StatelessWidget {
   const InvoiceScreen({super.key});
 
+  // @override
+  // Widget build(BuildContext context) {
+  //   return ListView.builder(itemCount: 5,itemBuilder:(context, index) => )
+  // }
+
   @override
   Widget build(BuildContext context) {
     return Column(
-      children: const <Widget>[TittleIconListTile()],
+      children: <Widget>[const TittleIconListTile(), _invoiceListTile()],
     );
   }
+}
+
+Widget _invoiceListTile() {
+  return Padding(
+    padding: const EdgeInsets.symmetric(
+        horizontal: CustomTheme.mainContentPadding, vertical: 24.0),
+    child: Container(
+      height: 132,
+      decoration: const BoxDecoration(color: Colors.lightBlue),
+    ),
+  );
 }

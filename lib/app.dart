@@ -1,13 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:invoiceapp/constants/widgets/appbar/appbar.dart';
 import 'package:invoiceapp/src/features/invoices/presenation/invoice_screen.dart';
+import 'package:invoiceapp/theme/theme.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) => SafeArea(
-        child: Scaffold(appBar: _appBar, body: _body),
+        child: Scaffold(
+            backgroundColor: CustomTheme.lightColors['shade2`'],
+            appBar: _appBar,
+            body: _body),
       );
 }
 
