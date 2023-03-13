@@ -21,7 +21,6 @@ class CustomAppBar extends StatelessWidget {
 
 List<Widget> _otherIcons() {
   const double sqrVal = 28;
-
   final SizedBox gapw = Gaps.width(21);
   return [
     Row(
