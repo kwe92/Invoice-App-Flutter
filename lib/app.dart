@@ -117,27 +117,43 @@ List<Widget> _trailing() {
 // TODO: Decouple && Make the button smaller
 
 Widget _topIconListTile() {
-  const double sqrVal = 62;
-  const double factor = 2.5;
+  const double sqrVal = 46;
+  const double factor = 2.25;
+  const double dwnArrVal = 16;
   return Row(
-    mainAxisAlignment: MainAxisAlignment.center,
+    mainAxisAlignment: MainAxisAlignment.spaceBetween,
     crossAxisAlignment: CrossAxisAlignment.center,
     children: [
       Column(
         mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: const <Widget>[Text('Invoices'), Text('7 invocies')],
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: const <Widget>[
+          Text(
+            'Invoices',
+            style: TextStyle(fontSize: 26, fontWeight: FontWeight.w500),
+          ),
+          Text('7 invocies')
+        ],
       ),
       Row(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
-          const Text('Filter'),
-          Container(),
+          const Text(
+            'Filter',
+            style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
+          ),
+          Gaps.gapw10,
+          SizedBox(
+            width: dwnArrVal,
+            height: dwnArrVal,
+            child: SvgPicture.asset('assets/icon-arrow-down.svg'),
+          ),
+          Gaps.gapw16,
           GestureDetector(
             child: Container(
-              width: 185,
-              height: 90,
+              width: 132,
+              height: 64,
               decoration: BoxDecoration(
                 color: CustomTheme.otherColors['purple0'],
                 borderRadius: BorderRadius.circular(50),
@@ -146,7 +162,7 @@ Widget _topIconListTile() {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
                   Padding(
-                    padding: const EdgeInsets.only(left: 12.0),
+                    padding: const EdgeInsets.only(left: 8.0),
                     child: Container(
                         decoration: BoxDecoration(
                           color: Colors.white,
@@ -155,7 +171,6 @@ Widget _topIconListTile() {
                         alignment: Alignment.center,
                         width: sqrVal,
                         height: sqrVal,
-                        //TODO: Use Image Instead??
                         child: SizedBox(
                           width: sqrVal / factor,
                           height: sqrVal / factor,
@@ -170,11 +185,11 @@ Widget _topIconListTile() {
                         ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(right: 24.0),
+                    padding: const EdgeInsets.only(right: 16.0),
                     child: Text(
                       'New',
                       style: TextStyle(
-                          fontSize: 32,
+                          fontSize: 24,
                           color: CustomTheme.lightColors['shade3'],
                           fontWeight: FontWeight.w400),
                     ),
