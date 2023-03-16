@@ -10,37 +10,36 @@ class CustomAppBar extends StatelessWidget {
   const CustomAppBar({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return AppBar(
-      backgroundColor: CustomTheme.darkColors['shade3'],
-      leading: AppIcon(radius: _radius),
-      actions: _otherIcons(),
-    );
-  }
+  Widget build(BuildContext context) => AppBar(
+        backgroundColor: CustomTheme.darkColors['shade3'],
+        leading: AppIcon(radius: _radius),
+        // actions: _otherIcons(),
+        actions: _OtherIcons.otherIcons,
+      );
 }
 
-List<Widget> _otherIcons() {
-  const double sqrVal = 28;
-  final SizedBox gapw = Gaps.width(21);
-  return [
+class _OtherIcons {
+  const _OtherIcons();
+
+  static final otherIcons = [
     Row(
       children: [
         SvgPicture.asset('assets/icon-moon.svg'),
-        gapw,
+        Gaps.width(21),
         Container(
           height: 56,
           width: 1,
           color: CustomTheme.lightColors['shade0'],
         ),
-        gapw,
+        Gaps.width(21),
         const SizedBox(
-          height: sqrVal,
-          width: sqrVal,
+          height: 28,
+          width: 28,
           child: CircleAvatar(
             backgroundImage: AssetImage('assets/image-avatar.jpg'),
           ),
         ),
-        gapw
+        Gaps.width(21)
       ],
     )
   ];
