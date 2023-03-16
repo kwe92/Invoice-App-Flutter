@@ -4,7 +4,7 @@ import 'package:invoiceapp/src/features/invoices/presenation/invoice_error_scree
 import 'package:invoiceapp/src/features/invoices/presenation/invoice_list_tile.dart';
 import 'package:invoiceapp/src/features/invoices/presenation/title_icon_list_tile.dart';
 
-final _invoice = Invoice(
+final Invoice _invoice = Invoice(
   id: '#RT3080',
   fname: 'Baki',
   lname: 'Hanma',
