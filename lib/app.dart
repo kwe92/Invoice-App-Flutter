@@ -10,15 +10,12 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) => SafeArea(
         child: Scaffold(
             backgroundColor: CustomTheme.lightColors['shade2`'],
-            appBar: _appBar,
+            appBar: const CustomAppBar(
+              preferredSize: CustomTheme.appBarHeight,
+            ),
             body: _body),
       );
 }
-
-const PreferredSize _appBar = PreferredSize(
-  preferredSize: Size.fromHeight(58),
-  child: CustomAppBar(),
-);
 
 final Widget _body = Padding(
   padding: const EdgeInsets.only(top: 24.0),

@@ -4,6 +4,7 @@ class CustomTheme {
   const CustomTheme();
 
   static const double mainContentPadding = 18.0;
+  static const Size appBarHeight = Size.fromHeight(58);
   static const Map<String, Color> darkColors = {
     'shade0': Color.fromRGBO(12, 14, 22, 1),
     'shade1': Color.fromRGBO(20, 22, 37, 1),
