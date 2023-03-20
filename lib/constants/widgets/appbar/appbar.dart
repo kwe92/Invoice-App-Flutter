@@ -4,18 +4,28 @@ import 'package:invoiceapp/constants/widgets/appbar/app_icon.dart';
 import 'package:invoiceapp/theme/source_of_truth.dart';
 import 'package:invoiceapp/theme/theme.dart';
 
-class CustomAppBar extends StatelessWidget {
+class CustomAppBar extends StatelessWidget implements PreferredSize {
   final Radius _radius = const Radius.circular(14);
 
-  const CustomAppBar({super.key});
+  @override
+  final Size preferredSize;
+
+  const CustomAppBar({required this.preferredSize, super.key});
 
   @override
-  Widget build(BuildContext context) => AppBar(
-        backgroundColor: CustomTheme.darkColors['shade3'],
-        leading: AppIcon(radius: _radius),
-        // actions: _otherIcons(),
-        actions: _OtherIcons.otherIcons,
+  Widget build(BuildContext context) => PreferredSize(
+        preferredSize: CustomTheme.appBarHeight,
+        child: AppBar(
+          backgroundColor: CustomTheme.darkColors['shade3'],
+          leading: AppIcon(radius: _radius),
+          // actions: _otherIcons(),
+          actions: _OtherIcons.otherIcons,
+        ),
       );
+
+  @override
+  // TODO: Is this correct code?
+  Widget get child => const SizedBox();
 }
 
 class _OtherIcons {
