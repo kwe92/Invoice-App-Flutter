@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:go_router/go_router.dart';
 import 'package:invoiceapp/theme/theme.dart';
 
 class NewInvoiceButton extends StatelessWidget {
@@ -7,6 +8,7 @@ class NewInvoiceButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => GestureDetector(
+        onTap: () => context.go('/newInvoice'),
         child: Container(
           width: 118,
           height: 58,
