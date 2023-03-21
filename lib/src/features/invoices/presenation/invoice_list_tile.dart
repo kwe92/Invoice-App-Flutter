@@ -18,8 +18,8 @@ class _ListTilePadded extends StatelessWidget {
   @override
   Widget build(BuildContext context) => Padding(
       padding: const EdgeInsets.only(
-          left: CustomTheme.mainContentPadding,
-          right: CustomTheme.mainContentPadding,
+          left: CustomTheme.mainContentPaddingH,
+          right: CustomTheme.mainContentPaddingH,
           top: 24.0,
           bottom: 0),
       child: _ListTile(invoice: invoice));
