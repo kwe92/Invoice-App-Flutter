@@ -16,8 +16,7 @@ class NewInvoiceListTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Padding(
-        padding: const EdgeInsets.symmetric(
-            horizontal: CustomTheme.mainContentPadding, vertical: 27.25),
+        padding: CustomTheme.mainContentPadding,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
