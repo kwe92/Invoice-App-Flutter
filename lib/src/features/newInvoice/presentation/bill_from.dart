@@ -49,9 +49,7 @@ class BillForm extends StatelessWidget {
               CustomTextFormField(
                   title: 'Country', controller: billFrom.countryController),
               OutlinedButton(
-                  onPressed: () {
-                    _clearButton(billFrom);
-                  },
+                  onPressed: () => billFrom.clearAllControllers(),
                   child: const Text('Clear Text'))
             ],
           ),
@@ -59,11 +57,4 @@ class BillForm extends StatelessWidget {
       ),
     );
   }
-}
-
-void _clearButton(BillFromModel model) {
-  model.clearCityController();
-  model.clearCountryController();
-  model.clearPostCodeController();
-  model.clearStreetController();
 }
