@@ -14,6 +14,13 @@ class CustomTextFormField extends StatelessWidget {
     return TextFormField(
       controller: controller,
       decoration: InputDecoration(
+        focusColor: purple,
+        suffixIcon: GestureDetector(
+          onTap: () => controller.clear(),
+          child: const Icon(
+            Icons.close,
+          ),
+        ),
         label: Text(
           title,
           style: TextStyle(color: grey),
