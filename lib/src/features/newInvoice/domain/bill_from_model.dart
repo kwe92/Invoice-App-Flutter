@@ -32,4 +32,11 @@ class BillFromModel extends ChangeNotifier {
     _countryController.clear();
     notifyListeners();
   }
+
+  void clearAllControllers() {
+    clearCityController();
+    clearCountryController();
+    clearPostCodeController();
+    clearStreetController();
+  }
 }
