@@ -1,15 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:go_router/go_router.dart';
+import 'package:invoiceapp/constants/router/app_router.dart';
 import 'package:invoiceapp/src/features/invoices/presenation/invoice_screen.dart';
+import 'package:invoiceapp/src/features/invoices/presenation/title_icon_list_tile.dart';
 import 'package:invoiceapp/src/features/newInvoice/domain/bill_from_model.dart';
 import 'package:provider/provider.dart';
 
 void main() {
   testWidgets('invoice screen load', (tester) async {
-    await tester.pumpWidget(Provider<BillFromModel>(
-      create: (BuildContext context) => BillFromModel(),
-      child: const MaterialApp(home: InvoiceScreen()),
-    ));
+    final GoRouter router = AppRouter.router;
+
+    await tester.pumpWidget(_initalWidget(router));
 
     final topTile = find.byKey(InvoiceScreen.titleIconListTileKey);
     expect(topTile, findsOneWidget);
@@ -19,5 +21,19 @@ void main() {
 
     final baseScaffold = find.byKey(InvoiceScreen.baseScaffoldKey);
     expect(baseScaffold, findsOneWidget);
+
+    final invoiceButton = find.byKey(TitleIconListTile.newInvoiceButtonKey);
+    expect(invoiceButton, findsOneWidget);
+
+    await tester.tap(invoiceButton);
+    tester.pumpAndSettle();
   });
 }
+
+Widget _initalWidget(GoRouter router) => Provider<BillFromModel>(
+      create: (BuildContext context) => BillFromModel(),
+      child: MaterialApp.router(
+        routeInformationParser: router.routeInformationParser,
+        routerDelegate: router.routerDelegate,
+      ),
+    );
