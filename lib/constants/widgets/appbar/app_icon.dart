@@ -23,7 +23,8 @@ class AppIcon extends StatelessWidget {
               bottomRight: radius,
             ),
           ),
-          height: 60,
+          // TODO: Fix Height
+          // height: 6,
         ),
         _Icon(radius: radius, color: topColorIconBox),
       ],
@@ -52,7 +53,7 @@ class _TopBox extends StatelessWidget {
   final Color color;
   final Radius radius;
 
-  const _TopBox({required this.color, required Radius this.radius, super.key});
+  const _TopBox({required this.color, required this.radius, super.key});
 
   @override
   Widget build(BuildContext context) => Container(

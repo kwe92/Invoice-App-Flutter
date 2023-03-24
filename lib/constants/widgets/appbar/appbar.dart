@@ -14,7 +14,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSize {
 
   @override
   Widget build(BuildContext context) => PreferredSize(
-        preferredSize: CustomTheme.appBarHeight,
+        preferredSize: CustomTheme.appBarSize,
         child: AppBar(
           backgroundColor: CustomTheme.darkColors['shade3'],
           leading: AppIcon(radius: _radius),

@@ -13,7 +13,7 @@ class BaseScaffold extends StatelessWidget {
         child: Scaffold(
             backgroundColor: CustomTheme.lightColors['shade3'],
             appBar: const CustomAppBar(
-              preferredSize: CustomTheme.appBarHeight,
+              preferredSize: CustomTheme.appBarSize,
             ),
             body: body),
       );
