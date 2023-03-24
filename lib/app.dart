@@ -8,14 +8,10 @@ class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
   @override
-  Widget build(BuildContext context) => BaseScaffold(body: _body);
+  Widget build(BuildContext context) => const BaseScaffold(body: _body);
 }
 
-final Widget _body = Padding(
-  padding: const EdgeInsets.only(top: 24.0),
-  child: Column(
-    children: const <Widget>[
-      InvoiceScreen(),
-    ],
-  ),
+const Widget _body = Padding(
+  padding: EdgeInsets.only(top: 24.0),
+  child: InvoiceScreen(),
 );

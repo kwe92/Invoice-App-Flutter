@@ -8,7 +8,10 @@ class CustomTheme {
 
   static const EdgeInsets mainContentPadding =
       EdgeInsets.symmetric(horizontal: mainContentPaddingH, vertical: 28);
-  static const Size appBarHeight = Size.fromHeight(58);
+
+  static const double appBarHeight = 58;
+
+  static const Size appBarSize = Size.fromHeight(appBarHeight);
 
   static const Map<String, Color> darkColors = {
     'shade0': Color.fromRGBO(12, 14, 22, 1),

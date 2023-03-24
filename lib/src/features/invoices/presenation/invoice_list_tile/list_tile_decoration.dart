@@ -10,6 +10,7 @@ class CustomDecoration {
     final Color shadowColor = CustomTheme.lightColors['shade2'] as Color;
     return BoxDecoration(
       color: CustomTheme.lightColors['shade3'],
+      borderRadius: BorderRadius.circular(12),
       boxShadow: <BoxShadow>[
         BoxShadow(
           color: shadowColor,
