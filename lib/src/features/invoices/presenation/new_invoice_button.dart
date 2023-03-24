@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
+import 'package:invoiceapp/theme/source_of_truth.dart';
 import 'package:invoiceapp/theme/theme.dart';
 
 class NewInvoiceButton extends StatelessWidget {
@@ -22,34 +23,34 @@ class NewInvoiceButton extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.only(left: 8.0),
                 child: Container(
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(50),
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(50),
+                  ),
+                  alignment: Alignment.center,
+                  width: 38,
+                  height: 38,
+                  child: SizedBox(
+                    width: 38 / 2.25,
+                    height: 38 / 2.25,
+                    child: SvgPicture.asset(
+                      'assets/icon-plus.svg',
+                      colorFilter: ColorFilter.mode(
+                          CustomTheme.otherColors['purple0'] as Color,
+                          BlendMode.srcIn),
                     ),
-                    alignment: Alignment.center,
-                    width: 38,
-                    height: 38,
-                    child: SizedBox(
-                      width: 38 / 2.25,
-                      height: 38 / 2.25,
-                      child: SvgPicture.asset(
-                        'assets/icon-plus.svg',
-                        colorFilter: ColorFilter.mode(
-                            CustomTheme.otherColors['purple0'] as Color,
-                            BlendMode.srcIn),
-                      ),
-                    )
-                    // const Icon(Icons.add, size: 34),
-                    ),
+                  ),
+                ),
               ),
-              Padding(
-                padding: const EdgeInsets.only(right: 16.0),
+              Gaps.gapw8,
+              Expanded(
                 child: Text(
                   'New',
                   style: TextStyle(
-                      fontSize: 22,
-                      color: CustomTheme.lightColors['shade3'],
-                      fontWeight: FontWeight.w400),
+                    fontSize: 22,
+                    color: CustomTheme.lightColors['shade3'],
+                    fontWeight: FontWeight.w400,
+                  ),
                 ),
               ),
             ],
