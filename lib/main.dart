@@ -1,24 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
-import 'package:invoiceapp/app.dart';
+import 'package:invoiceapp/constants/router/app_router.dart';
 import 'package:invoiceapp/src/features/newInvoice/domain/bill_from_model.dart';
-import 'package:invoiceapp/src/features/newInvoice/presentation/new_invoice.dart';
 import 'package:provider/provider.dart';
 
-GoRouter _router = GoRouter(routes: <GoRoute>[
-  GoRoute(path: '/', builder: _homePath, routes: <GoRoute>[
-    GoRoute(
-      path: 'newInvoice',
-      builder: (context, state) => const NewInvoice(),
-    )
-  ]),
-]);
-
 void main() => runApp(ChangeNotifierProvider(
-      create: (context) => BillFromModel(),
-      child: MaterialApp.router(
-        routerConfig: _router,
-      ),
+      create: _notifier,
+      child: _child,
     ));
 
-Widget _homePath(BuildContext context, GoRouterState state) => const MyApp();
+final _child = MaterialApp.router(
+  routerConfig: AppRouter.router,
+);
+BillFromModel _notifier(context) => BillFromModel();
