@@ -4,7 +4,7 @@ import 'package:invoiceapp/src/features/invoices/presenation/title_icon_list_til
 
 void main() {
   // TODO: How to navigate to the new invocie screen by pressing the new Invoice Button
-  testWidgets('title icon list tile test', (tester) async {
+  testWidgets('title icon list tile test', (WidgetTester tester) async {
     await tester.pumpWidget(const MaterialApp(home: TitleIconListTile()));
 
     final invoiceButton = find.byKey(TitleIconListTile.newInvoiceButtonKey);
