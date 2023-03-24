@@ -1,0 +1,16 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_test/flutter_test.dart';
+import 'package:invoiceapp/src/features/invoices/presenation/title_icon_list_tile.dart';
+
+void main() {
+  testWidgets('title icon list tile test', (tester) async {
+    await tester.pumpWidget(const MaterialApp(home: TitleIconListTile()));
+
+    final invoiceButton = find.byKey(TitleIconListTile.newInvoiceButtonKey);
+    expect(invoiceButton, findsOneWidget);
+
+    await tester.tap(invoiceButton);
+
+    tester.pumpAndSettle();
+  });
+}
