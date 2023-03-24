@@ -1,9 +1,11 @@
 import 'package:flutter/widgets.dart';
+import 'package:invoiceapp/src/features/invoices/data/invoice.dart';
 import 'package:invoiceapp/theme/source_of_truth.dart';
 import 'package:invoiceapp/theme/theme.dart';
 
 class ListTileRightSide extends StatelessWidget {
-  const ListTileRightSide({super.key});
+  final Invoice invoice;
+  const ListTileRightSide({required this.invoice, super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -18,11 +20,11 @@ class ListTileRightSide extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.end,
           children: <Widget>[
             Text(
-              'Baki',
+              invoice.fname,
               style: nameStyle,
             ),
             Text(
-              'Hanma',
+              invoice.lname,
               style: nameStyle,
             )
           ],

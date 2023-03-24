@@ -5,14 +5,15 @@ import 'package:invoiceapp/theme/source_of_truth.dart';
 import 'package:invoiceapp/theme/theme.dart';
 
 class TitleIconListTile extends StatelessWidget {
+  static const newInvoiceButtonKey = Key('newInvoiceButtonKey');
   const TitleIconListTile({super.key});
 
   @override
-  Widget build(BuildContext context) => const NewInvoiceListTile();
+  Widget build(BuildContext context) => const _NewInvoiceListTile();
 }
 
-class NewInvoiceListTile extends StatelessWidget {
-  const NewInvoiceListTile({super.key});
+class _NewInvoiceListTile extends StatelessWidget {
+  const _NewInvoiceListTile({super.key});
 
   @override
   Widget build(BuildContext context) => Padding(
@@ -27,7 +28,9 @@ class NewInvoiceListTile extends StatelessWidget {
               children: <Widget>[
                 ...FilterButton.filterButton,
                 Gaps.gapw12,
-                const NewInvoiceButton(),
+                const NewInvoiceButton(
+                  key: TitleIconListTile.newInvoiceButtonKey,
+                ),
               ],
             )
           ],

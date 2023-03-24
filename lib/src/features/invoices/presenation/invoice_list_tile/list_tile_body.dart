@@ -18,7 +18,7 @@ class InvoiceListTileBody extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
               ListTileLeftSide(invoice: invoice),
-              const ListTileRightSide()
+              ListTileRightSide(invoice: invoice)
             ],
           ),
         ),
