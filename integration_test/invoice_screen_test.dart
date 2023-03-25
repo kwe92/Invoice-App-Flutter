@@ -1,22 +1,17 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:go_router/go_router.dart';
 import 'package:integration_test/integration_test.dart';
-import 'package:invoiceapp/constants/router/app_router.dart';
 import 'package:invoiceapp/src/features/invoices/presenation/invoice_screen.dart';
 import 'package:invoiceapp/src/features/invoices/presenation/title_icon_list_tile.dart';
-import 'package:invoiceapp/src/features/newInvoice/domain/bill_from_model.dart';
-import 'package:provider/provider.dart';
-import 'package:flutter_driver/driver_extension.dart';
 
 import 'package:invoiceapp/main.dart' as app;
+import 'package:invoiceapp/src/features/newInvoice/presentation/bill_from.dart';
+import 'package:invoiceapp/src/features/newInvoice/presentation/new_invoice.dart';
 
 void main() {
   IntegrationTestWidgetsFlutterBinding.ensureInitialized();
   testWidgets('invoice screen load', (tester) async {
     app.main();
 
-    // await tester.pumpWidget(_initalWidget(router));
     await tester.pumpAndSettle();
 
     final topTile = find.byKey(InvoiceScreen.titleIconListTileKey);
@@ -33,15 +28,19 @@ void main() {
 
     await tester.tap(invoiceButton);
     await tester.pumpAndSettle();
+
+    final baseLayout = find.byKey(NewInvoice.baseScaffoldKey);
+    expect(baseLayout, findsOneWidget);
+
+    final billForm = find.byKey(NewInvoice.billFormKey);
+    expect(billForm, billForm);
+
+    final streetAddressInput = find.byKey(BillForm.streetAddressKey);
+    expect(streetAddressInput, findsOneWidget);
+
+    await _delay(3);
   });
 }
 
-// final GoRouter router = AppRouter.router;
-
-// Widget _initalWidget(GoRouter router) => Provider<BillFromModel>(
-//       create: (BuildContext context) => BillFromModel(),
-//       child: MaterialApp.router(
-//         routeInformationParser: router.routeInformationParser,
-//         routerDelegate: router.routerDelegate,
-//       ),
-//     );
+Future<Object> _delay(int seconds) =>
+    Future.delayed(Duration(seconds: seconds));
