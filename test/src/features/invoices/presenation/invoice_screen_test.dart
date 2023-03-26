@@ -33,24 +33,17 @@ void main() {
     expect(invoiceButton, findsOneWidget);
 
     await tester.tap(invoiceButton);
+
+    await tester.pumpWidget(ChangeNotifierProvider<BillFromModel>(
+      create: (BuildContext context) => BillFromModel(),
+      child: const MaterialApp(home: NewInvoice()),
+    ));
     await tester.pumpAndSettle();
 
-    // //TODO: Figure out why navigation is not happening
+    final billForm = find.byKey(NewInvoice.billFormKey);
+    expect(billForm, findsOneWidget);
 
-    // final newInvoiceScreen = find.byKey(const Key('newInvocieKey'));
-    // expect(newInvoiceScreen, findsOneWidget);
-
-    // final billForm = find.byKey(NewInvoice.billFormKey);
-    // expect(billForm, findsOneWidget);
-
-    // final form = find.byKey(BillForm.formKey);
-    // expect(billForm, billForm);
-
-    // expect(find.text('City'), findsOneWidget);
-
-    // final cityKey = find.byKey(BillForm.cityKey);
-    // final cityInput = find.descendant(of: billForm, matching: cityKey);
-    // expect(cityInput, findsOneWidget);
+    expect(find.text('City'), findsOneWidget);
   });
 }
 
