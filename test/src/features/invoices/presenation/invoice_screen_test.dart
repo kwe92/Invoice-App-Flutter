@@ -1,56 +1,28 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:go_router/go_router.dart';
-import 'package:invoiceapp/constants/router/app_router.dart';
-import 'package:invoiceapp/src/features/invoices/presenation/invoice_screen.dart';
-import 'package:invoiceapp/src/features/invoices/presenation/title_icon_list_tile.dart';
-import 'package:invoiceapp/src/features/newInvoice/domain/bill_from_model.dart';
-import 'package:invoiceapp/src/features/newInvoice/presentation/bill_from.dart';
-import 'package:invoiceapp/src/features/newInvoice/presentation/new_invoice.dart';
-import 'package:provider/provider.dart';
+import '../../../../robots/invoice_screen_robot.dart';
+import '../../../../robots/new_invoice_screen_robot.dart';
 
 void main() {
   testWidgets('invoice screen load', (tester) async {
-    final GoRouter router = AppRouter.router;
+    final r1 = InvoiceScreenRobot(tester: tester);
+    final r2 = NewInvoiceScreenRobot(tester: tester);
 
-    await tester.pumpWidget(_initalWidget(router));
+    await r1.navigateToInvoiceScreen();
 
-    final topTile = find.byKey(InvoiceScreen.titleIconListTileKey);
-    expect(topTile, findsOneWidget);
+    r1.findInvoiceScreenBaseLayout();
 
-    final listView = find.byKey(InvoiceScreen.listViewKey);
-    expect(listView, findsOneWidget);
+    await r1.tapNewInvoiceButton();
 
-    final baseScaffold = find.byKey(InvoiceScreen.baseScaffoldKey);
-    expect(baseScaffold, findsOneWidget);
+    r2.findBillForm();
 
-    final titleIconListTile = find.byKey(InvoiceScreen.titleIconListTileKey);
-    expect(titleIconListTile, findsOneWidget);
+    r2.findBillFormInputs();
 
-    final invoiceButton = find.descendant(
-        of: titleIconListTile,
-        matching: find.byKey(TitleIconListTile.newInvoiceButtonKey));
-    expect(invoiceButton, findsOneWidget);
+    await r2.enterBillFormText();
 
-    await tester.tap(invoiceButton);
+    await r2.tapClearText();
 
-    await tester.pumpWidget(ChangeNotifierProvider<BillFromModel>(
-      create: (BuildContext context) => BillFromModel(),
-      child: const MaterialApp(home: NewInvoice()),
-    ));
-    await tester.pumpAndSettle();
+    await r2.enterBillFormText();
 
-    final billForm = find.byKey(NewInvoice.billFormKey);
-    expect(billForm, findsOneWidget);
-
-    expect(find.text('City'), findsOneWidget);
+    await r2.clearIndividualInput();
   });
 }
-
-Widget _initalWidget(GoRouter router) => Provider<BillFromModel>(
-      create: (BuildContext context) => BillFromModel(),
-      child: MaterialApp.router(
-        routeInformationParser: router.routeInformationParser,
-        routerDelegate: router.routerDelegate,
-      ),
-    );
