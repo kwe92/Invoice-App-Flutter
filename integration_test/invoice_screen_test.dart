@@ -26,8 +26,6 @@ void main() {
 
     r1.findInvoiceScreenBaseLayout();
 
-    await delay(5);
-
     await r1.tapNewInvoiceButton();
 
     r2.findBillForm();
@@ -47,5 +45,7 @@ void main() {
     await delay(1);
 
     await r2.clearIndividualInput(timmer: true);
+
+    await r2.tapBackButton();
   });
 }

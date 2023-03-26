@@ -100,4 +100,15 @@ class NewInvoiceScreenRobot {
 
     await tester.pumpAndSettle();
   }
+
+  Future<void> tapBackButton() async {
+    final backButton = find.byKey(NewInvoice.backButtonKey);
+    expect(backButton, findsOneWidget);
+
+    final backButton2 = find.descendant(
+        of: backButton, matching: find.byType(GestureDetector).first);
+    await tester.tap(backButton2);
+
+    await tester.pumpAndSettle();
+  }
 }

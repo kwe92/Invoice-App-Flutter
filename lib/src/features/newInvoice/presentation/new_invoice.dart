@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:invoiceapp/constants/widgets/base_scaffold/base_scaffold.dart';
-import 'package:invoiceapp/src/features/newInvoice/domain/bill_from_model.dart';
+import 'package:invoiceapp/src/features/newInvoice/presentation/back_button.dart';
 import 'package:invoiceapp/src/features/newInvoice/presentation/bill_from.dart';
 import 'package:invoiceapp/theme/source_of_truth.dart';
 import 'package:invoiceapp/theme/theme.dart';
@@ -20,7 +20,7 @@ class NewInvoice extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: const <Widget>[
-              BackButton(
+              CustomBackButton(
                 key: NewInvoice.backButtonKey,
               ),
               Gaps.gaph18,
