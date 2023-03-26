@@ -1,11 +1,14 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:integration_test/integration_test.dart';
 import 'package:invoiceapp/src/features/invoices/presenation/invoice_screen.dart';
 import 'package:invoiceapp/src/features/invoices/presenation/title_icon_list_tile.dart';
 
 import 'package:invoiceapp/main.dart' as app;
+import 'package:invoiceapp/src/features/newInvoice/domain/bill_from_model.dart';
 import 'package:invoiceapp/src/features/newInvoice/presentation/bill_from.dart';
 import 'package:invoiceapp/src/features/newInvoice/presentation/new_invoice.dart';
+import 'package:provider/provider.dart';
 
 void main() {
   IntegrationTestWidgetsFlutterBinding.ensureInitialized();
@@ -27,6 +30,7 @@ void main() {
     expect(invoiceButton, findsOneWidget);
 
     await tester.tap(invoiceButton);
+
     await tester.pumpAndSettle();
 
     final baseLayout = find.byKey(NewInvoice.baseScaffoldKey);
@@ -38,9 +42,33 @@ void main() {
     final streetAddressInput = find.byKey(BillForm.streetAddressKey);
     expect(streetAddressInput, findsOneWidget);
 
-    await _delay(3);
+    final cityInput = find.byKey(BillForm.cityKey);
+    expect(cityInput, findsOneWidget);
+
+    final postCodeInput = find.byKey(BillForm.postCodeKey);
+    expect(postCodeInput, findsOneWidget);
+
+    final countryInput = find.byKey(BillForm.countryKey);
+    expect(countryInput, findsOneWidget);
+
+    final clearInput = find.byKey(BillForm.clearTextKey);
+    expect(clearInput, findsOneWidget);
+
+    await tester.enterText(streetAddressInput, '8303 GreatView Dr.');
+
+    await tester.enterText(cityInput, 'San Antonio');
+
+    await tester.enterText(postCodeInput, '78240');
+
+    await tester.enterText(countryInput, 'United States');
+
+    await _delay(1);
+
+    await tester.tap(clearInput);
+    tester.pumpAndSettle();
+
+    await _delay(2);
   });
 }
 
-Future<Object> _delay(int seconds) =>
-    Future.delayed(Duration(seconds: seconds));
+Future<void> _delay(int seconds) => Future.delayed(Duration(seconds: seconds));
