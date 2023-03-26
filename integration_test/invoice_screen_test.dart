@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:integration_test/integration_test.dart';
+import 'package:invoiceapp/constants/utils/delay.dart';
 import 'package:invoiceapp/src/features/invoices/presenation/invoice_screen.dart';
 import 'package:invoiceapp/src/features/invoices/presenation/title_icon_list_tile.dart';
 
@@ -10,65 +11,41 @@ import 'package:invoiceapp/src/features/newInvoice/presentation/bill_from.dart';
 import 'package:invoiceapp/src/features/newInvoice/presentation/new_invoice.dart';
 import 'package:provider/provider.dart';
 
+import '../test/robots/invoice_screen_robot.dart';
+import '../test/robots/new_invoice_screen_robot.dart';
+
 void main() {
   IntegrationTestWidgetsFlutterBinding.ensureInitialized();
   testWidgets('invoice screen load', (tester) async {
     app.main();
 
-    await tester.pumpAndSettle();
+    final r1 = InvoiceScreenRobot(tester: tester);
+    final r2 = NewInvoiceScreenRobot(tester: tester);
 
-    final topTile = find.byKey(InvoiceScreen.titleIconListTileKey);
-    expect(topTile, findsOneWidget);
+    await r1.navigateToInvoiceScreen();
 
-    final listView = find.byKey(InvoiceScreen.listViewKey);
-    expect(listView, findsOneWidget);
+    r1.findInvoiceScreenBaseLayout();
 
-    final baseScaffold = find.byKey(InvoiceScreen.baseScaffoldKey);
-    expect(baseScaffold, findsOneWidget);
+    await delay(5);
 
-    final invoiceButton = find.byKey(TitleIconListTile.newInvoiceButtonKey);
-    expect(invoiceButton, findsOneWidget);
+    await r1.tapNewInvoiceButton();
 
-    await tester.tap(invoiceButton);
+    r2.findBillForm();
 
-    await tester.pumpAndSettle();
+    r2.findBillFormInputs();
 
-    final baseLayout = find.byKey(NewInvoice.baseScaffoldKey);
-    expect(baseLayout, findsOneWidget);
+    await r2.enterBillFormText();
 
-    final billForm = find.byKey(NewInvoice.billFormKey);
-    expect(billForm, billForm);
+    await delay(1);
 
-    final streetAddressInput = find.byKey(BillForm.streetAddressKey);
-    expect(streetAddressInput, findsOneWidget);
+    await r2.tapClearText();
 
-    final cityInput = find.byKey(BillForm.cityKey);
-    expect(cityInput, findsOneWidget);
+    await delay(1);
 
-    final postCodeInput = find.byKey(BillForm.postCodeKey);
-    expect(postCodeInput, findsOneWidget);
+    await r2.enterBillFormText();
 
-    final countryInput = find.byKey(BillForm.countryKey);
-    expect(countryInput, findsOneWidget);
+    await delay(1);
 
-    final clearInput = find.byKey(BillForm.clearTextKey);
-    expect(clearInput, findsOneWidget);
-
-    await tester.enterText(streetAddressInput, '8303 GreatView Dr.');
-
-    await tester.enterText(cityInput, 'San Antonio');
-
-    await tester.enterText(postCodeInput, '78240');
-
-    await tester.enterText(countryInput, 'United States');
-
-    await _delay(1);
-
-    await tester.tap(clearInput);
-    tester.pumpAndSettle();
-
-    await _delay(2);
+    await r2.clearIndividualInput(timmer: true);
   });
 }
-
-Future<void> _delay(int seconds) => Future.delayed(Duration(seconds: seconds));
