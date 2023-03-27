@@ -1,28 +1,48 @@
 import 'package:flutter_test/flutter_test.dart';
-import '../../../../robots/invoice_screen_robot.dart';
-import '../../../../robots/new_invoice_screen_robot.dart';
+import 'package:go_router/go_router.dart';
+import 'package:invoiceapp/constants/router/app_router.dart';
+import '../../../../robots/robot.dart';
 
 void main() {
-  testWidgets('invoice screen load', (tester) async {
-    final r1 = InvoiceScreenRobot(tester: tester);
-    final r2 = NewInvoiceScreenRobot(tester: tester);
+  group('Widget Test', () {
+    final GoRouter router = AppRouter.router;
 
-    await r1.navigateToInvoiceScreen();
+    testWidgets('''
+      Given: app loads
+      When: tap on new invoice button
+      Then: navigate to the new invoice screen
+      ''', (WidgetTester tester) async {
+      final r = Robot(tester: tester);
 
-    r1.findInvoiceScreenBaseLayout();
+      await r.pumpApp();
 
-    await r1.tapNewInvoiceButton();
+      r.invoice.findInvoiceScreenBaseLayout();
 
-    r2.findBillForm();
+      await r.invoice.tapNewInvoiceButton();
 
-    r2.findBillFormInputs();
+      r.newInvoice.findBillForm();
+    });
 
-    await r2.enterBillFormText();
+    testWidgets('''
+      Given: new invoice screen loads 
+      When: input is entered && clear buttons pressed && back button pressed
+      Then: text is entered && text is cleared && back button is pressed
+      ''', (WidgetTester tester) async {
+      final r = Robot(tester: tester);
 
-    await r2.tapClearText();
+      await r.pumpApp();
 
-    await r2.enterBillFormText();
+      await r.invoice.tapNewInvoiceButton();
 
-    await r2.clearIndividualInput();
+      await r.newInvoice.enterBillFormText();
+
+      await r.newInvoice.tapClearText();
+
+      await r.newInvoice.enterBillFormText();
+
+      await r.newInvoice.clearIndividualInput();
+
+      await r.newInvoice.tapBackButton();
+    });
   });
 }
