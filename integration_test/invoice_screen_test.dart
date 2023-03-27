@@ -1,51 +1,42 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:integration_test/integration_test.dart';
 import 'package:invoiceapp/constants/utils/delay.dart';
-import 'package:invoiceapp/src/features/invoices/presenation/invoice_screen.dart';
-import 'package:invoiceapp/src/features/invoices/presenation/title_icon_list_tile.dart';
-
 import 'package:invoiceapp/main.dart' as app;
-import 'package:invoiceapp/src/features/newInvoice/domain/bill_from_model.dart';
-import 'package:invoiceapp/src/features/newInvoice/presentation/bill_from.dart';
-import 'package:invoiceapp/src/features/newInvoice/presentation/new_invoice.dart';
-import 'package:provider/provider.dart';
-
-import '../test/robots/invoice_screen_robot.dart';
-import '../test/robots/new_invoice_screen_robot.dart';
+import '../test/robots/robot.dart';
 
 void main() {
   IntegrationTestWidgetsFlutterBinding.ensureInitialized();
   testWidgets('invoice screen load', (tester) async {
     app.main();
 
-    final r1 = InvoiceScreenRobot(tester: tester);
-    final r2 = NewInvoiceScreenRobot(tester: tester);
+    final r = Robot(tester: tester);
 
-    await r1.navigateToInvoiceScreen();
+    await r.pumpApp();
 
-    r1.findInvoiceScreenBaseLayout();
+    r.invoice.findInvoiceScreenBaseLayout();
 
-    await r1.tapNewInvoiceButton();
+    await r.invoice.tapNewInvoiceButton();
 
-    r2.findBillForm();
+    r.newInvoice.findBillForm();
 
-    r2.findBillFormInputs();
+    r.newInvoice.findBillFormInputs();
 
-    await r2.enterBillFormText();
-
-    await delay(1);
-
-    await r2.tapClearText();
+    await r.newInvoice.enterBillFormText();
 
     await delay(1);
 
-    await r2.enterBillFormText();
+    await r.newInvoice.tapClearText();
 
     await delay(1);
 
-    await r2.clearIndividualInput(timmer: true);
+    await r.newInvoice.enterBillFormText();
 
-    await r2.tapBackButton();
+    await delay(1);
+
+    await r.newInvoice.clearIndividualInput(timmer: true);
+
+    await r.newInvoice.tapBackButton();
+
+    await delay(2);
   });
 }
