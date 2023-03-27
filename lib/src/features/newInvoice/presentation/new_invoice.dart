@@ -20,9 +20,7 @@ class NewInvoice extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: const <Widget>[
-              CustomBackButton(
-                key: NewInvoice.backButtonKey,
-              ),
+              CustomBackButton(),
               Gaps.gaph18,
               _title,
               BillForm(key: NewInvoice.billFormKey),
