@@ -20,7 +20,8 @@ class BillForm extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final purple = CustomTheme.otherColors['purple0'] as Color;
-    final gaph = Gaps.heigth(24);
+    final gaph = Gaps.heigth(18);
+    const double textInputWidth = 170;
 
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 18.0),
@@ -42,14 +43,14 @@ class BillForm extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   SizedBox(
-                    width: 165,
+                    width: textInputWidth,
                     child: CustomTextFormField(
                         key: BillForm.cityKey,
                         title: 'City',
                         controller: billFrom.cityController),
                   ),
                   SizedBox(
-                    width: 165,
+                    width: textInputWidth,
                     child: CustomTextFormField(
                         key: BillForm.postCodeKey,
                         title: 'Post Code',
@@ -62,6 +63,7 @@ class BillForm extends StatelessWidget {
                   key: BillForm.countryKey,
                   title: 'Country',
                   controller: billFrom.countryController),
+              gaph,
               OutlinedButton(
                   key: BillForm.clearTextKey,
                   onPressed: () => billFrom.clearAllControllers(),
