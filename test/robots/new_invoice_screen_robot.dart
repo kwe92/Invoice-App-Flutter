@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:invoiceapp/constants/utils/delay.dart';
+import 'package:invoiceapp/src/features/newInvoice/presentation/back_button.dart';
 import 'package:invoiceapp/src/features/newInvoice/presentation/bill_from.dart';
 import 'package:invoiceapp/src/features/newInvoice/presentation/new_invoice.dart';
 
@@ -102,12 +103,23 @@ class NewInvoiceScreenRobot {
   }
 
   Future<void> tapBackButton() async {
-    final backButton = find.byKey(NewInvoice.backButtonKey);
-    expect(backButton, findsOneWidget);
+    // final backButton = find.byKey(NewInvoice.backButtonKey);
+    // expect(backButton, findsOneWidget);
 
-    final backButton2 = find.descendant(
-        of: backButton, matching: find.byType(GestureDetector).first);
-    await tester.tap(backButton2);
+    final backbuttonContainer = find.byType(Column).first;
+    expect(backbuttonContainer, findsOneWidget);
+
+    // final backButton2 = find.descendant(
+    //     of: backButton, matching: find.byType(GestureDetector).first);
+
+    final button = find.byType(CustomBackButton);
+
+    await tester.ensureVisible(find.byType(CustomBackButton));
+
+    // final backButton2 = find.descendant(
+    //     of: backbuttonContainer, matching: find.byType(CustomBackButton));
+
+    await tester.tap(button);
 
     await tester.pumpAndSettle();
   }
