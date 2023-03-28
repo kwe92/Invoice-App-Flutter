@@ -2,14 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:invoiceapp/constants/router/app_router.dart';
 import 'package:invoiceapp/src/features/newInvoice/domain/bill_from_model.dart';
 import 'package:invoiceapp/src/features/newInvoice/domain/bill_to_model.dart';
+import 'package:invoiceapp/src/features/shared/services/get_it.dart';
 import 'package:provider/provider.dart';
 
 void main() {
-  // runApp(ChangeNotifierProvider(
-  //   create: _notifier,
-  //   child: _child,
-  // ));
-
+  configureDependencies();
   runApp(MultiProvider(
     providers: [
       ChangeNotifierProvider(
@@ -24,7 +21,7 @@ void main() {
 }
 
 final _child = MaterialApp.router(
-  routerConfig: AppRouter.router,
+  routerConfig: appRouter.router,
 );
 BillFromModel _billFromNotifier(context) => BillFromModel();
 

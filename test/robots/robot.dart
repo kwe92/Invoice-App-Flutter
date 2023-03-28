@@ -7,8 +7,6 @@ import 'package:provider/provider.dart';
 import 'invoice_screen_robot.dart';
 import 'new_invoice_screen_robot.dart';
 
-final GoRouter _router = AppRouter.router;
-
 class Robot {
   final WidgetTester tester;
   final InvoiceScreenRobot invoice;
@@ -19,7 +17,7 @@ class Robot {
         newInvoice = NewInvoiceScreenRobot(tester: tester);
 
   Future<void> pumpApp() async =>
-      await tester.pumpWidget(_invoiceScreen(_router));
+      await tester.pumpWidget(_invoiceScreen(appRouter.router));
 }
 
 Widget _invoiceScreen(GoRouter router) => Provider<BillFromModel>(

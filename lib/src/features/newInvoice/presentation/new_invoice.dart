@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:invoiceapp/constants/widgets/base_scaffold/base_scaffold.dart';
+import 'package:invoiceapp/src/features/newInvoice/domain/bill_from_model.dart';
 import 'package:invoiceapp/src/features/newInvoice/presentation/back_button.dart';
 import 'package:invoiceapp/src/features/newInvoice/presentation/bill_from.dart';
 import 'package:invoiceapp/src/features/newInvoice/presentation/bill_to.dart';
@@ -26,7 +27,7 @@ class NewInvoice extends StatelessWidget {
                 Gaps.gaph18,
                 _title,
                 BillFrom(key: NewInvoice.billFromKey),
-                BillTo()
+                // BillTo(),
               ],
             ),
           ),
