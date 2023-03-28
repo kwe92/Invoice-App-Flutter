@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:invoiceapp/src/features/newInvoice/domain/bill_from_model.dart';
+import 'package:invoiceapp/src/features/newInvoice/domain/bill_form_model.dart';
 import 'package:invoiceapp/src/features/newInvoice/presentation/custom_text_form_field.dart';
 import 'package:invoiceapp/theme/source_of_truth.dart';
 import 'package:invoiceapp/theme/theme.dart';
@@ -7,7 +7,7 @@ import 'package:provider/provider.dart';
 
 // final _formKey = GlobalKey<FormState>();
 
-class BillForm extends StatelessWidget {
+class BillFrom extends StatelessWidget {
   static const formKey = Key('formKey');
   static const streetAddressKey = Key('streetAddressKey');
   static const cityKey = Key('cityKey');
@@ -15,7 +15,7 @@ class BillForm extends StatelessWidget {
   static const countryKey = Key('countryKey');
   static const clearTextKey = Key('clearTextKey');
 
-  const BillForm({super.key});
+  const BillFrom({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +26,7 @@ class BillForm extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 18.0),
       child: Form(
-        key: BillForm.formKey,
+        key: BillFrom.formKey,
         child: Consumer<BillFromModel>(
           builder: (context, billFrom, child) => Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -34,7 +34,7 @@ class BillForm extends StatelessWidget {
               Text('Bill From', style: TextStyle(fontSize: 18, color: purple)),
               gaph,
               CustomTextFormField(
-                key: BillForm.streetAddressKey,
+                key: BillFrom.streetAddressKey,
                 title: 'Street Address',
                 controller: billFrom.streetAddController,
               ),
@@ -45,14 +45,14 @@ class BillForm extends StatelessWidget {
                   SizedBox(
                     width: textInputWidth,
                     child: CustomTextFormField(
-                        key: BillForm.cityKey,
+                        key: BillFrom.cityKey,
                         title: 'City',
                         controller: billFrom.cityController),
                   ),
                   SizedBox(
                     width: textInputWidth,
                     child: CustomTextFormField(
-                        key: BillForm.postCodeKey,
+                        key: BillFrom.postCodeKey,
                         title: 'Post Code',
                         controller: billFrom.postCodeController),
                   ),
@@ -60,12 +60,12 @@ class BillForm extends StatelessWidget {
               ),
               gaph,
               CustomTextFormField(
-                  key: BillForm.countryKey,
+                  key: BillFrom.countryKey,
                   title: 'Country',
                   controller: billFrom.countryController),
               gaph,
               OutlinedButton(
-                  key: BillForm.clearTextKey,
+                  key: BillFrom.clearTextKey,
                   onPressed: () => billFrom.clearAllControllers(),
                   child: const Text('Clear Text'))
             ],
