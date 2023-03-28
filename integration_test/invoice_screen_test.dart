@@ -6,7 +6,11 @@ import '../test/robots/robot.dart';
 
 void main() {
   IntegrationTestWidgetsFlutterBinding.ensureInitialized();
-  testWidgets('invoice screen load', (tester) async {
+  testWidgets('''
+    Given: app loads
+    When: tap on new invoice button && new invoice screen loads
+    Then: enter form text && clear form text && press back button
+  ''', (tester) async {
     app.main();
 
     final r = Robot(tester: tester);
@@ -17,11 +21,11 @@ void main() {
 
     await r.invoice.tapNewInvoiceButton();
 
-    r.newInvoice.findBillForm();
+    r.newInvoice.findBillFrom();
 
-    r.newInvoice.findBillFormInputs();
+    r.newInvoice.findBillFromInputs();
 
-    await r.newInvoice.enterBillFormText();
+    await r.newInvoice.enterBillFromText();
 
     await delay(1);
 
@@ -29,14 +33,12 @@ void main() {
 
     await delay(1);
 
-    await r.newInvoice.enterBillFormText();
+    await r.newInvoice.enterBillFromText();
 
     await delay(1);
 
     await r.newInvoice.clearIndividualInput(timmer: true);
 
     await r.newInvoice.tapBackButton();
-
-    await delay(2);
   });
 }
