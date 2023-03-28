@@ -1,12 +1,8 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:go_router/go_router.dart';
-import 'package:invoiceapp/constants/router/app_router.dart';
 import '../../../../robots/robot.dart';
 
 void main() {
   group('Widget Test', () {
-    final GoRouter router = AppRouter.router;
-
     testWidgets('''
       Given: app loads
       When: tap on new invoice button
@@ -20,7 +16,7 @@ void main() {
 
       await r.invoice.tapNewInvoiceButton();
 
-      r.newInvoice.findBillForm();
+      r.newInvoice.findBillFrom();
     });
 
     testWidgets('''
@@ -34,11 +30,11 @@ void main() {
 
       await r.invoice.tapNewInvoiceButton();
 
-      await r.newInvoice.enterBillFormText();
+      await r.newInvoice.enterBillFromText();
 
       await r.newInvoice.tapClearText();
 
-      await r.newInvoice.enterBillFormText();
+      await r.newInvoice.enterBillFromText();
 
       await r.newInvoice.clearIndividualInput();
 
