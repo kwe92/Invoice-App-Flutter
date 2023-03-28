@@ -9,54 +9,54 @@ class NewInvoiceScreenRobot {
   final WidgetTester tester;
   const NewInvoiceScreenRobot({required this.tester});
 
-  void findBillForm() {
-    final billForm = find.byKey(NewInvoice.billFormKey);
-    expect(billForm, findsOneWidget);
+  void findBillFrom() {
+    final BillFrom = find.byKey(NewInvoice.billFromKey);
+    expect(BillFrom, findsOneWidget);
   }
 
-  void findBillFormInputs() {
-    final streetAddressInput = find.byKey(BillForm.streetAddressKey);
+  void findBillFromInputs() {
+    final streetAddressInput = find.byKey(BillFrom.streetAddressKey);
     expect(streetAddressInput, findsOneWidget);
 
-    final cityInput = find.byKey(BillForm.cityKey);
+    final cityInput = find.byKey(BillFrom.cityKey);
     expect(cityInput, findsOneWidget);
 
-    final postCodeInput = find.byKey(BillForm.postCodeKey);
+    final postCodeInput = find.byKey(BillFrom.postCodeKey);
     expect(postCodeInput, findsOneWidget);
 
-    final countryInput = find.byKey(BillForm.countryKey);
+    final countryInput = find.byKey(BillFrom.countryKey);
     expect(countryInput, findsOneWidget);
   }
 
   Future<void> tapClearText() async {
-    final clearInput = find.byKey(BillForm.clearTextKey);
+    final clearInput = find.byKey(BillFrom.clearTextKey);
     expect(clearInput, findsOneWidget);
 
     await tester.tap(clearInput);
     await tester.pumpAndSettle();
   }
 
-  Future<void> enterBillFormText() async {
-    final streetAddressInput = find.byKey(BillForm.streetAddressKey);
+  Future<void> enterBillFromText() async {
+    final streetAddressInput = find.byKey(BillFrom.streetAddressKey);
     await tester.enterText(streetAddressInput, '8303 GreatView Dr.');
 
-    final cityInput = find.byKey(BillForm.cityKey);
+    final cityInput = find.byKey(BillFrom.cityKey);
     await tester.enterText(cityInput, 'San Antonio');
 
-    final postCodeInput = find.byKey(BillForm.postCodeKey);
+    final postCodeInput = find.byKey(BillFrom.postCodeKey);
     await tester.enterText(postCodeInput, '78240');
 
-    final countryInput = find.byKey(BillForm.countryKey);
+    final countryInput = find.byKey(BillFrom.countryKey);
     await tester.enterText(countryInput, 'United States');
 
     await tester.pumpAndSettle();
   }
 
   Future<void> clearIndividualInput({bool timmer = false}) async {
-    final streetAddressInput = find.byKey(BillForm.streetAddressKey);
-    final cityInput = find.byKey(BillForm.cityKey);
-    final postCodeInput = find.byKey(BillForm.postCodeKey);
-    final countryInput = find.byKey(BillForm.countryKey);
+    final streetAddressInput = find.byKey(BillFrom.streetAddressKey);
+    final cityInput = find.byKey(BillFrom.cityKey);
+    final postCodeInput = find.byKey(BillFrom.postCodeKey);
+    final countryInput = find.byKey(BillFrom.countryKey);
 
     final streetAddressClearButton = find.descendant(
         of: streetAddressInput,
