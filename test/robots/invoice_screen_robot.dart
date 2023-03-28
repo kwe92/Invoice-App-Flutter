@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:invoiceapp/src/features/invoices/presenation/invoice_screen.dart';
 import 'package:invoiceapp/src/features/invoices/presenation/title_icon_list_tile.dart';
-import 'package:invoiceapp/src/features/newInvoice/domain/bill_form_model.dart';
+import 'package:invoiceapp/src/features/newInvoice/domain/bill_from_model.dart';
 import 'package:invoiceapp/src/features/newInvoice/presentation/new_invoice.dart';
 import 'package:provider/provider.dart';
 

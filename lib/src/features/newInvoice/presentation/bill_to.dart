@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:invoiceapp/src/features/newInvoice/domain/bill_form_model.dart';
+import 'package:invoiceapp/src/features/newInvoice/domain/bill_from_model.dart';
 import 'package:invoiceapp/src/features/newInvoice/domain/bill_to_model.dart';
 import 'package:invoiceapp/src/features/newInvoice/presentation/bill_from.dart';
 import 'package:invoiceapp/src/features/newInvoice/presentation/custom_text_form_field.dart';

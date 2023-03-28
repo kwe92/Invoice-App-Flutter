@@ -2,7 +2,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:invoiceapp/constants/router/app_router.dart';
-import 'package:invoiceapp/src/features/newInvoice/domain/bill_form_model.dart';
+import 'package:invoiceapp/src/features/newInvoice/domain/bill_from_model.dart';
 import 'package:provider/provider.dart';
 import 'invoice_screen_robot.dart';
 import 'new_invoice_screen_robot.dart';
