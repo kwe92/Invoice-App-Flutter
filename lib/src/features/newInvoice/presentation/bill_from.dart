@@ -15,7 +15,9 @@ class BillFrom extends StatelessWidget {
   static const countryKey = Key('countryKey');
   static const clearTextKey = Key('clearTextKey');
 
-  const BillFrom({super.key});
+  final BillFromModel model;
+
+  const BillFrom({required this.model, super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -27,49 +29,43 @@ class BillFrom extends StatelessWidget {
       padding: const EdgeInsets.symmetric(vertical: 18.0),
       child: Form(
         key: BillFrom.formKey,
-        child: Consumer<BillFromModel>(
-          builder: (context, billFrom, child) => Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              Text('Bill From', style: TextStyle(fontSize: 18, color: purple)),
-              gaph,
-              CustomTextFormField(
-                key: BillFrom.streetAddressKey,
-                title: 'Street Address',
-                controller: billFrom.streetAddController,
-              ),
-              gaph,
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  SizedBox(
-                    width: textInputWidth,
-                    child: CustomTextFormField(
-                        key: BillFrom.cityKey,
-                        title: 'City',
-                        controller: billFrom.cityController),
-                  ),
-                  SizedBox(
-                    width: textInputWidth,
-                    child: CustomTextFormField(
-                        key: BillFrom.postCodeKey,
-                        title: 'Post Code',
-                        controller: billFrom.postCodeController),
-                  ),
-                ],
-              ),
-              gaph,
-              CustomTextFormField(
-                  key: BillFrom.countryKey,
-                  title: 'Country',
-                  controller: billFrom.countryController),
-              gaph,
-              OutlinedButton(
-                  key: BillFrom.clearTextKey,
-                  onPressed: () => billFrom.clearAllControllers(),
-                  child: const Text('Clear Text'))
-            ],
-          ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Text('Bill From', style: TextStyle(fontSize: 18, color: purple)),
+            gaph,
+            CustomTextFormField(
+              key: BillFrom.streetAddressKey,
+              title: 'Street Address',
+              controller: model.streetAddController,
+            ),
+            gaph,
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                SizedBox(
+                  width: textInputWidth,
+                  child: CustomTextFormField(
+                      key: BillFrom.cityKey,
+                      title: 'City',
+                      controller: model.cityController),
+                ),
+                SizedBox(
+                  width: textInputWidth,
+                  child: CustomTextFormField(
+                      key: BillFrom.postCodeKey,
+                      title: 'Post Code',
+                      controller: model.postCodeController),
+                ),
+              ],
+            ),
+            gaph,
+            CustomTextFormField(
+                key: BillFrom.countryKey,
+                title: 'Country',
+                controller: model.countryController),
+            gaph,
+          ],
         ),
       ),
     );
