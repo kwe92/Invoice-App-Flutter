@@ -16,6 +16,7 @@ class BillTo extends StatelessWidget {
   static const clientNameKey = Key('clientNameKey');
   static const clientEmailKey = Key('clientEmailKey');
   static const projectDescKey = Key('projectDescKey');
+  static const dateKey = Key('dateKey');
 
   final BillToModel model;
   const BillTo({required this.model, super.key});
@@ -25,6 +26,9 @@ class BillTo extends StatelessWidget {
     final purple = CustomTheme.otherColors['purple0'] as Color;
     final gaph = Gaps.heigth(18);
     const double textInputWidth = 170;
+    final String initDate = _dateTimeToString(_initDateTime());
+
+    model.setDateControllerText(initDate);
 
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 18.0),
@@ -79,6 +83,23 @@ class BillTo extends StatelessWidget {
                 controller: model.countryController),
             gaph,
             CustomTextFormField(
+              key: BillTo.dateKey,
+              title: 'Invoice Date',
+              controller: model.dateController,
+              onTap: () async {
+                DateTime? newDate = await showDatePicker(
+                  context: context,
+                  initialDate: _initDateTime(),
+                  firstDate: DateTime(2023),
+                  lastDate: DateTime(3000),
+                );
+                if (newDate != null) {
+                  model.dateController.text = _dateTimeToString(newDate);
+                }
+              },
+            ),
+            gaph,
+            CustomTextFormField(
               key: BillTo.projectDescKey,
               title: 'Project Description',
               controller: model.projectDescController,
@@ -90,3 +111,8 @@ class BillTo extends StatelessWidget {
     );
   }
 }
+
+DateTime _initDateTime() => DateTime(2023);
+
+String _dateTimeToString(DateTime date) =>
+    '${date.month.toString()}-${date.day.toString()}-${date.year.toString()}';
