@@ -10,48 +10,56 @@ class BillToModel extends ChangeNotifier {
   TextEditingController _clientNameController = TextEditingController();
   TextEditingController _clientEmailController = TextEditingController();
   TextEditingController _projectDescController = TextEditingController();
-
+  TextEditingController _dateController = TextEditingController();
   TextEditingController get streetAddController => _streetAddController;
   TextEditingController get cityController => _cityController;
   TextEditingController get postCodeController => _postCodeController;
   TextEditingController get countryController => _countryController;
-
   TextEditingController get clientNameController => _clientNameController;
   TextEditingController get clientEmailController => _clientEmailController;
   TextEditingController get projectDescController => _projectDescController;
+  TextEditingController get dateController => _dateController;
+
+  void setDateControllerText(String date) =>
+      date.isNotEmpty ? dateController.text = date : null;
 
   void clearStreetController() {
-    _streetAddController.clear();
+    streetAddController.clear();
     notifyListeners();
   }
 
   void clearCityController() {
-    _cityController.clear();
+    cityController.clear();
     notifyListeners();
   }
 
   void clearPostCodeController() {
-    _postCodeController.clear();
+    postCodeController.clear();
     notifyListeners();
   }
 
   void clearCountryController() {
-    _countryController.clear();
+    countryController.clear();
     notifyListeners();
   }
 
   void clearClientNameController() {
-    _clientNameController.clear();
+    clientNameController.clear();
     notifyListeners();
   }
 
   void clearClientEmailController() {
-    _clientEmailController.clear();
+    clientEmailController.clear();
     notifyListeners();
   }
 
   void clearProjectDescController() {
-    _projectDescController.clear();
+    projectDescController.clear();
+    notifyListeners();
+  }
+
+  void clearDateController() {
+    dateController.clear();
     notifyListeners();
   }
 
@@ -63,5 +71,6 @@ class BillToModel extends ChangeNotifier {
     clearClientNameController();
     clearClientEmailController();
     clearProjectDescController();
+    clearDateController();
   }
 }
