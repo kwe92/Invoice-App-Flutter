@@ -21,12 +21,13 @@ class CustomTextFormField extends StatelessWidget {
       controller: controller,
       decoration: InputDecoration(
         focusColor: purple,
-        suffixIcon: GestureDetector(
-          onTap: () => controller.clear(),
-          child: const Icon(
-            Icons.close,
-          ),
-        ),
+        // TODO: Make the icon dynamic | State maybe?
+        // suffixIcon: GestureDetector(
+        //   onTap: () => controller.clear(),
+        //   child: const Icon(
+        //     Icons.close,
+        //   ),
+        // ),
         label: Text(
           title,
           style: TextStyle(color: grey),
