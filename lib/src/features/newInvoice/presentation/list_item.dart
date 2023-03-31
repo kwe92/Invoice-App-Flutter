@@ -6,8 +6,12 @@ import 'package:invoiceapp/src/features/newInvoice/presentation/custom_text_form
 import 'package:invoiceapp/theme/source_of_truth.dart';
 import 'package:provider/provider.dart';
 
+typedef VoidCallback = Function(int index);
+
 class CustomListItem extends StatelessWidget {
-  const CustomListItem({super.key});
+  final int index;
+  final VoidCallback onPress;
+  const CustomListItem({required this.index, required this.onPress, super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -36,6 +40,13 @@ class CustomListItem extends StatelessWidget {
                     controller: model.totalController,
                     width: 152.5),
               ],
+            ),
+            gaph,
+            OutlinedButton(
+              onPressed: () {
+                onPress(index);
+              },
+              child: const Text('Remove Item'),
             )
           ],
         ),
