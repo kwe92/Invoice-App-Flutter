@@ -3,21 +3,10 @@
 import 'package:flutter/material.dart';
 import 'package:invoiceapp/theme/theme.dart';
 
-class CustomDropDownMenu extends StatefulWidget {
-  const CustomDropDownMenu({super.key});
+class CustomDropDownMenu extends StatelessWidget {
+  final TextEditingController controller;
+  const CustomDropDownMenu({required this.controller, super.key});
 
-  @override
-  State<StatefulWidget> createState() => _CustomDropDownMenuState();
-}
-
-class _CustomDropDownMenuState extends State<CustomDropDownMenu> {
-  @override
-  void initState() {
-    _controller.text = 'Net 1 Day';
-    super.initState();
-  }
-
-  TextEditingController _controller = TextEditingController();
   @override
   Widget build(BuildContext context) {
     final purple = CustomTheme.otherColors['purple0'] as Color;
@@ -28,7 +17,7 @@ class _CustomDropDownMenuState extends State<CustomDropDownMenu> {
           DropdownMenu(
               label: const Text('Payment Terms'),
               width: 352.5,
-              controller: _controller,
+              controller: controller,
               inputDecorationTheme: InputDecorationTheme(
                 enabledBorder: _border(grey),
                 focusedBorder: _border(purple),
