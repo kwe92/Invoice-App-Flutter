@@ -12,4 +12,9 @@ class ItemListModel extends ChangeNotifier {
     _items = [..._items, item];
     notifyListeners();
   }
+
+  void removeItem(int index) {
+    _items.removeAt(index);
+    notifyListeners();
+  }
 }
