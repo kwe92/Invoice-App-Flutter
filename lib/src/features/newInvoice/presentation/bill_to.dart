@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:invoiceapp/src/features/newInvoice/domain/bill_to_model.dart';
-import 'package:invoiceapp/src/features/newInvoice/domain/item_list_state.dart';
+import 'package:invoiceapp/src/features/newInvoice/domain/item_list_model.dart';
 import 'package:invoiceapp/src/features/newInvoice/presentation/custom_text_form_field.dart';
 import 'package:invoiceapp/src/features/newInvoice/presentation/drop_down_menu.dart';
 import 'package:invoiceapp/src/features/newInvoice/presentation/list_item.dart';
@@ -38,7 +38,7 @@ class BillTo extends StatelessWidget {
     return Form(
         key: BillTo.formKey,
         child: Consumer(
-          builder: (BuildContext context, ItemListState itemsList, _) => Column(
+          builder: (BuildContext context, ItemListModel itemsList, _) => Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               Text('Bill To', style: textStyle),
