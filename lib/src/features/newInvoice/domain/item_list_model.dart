@@ -4,17 +4,16 @@ import 'package:flutter/material.dart';
 import 'package:invoiceapp/src/features/newInvoice/presentation/list_item.dart';
 
 class ItemListModel extends ChangeNotifier {
-  List<CustomListItem> _items = [];
+  final Map<int, CustomListItem> _items = {};
+  Map<int, CustomListItem> get items => _items;
 
-  List<CustomListItem> get items => _items;
-
-  void addItem(CustomListItem item) {
-    _items = [..._items, item];
+  void addItem(Map<int, CustomListItem> entry) {
+    _items.addAll(entry);
     notifyListeners();
   }
 
   void removeItem(int index) {
-    _items.removeAt(index);
+    _items.remove(index);
     notifyListeners();
   }
 }
