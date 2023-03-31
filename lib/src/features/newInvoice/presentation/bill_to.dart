@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:invoiceapp/src/features/newInvoice/domain/bill_to_model.dart';
 import 'package:invoiceapp/src/features/newInvoice/domain/item_list_model.dart';
@@ -116,22 +118,22 @@ class BillTo extends StatelessWidget {
                 style: textStyle,
               ),
               Column(
-                children: [...itemsList.items],
+                children: [...itemsList.items.values],
               ),
               gaph,
               Row(
-                // TODO: Fix adding and removing items
                 children: [
                   Expanded(child: _AddButton(
                     onPressed: () {
-                      if (itemsList.items.isEmpty) {
-                        itemsList.addItem(CustomListItem(
-                            index: 0, onPress: itemsList.removeItem));
-                        return;
-                      }
-                      itemsList.addItem(CustomListItem(
-                          index: itemsList.items.length,
-                          onPress: itemsList.removeItem));
+                      final index = _randInt(1001, 999999);
+                      final Map<int, CustomListItem> entry = {
+                        index: CustomListItem(
+                          index: index,
+                          onPress: itemsList.removeItem,
+                        )
+                      };
+
+                      itemsList.addItem(entry);
                     },
                   )),
                 ],
@@ -157,3 +159,5 @@ DateTime _initDateTime() => DateTime(2023);
 
 String _dateTimeToString(DateTime date) =>
     '${date.month.toString()}-${date.day.toString()}-${date.year.toString()}';
+
+int _randInt(int min, int max) => min + Random().nextInt((max + 1) - min);
