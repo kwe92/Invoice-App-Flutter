@@ -23,30 +23,29 @@ class NewInvoice extends StatelessWidget {
           padding: CustomTheme.mainContentPadding,
           child: SingleChildScrollView(
               child: Consumer2(
-            builder: (context, BillFromModel bfm, BillToModel btm, child) =>
+            builder: (context, BillFromModel model, BillToModel btm, child) =>
                 Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 const CustomBackButton(),
                 Gaps.gaph18,
-                _title,
-                BillFrom(model: bfm, key: NewInvoice.billFromKey),
+                const Text(
+                  'New Invoice',
+                  style: TextStyle(fontSize: 26, fontWeight: FontWeight.w400),
+                ),
+                BillFrom(model: model, key: NewInvoice.billFromKey),
                 BillTo(model: btm),
                 OutlinedButton(
-                    key: BillFrom.clearTextKey,
-                    onPressed: () {
-                      bfm.clearAllControllers();
-                      btm.clearAllControllers();
-                    },
-                    child: const Text('Clear Text'))
+                  key: BillFrom.clearTextKey,
+                  onPressed: () {
+                    model.clearAllControllers();
+                    btm.clearAllControllers();
+                  },
+                  child: const Text('Clear Text'),
+                )
               ],
             ),
           )),
         ),
       );
 }
-
-const _title = Text(
-  'New Invoice',
-  style: TextStyle(fontSize: 26, fontWeight: FontWeight.w400),
-);
