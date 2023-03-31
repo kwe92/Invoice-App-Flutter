@@ -103,7 +103,7 @@ class BillTo extends StatelessWidget {
                 },
               ),
               gaph,
-              const CustomDropDownMenu(),
+              CustomDropDownMenu(controller: model.dropDownMenuController),
               gaph,
               CustomTextFormField(
                 key: BillTo.projectDescKey,
@@ -120,10 +120,18 @@ class BillTo extends StatelessWidget {
               ),
               gaph,
               Row(
+                // TODO: Fix adding and removing items
                 children: [
                   Expanded(child: _AddButton(
                     onPressed: () {
-                      itemsList.addItem(const CustomListItem());
+                      if (itemsList.items.isEmpty) {
+                        itemsList.addItem(CustomListItem(
+                            index: 0, onPress: itemsList.removeItem));
+                        return;
+                      }
+                      itemsList.addItem(CustomListItem(
+                          index: itemsList.items.length,
+                          onPress: itemsList.removeItem));
                     },
                   )),
                 ],
