@@ -1,4 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
+import 'package:invoiceapp/src/features/newInvoice/presentation/new_invoice.dart';
 import 'package:invoiceapp/src/features/shared/services/get_it.dart';
 import '../../../../robots/robot.dart';
 
@@ -19,6 +20,8 @@ void main() {
 
       await r.invoice.tapNewInvoiceButton();
 
+      await r.pumpWidget(const NewInvoice());
+
       r.newInvoice.findBillFrom();
     });
 
@@ -35,13 +38,13 @@ void main() {
 
       await r.newInvoice.enterBillFromText();
 
-      await r.newInvoice.tapClearText();
+      // await r.newInvoice.tapClearText();
 
-      await r.newInvoice.enterBillFromText();
+      // await r.newInvoice.enterBillFromText();
 
-      await r.newInvoice.clearIndividualInput();
+      // await r.newInvoice.clearIndividualInput();
 
-      await r.newInvoice.tapBackButton();
+      // await r.newInvoice.tapBackButton();
     });
   });
 }

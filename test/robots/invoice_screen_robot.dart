@@ -23,10 +23,6 @@ class InvoiceScreenRobot {
 
     await tester.tap(invoiceButton);
 
-    await tester.pumpWidget(ChangeNotifierProvider<BillFromModel>(
-      create: (BuildContext context) => BillFromModel(),
-      child: const MaterialApp(home: NewInvoice()),
-    ));
     await tester.pumpAndSettle();
   }
 
