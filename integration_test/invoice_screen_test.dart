@@ -16,7 +16,7 @@ void main() {
   ''', (tester) async {
     app.main();
 
-    final r = Robot(tester: tester);
+    final Robot r = Robot(tester: tester);
 
     await r.pumpApp();
 
