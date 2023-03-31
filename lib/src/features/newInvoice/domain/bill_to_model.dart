@@ -11,6 +11,8 @@ class BillToModel extends ChangeNotifier {
   TextEditingController _clientEmailController = TextEditingController();
   TextEditingController _projectDescController = TextEditingController();
   TextEditingController _dateController = TextEditingController();
+  TextEditingController _dropDownMenuController = TextEditingController();
+
   TextEditingController get streetAddController => _streetAddController;
   TextEditingController get cityController => _cityController;
   TextEditingController get postCodeController => _postCodeController;
@@ -19,6 +21,7 @@ class BillToModel extends ChangeNotifier {
   TextEditingController get clientEmailController => _clientEmailController;
   TextEditingController get projectDescController => _projectDescController;
   TextEditingController get dateController => _dateController;
+  TextEditingController get dropDownMenuController => _dropDownMenuController;
 
   void setDateControllerText(String date) =>
       date.isNotEmpty ? dateController.text = date : null;
@@ -63,6 +66,11 @@ class BillToModel extends ChangeNotifier {
     notifyListeners();
   }
 
+  void clearDropDownMenuController() {
+    dropDownMenuController.clear();
+    notifyListeners();
+  }
+
   void clearAllControllers() {
     clearCityController();
     clearCountryController();
@@ -72,5 +80,6 @@ class BillToModel extends ChangeNotifier {
     clearClientEmailController();
     clearProjectDescController();
     clearDateController();
+    clearDropDownMenuController();
   }
 }
