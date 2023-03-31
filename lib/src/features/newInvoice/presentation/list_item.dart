@@ -22,29 +22,32 @@ class _CustomListItemState extends State<CustomListItem> {
   @override
   Widget build(BuildContext context) {
     final gaph = Gaps.heigth(18);
-    return Column(
-      children: [
-        CustomTextFormField(
-            title: 'Item Name', controller: _itemNameController),
-        gaph,
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            SizedBox(
-                width: 65,
-                child: CustomTextFormField(
-                    title: 'Qty.', controller: _quantityController)),
-            SizedBox(
-                width: 105,
-                child: CustomTextFormField(
-                    title: 'Price', controller: _priceController)),
-            SizedBox(
-                width: 152.5,
-                child: CustomTextFormField(
-                    title: 'Total', controller: _totalController))
-          ],
-        )
-      ],
+    return Padding(
+      padding: const EdgeInsets.only(top: 35.0),
+      child: Column(
+        children: [
+          CustomTextFormField(
+              title: 'Item Name', controller: _itemNameController),
+          gaph,
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              SizedBox(
+                  width: 65,
+                  child: CustomTextFormField(
+                      title: 'Qty.', controller: _quantityController)),
+              SizedBox(
+                  width: 105,
+                  child: CustomTextFormField(
+                      title: 'Price', controller: _priceController)),
+              SizedBox(
+                  width: 152.5,
+                  child: CustomTextFormField(
+                      title: 'Total', controller: _totalController))
+            ],
+          )
+        ],
+      ),
     );
   }
 }
