@@ -33,7 +33,7 @@ class BillToModel extends ChangeNotifier {
       'clientEmail': clientEmailController.text,
       'projectDesc': projectDescController.text,
       'date': dateController.text,
-      'dropDownMenu': dropDownMenuController.text,
+      'paymentTerm': dropDownMenuController.text,
     };
   }
 
