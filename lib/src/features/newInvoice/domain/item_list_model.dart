@@ -3,7 +3,6 @@
 import 'package:flutter/material.dart';
 import 'package:invoiceapp/src/features/newInvoice/domain/list_item_model.dart';
 import 'package:invoiceapp/src/features/newInvoice/presentation/list_item.dart';
-import 'package:invoiceapp/src/features/newInvoice/presentation/list_item_stateful.dart';
 
 class ItemListModel extends ChangeNotifier {
   final Map<int, CustomListItem> _items = {};
