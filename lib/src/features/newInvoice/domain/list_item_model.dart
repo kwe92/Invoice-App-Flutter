@@ -13,6 +13,15 @@ class CustomListItemModel extends ChangeNotifier {
   TextEditingController get priceController => _priceController;
   TextEditingController get totalController => _totalController;
 
+  Map<String, String> get allControllerText {
+    return {
+      'itemName': itemNameController.text,
+      'quantity': quantityController.text,
+      ' price': priceController.text,
+      'total': totalController.text,
+    };
+  }
+
   void clearItemNameController() {
     _itemNameController.clear();
     notifyListeners();
