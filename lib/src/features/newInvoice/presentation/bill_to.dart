@@ -27,7 +27,9 @@ class BillTo extends StatelessWidget {
   static const dateKey = Key('dateKey');
 
   final BillToModel model;
-  const BillTo({required this.model, super.key});
+  final ItemListModel itemsModel;
+
+  const BillTo({required this.model, required this.itemsModel, super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -40,116 +42,119 @@ class BillTo extends StatelessWidget {
     model.setDateControllerText(initDate);
 
     return Form(
-        key: BillTo.formKey,
-        child: Consumer(
-          builder: (BuildContext context, ItemListModel itemsList, _) => Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              Text('Bill To', style: textStyle),
-              gaph,
-              CustomTextFormField(
-                key: BillTo.clientNameKey,
-                title: "Client's Name",
-                controller: model.clientNameController,
+      key: BillTo.formKey,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          Text('Bill To', style: textStyle),
+          gaph,
+          CustomTextFormField(
+            key: BillTo.clientNameKey,
+            title: "Client's Name",
+            controller: model.clientNameController,
+          ),
+          gaph,
+          CustomTextFormField(
+            key: BillTo.clientEmailKey,
+            title: "Client's Email",
+            controller: model.clientEmailController,
+          ),
+          gaph,
+          CustomTextFormField(
+            key: BillTo.streetAddressKey,
+            title: 'Street Address',
+            controller: model.streetAddController,
+          ),
+          gaph,
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              SizedBox(
+                width: textInputWidth,
+                child: CustomTextFormField(
+                    key: BillTo.cityKey,
+                    title: 'City',
+                    controller: model.cityController),
               ),
-              gaph,
-              CustomTextFormField(
-                key: BillTo.clientEmailKey,
-                title: "Client's Email",
-                controller: model.clientEmailController,
+              SizedBox(
+                width: textInputWidth,
+                child: CustomTextFormField(
+                    key: BillTo.postCodeKey,
+                    title: 'Post Code',
+                    controller: model.postCodeController),
               ),
-              gaph,
-              CustomTextFormField(
-                key: BillTo.streetAddressKey,
-                title: 'Street Address',
-                controller: model.streetAddController,
-              ),
-              gaph,
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  SizedBox(
-                    width: textInputWidth,
-                    child: CustomTextFormField(
-                        key: BillTo.cityKey,
-                        title: 'City',
-                        controller: model.cityController),
-                  ),
-                  SizedBox(
-                    width: textInputWidth,
-                    child: CustomTextFormField(
-                        key: BillTo.postCodeKey,
-                        title: 'Post Code',
-                        controller: model.postCodeController),
-                  ),
-                ],
-              ),
-              gaph,
-              CustomTextFormField(
-                  key: BillTo.countryKey,
-                  title: 'Country',
-                  controller: model.countryController),
-              gaph,
-              CustomTextFormField(
-                key: BillTo.dateKey,
-                title: 'Invoice Date',
-                controller: model.dateController,
-                onTap: () async {
-                  DateTime? newDate = await showDatePicker(
-                    context: context,
-                    initialDate: _initDateTime(),
-                    firstDate: DateTime(2023),
-                    lastDate: DateTime(3000),
-                  );
-                  if (newDate != null) {
-                    model.dateController.text = _dateTimeToString(newDate);
-                  }
-                },
-              ),
-              gaph,
-              CustomDropDownMenu(controller: model.dropDownMenuController),
-              gaph,
-              CustomTextFormField(
-                key: BillTo.projectDescKey,
-                title: 'Project Description',
-                controller: model.projectDescController,
-              ),
-              gaph,
-              Text(
-                'Item List',
-                style: textStyle,
-              ),
-              Column(
-                children: [...itemsList.items.values],
-              ),
-              gaph,
-              Row(
-                children: [
-                  Expanded(child: _AddButton(
-                    onPressed: () {
-                      final model = CustomListItemModel();
-                      final model2 = CustomListItemModel();
-
-                      print(model.totalController.text);
-
-                      final index = _randInt(1001, 999999);
-                      final listItem = CustomListItemStateful(
-                        index: index,
-                        onPress: itemsList.removeItem,
-                      );
-
-                      final Map<int, CustomListItemStateful> entry = {
-                        index: listItem
-                      };
-
-                      itemsList.addItem(entry);
-                    },
-                  )),
-                ],
-              )
             ],
           ),
-        ));
+          gaph,
+          CustomTextFormField(
+              key: BillTo.countryKey,
+              title: 'Country',
+              controller: model.countryController),
+          gaph,
+          CustomTextFormField(
+            key: BillTo.dateKey,
+            title: 'Invoice Date',
+            controller: model.dateController,
+            onTap: () async {
+              DateTime? newDate = await showDatePicker(
+                context: context,
+                initialDate: _initDateTime(),
+                firstDate: DateTime(2023),
+                lastDate: DateTime(3000),
+              );
+              if (newDate != null) {
+                model.dateController.text = _dateTimeToString(newDate);
+              }
+            },
+          ),
+          gaph,
+          CustomDropDownMenu(controller: model.dropDownMenuController),
+          gaph,
+          CustomTextFormField(
+            key: BillTo.projectDescKey,
+            title: 'Project Description',
+            controller: model.projectDescController,
+          ),
+          gaph,
+          Text(
+            'Item List',
+            style: textStyle,
+          ),
+          Column(
+            children: [...itemsModel.items.values],
+          ),
+          gaph,
+          Row(
+            children: [
+              Expanded(child: _AddButton(
+                onPressed: () {
+                  // TODO: Remove list item model if the list item is removed
+                  final model = CustomListItemModel();
+                  final index = _randInt(1001, 999999);
+                  final listItem = CustomListItem(
+                    listItemModel: model,
+                    index: index,
+                    onPress: itemsModel.removeItem,
+                  );
+
+                  final Map<int, CustomListItem> entry = {index: listItem};
+                  final Map<int, CustomListItemModel> itemModelEntry = {
+                    index: model
+                  };
+
+                  itemsModel.addItem(entry);
+                  itemsModel.addItemModel(itemModelEntry);
+
+                  itemsModel.itemModels.forEach((key, value) {
+                    print(value.itemNameController.text);
+                  });
+                },
+              )),
+            ],
+          )
+        ],
+      ),
+    );
   }
 }
 
