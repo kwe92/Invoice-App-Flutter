@@ -13,6 +13,15 @@ class BillFromModel extends ChangeNotifier {
   TextEditingController get postCodeController => _postCodeController;
   TextEditingController get countryController => _countryController;
 
+  Map<String, String> get allControllerText {
+    return {
+      'streetAdd': streetAddController.text,
+      'city': cityController.text,
+      'postCode': postCodeController.text,
+      'country': countryController.text
+    };
+  }
+
   void clearStreetController() {
     _streetAddController.clear();
     notifyListeners();
