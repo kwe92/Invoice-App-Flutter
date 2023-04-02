@@ -3,9 +3,11 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:invoiceapp/src/features/newInvoice/domain/bill_to_model.dart';
 import 'package:invoiceapp/src/features/newInvoice/domain/item_list_model.dart';
+import 'package:invoiceapp/src/features/newInvoice/domain/list_item_model.dart';
 import 'package:invoiceapp/src/features/newInvoice/presentation/custom_text_form_field.dart';
 import 'package:invoiceapp/src/features/newInvoice/presentation/drop_down_menu.dart';
 import 'package:invoiceapp/src/features/newInvoice/presentation/list_item.dart';
+import 'package:invoiceapp/src/features/newInvoice/presentation/list_item_stateful.dart';
 import 'package:invoiceapp/theme/source_of_truth.dart';
 import 'package:invoiceapp/theme/theme.dart';
 import 'package:provider/provider.dart';
@@ -125,12 +127,19 @@ class BillTo extends StatelessWidget {
                 children: [
                   Expanded(child: _AddButton(
                     onPressed: () {
+                      final model = CustomListItemModel();
+                      final model2 = CustomListItemModel();
+
+                      print(model.totalController.text);
+
                       final index = _randInt(1001, 999999);
-                      final Map<int, CustomListItem> entry = {
-                        index: CustomListItem(
-                          index: index,
-                          onPress: itemsList.removeItem,
-                        )
+                      final listItem = CustomListItemStateful(
+                        index: index,
+                        onPress: itemsList.removeItem,
+                      );
+
+                      final Map<int, CustomListItemStateful> entry = {
+                        index: listItem
                       };
 
                       itemsList.addItem(entry);
