@@ -57,14 +57,14 @@ class NewInvoice extends StatelessWidget {
                     final Map<String, String> billToText =
                         billToModel.allControllerText;
 
-                    billFromText.forEach((key, value) => print(value));
-                    billToText.forEach((key, value) => print(value));
+                    billFromText.forEach((key, value) => print("$key: $value"));
+                    billToText.forEach((key, value) => print("$key: $value"));
                     itemsModel.itemModels.forEach((key, value) {
                       final Map<String, String> listItems =
                           value.allControllerText;
 
                       listItems.forEach((key, value) {
-                        print(value);
+                        print("$key: $value");
                       });
                     });
                   },
