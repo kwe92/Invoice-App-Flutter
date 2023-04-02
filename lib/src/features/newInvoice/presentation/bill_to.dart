@@ -9,7 +9,6 @@ import 'package:invoiceapp/src/features/newInvoice/presentation/drop_down_menu.d
 import 'package:invoiceapp/src/features/newInvoice/presentation/list_item.dart';
 import 'package:invoiceapp/theme/source_of_truth.dart';
 import 'package:invoiceapp/theme/theme.dart';
-import 'package:provider/provider.dart';
 
 // final _formKey = GlobalKey<FormState>();
 
