@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:invoiceapp/constants/widgets/base_scaffold/base_scaffold.dart';
 import 'package:invoiceapp/src/features/newInvoice/domain/bill_from_model.dart';
 import 'package:invoiceapp/src/features/newInvoice/domain/bill_to_model.dart';
+import 'package:invoiceapp/src/features/newInvoice/domain/item_list_model.dart';
 import 'package:invoiceapp/src/features/newInvoice/presentation/back_button.dart';
 import 'package:invoiceapp/src/features/newInvoice/presentation/bill_from.dart';
 import 'package:invoiceapp/src/features/newInvoice/presentation/bill_to.dart';
@@ -22,8 +23,9 @@ class NewInvoice extends StatelessWidget {
         body: Padding(
           padding: CustomTheme.mainContentPadding,
           child: SingleChildScrollView(
-              child: Consumer2(
-            builder: (context, BillFromModel model, BillToModel btm, child) =>
+              child: Consumer3(
+            builder: (context, BillFromModel model, BillToModel btm,
+                    ItemListModel itemsModel, child) =>
                 Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
@@ -34,15 +36,18 @@ class NewInvoice extends StatelessWidget {
                   style: TextStyle(fontSize: 26, fontWeight: FontWeight.w400),
                 ),
                 BillFrom(model: model, key: NewInvoice.billFromKey),
-                BillTo(model: btm),
-                OutlinedButton(
-                  key: BillFrom.clearTextKey,
-                  onPressed: () {
-                    model.clearAllControllers();
-                    btm.clearAllControllers();
-                  },
-                  child: const Text('Clear Text'),
+                BillTo(
+                  model: btm,
+                  itemsModel: itemsModel,
                 ),
+                // OutlinedButton(
+                //   key: BillFrom.clearTextKey,
+                //   onPressed: () {
+                //     model.clearAllControllers();
+                //     btm.clearAllControllers();
+                //   },
+                //   child: const Text('Clear Text'),
+                // ),
                 Gaps.gaph12,
                 OutlinedButton(
                   onPressed: () {},
