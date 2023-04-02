@@ -11,7 +11,12 @@ typedef VoidCallback = Function(int index);
 class CustomListItem extends StatelessWidget {
   final int index;
   final VoidCallback onPress;
-  const CustomListItem({required this.index, required this.onPress, super.key});
+  final CustomListItemModel listItemModel;
+  const CustomListItem(
+      {required this.index,
+      required this.onPress,
+      required this.listItemModel,
+      super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -22,22 +27,23 @@ class CustomListItem extends StatelessWidget {
         builder: (BuildContext context, CustomListItemModel model, _) => Column(
           children: [
             CustomTextFormField(
-                title: 'Item Name', controller: model.itemNameController),
+                title: 'Item Name',
+                controller: listItemModel.itemNameController),
             gaph,
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 _TextField(
                     title: 'Qty.',
-                    controller: model.quantityController,
+                    controller: listItemModel.quantityController,
                     width: 65),
                 _TextField(
                     title: 'Price',
-                    controller: model.priceController,
+                    controller: listItemModel.priceController,
                     width: 105),
                 _TextField(
                     title: 'Total',
-                    controller: model.totalController,
+                    controller: listItemModel.totalController,
                     width: 152.5),
               ],
             ),
