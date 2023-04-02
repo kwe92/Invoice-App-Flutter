@@ -24,8 +24,8 @@ class NewInvoice extends StatelessWidget {
           padding: CustomTheme.mainContentPadding,
           child: SingleChildScrollView(
               child: Consumer3(
-            builder: (context, BillFromModel model, BillToModel btm,
-                    ItemListModel itemsModel, child) =>
+            builder: (context, BillFromModel billFromModel,
+                    BillToModel billToModel, ItemListModel itemsModel, child) =>
                 Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
@@ -35,9 +35,9 @@ class NewInvoice extends StatelessWidget {
                   'New Invoice',
                   style: TextStyle(fontSize: 26, fontWeight: FontWeight.w400),
                 ),
-                BillFrom(model: model, key: NewInvoice.billFromKey),
+                BillFrom(model: billFromModel, key: NewInvoice.billFromKey),
                 BillTo(
-                  model: btm,
+                  model: billToModel,
                   itemsModel: itemsModel,
                 ),
                 // OutlinedButton(
@@ -50,7 +50,24 @@ class NewInvoice extends StatelessWidget {
                 // ),
                 Gaps.gaph12,
                 OutlinedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    final Map<String, String> billFromText =
+                        billFromModel.allControllerText;
+
+                    final Map<String, String> billToText =
+                        billToModel.allControllerText;
+
+                    billFromText.forEach((key, value) => print(value));
+                    billToText.forEach((key, value) => print(value));
+                    itemsModel.itemModels.forEach((key, value) {
+                      final Map<String, String> listItems =
+                          value.allControllerText;
+
+                      listItems.forEach((key, value) {
+                        print(value);
+                      });
+                    });
+                  },
                   child: const Text('Save & Send'),
                 )
               ],
