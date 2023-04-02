@@ -42,6 +42,11 @@ class NewInvoice extends StatelessWidget {
                     btm.clearAllControllers();
                   },
                   child: const Text('Clear Text'),
+                ),
+                Gaps.gaph12,
+                OutlinedButton(
+                  onPressed: () {},
+                  child: const Text('Save & Send'),
                 )
               ],
             ),
