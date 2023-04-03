@@ -35,9 +35,9 @@ class NewInvoiceButton extends StatelessWidget {
                     height: 38 / 2.25,
                     child: SvgPicture.asset(
                       'assets/icon-plus.svg',
-                      colorFilter: ColorFilter.mode(
-                          CustomTheme.otherColors['purple0'] as Color,
-                          BlendMode.srcIn),
+                      // colorFilter: ColorFilter.mode(
+                      //     CustomTheme.otherColors['purple0'] as Color,
+                      //     BlendMode.srcIn),
                     ),
                   ),
                 ),
