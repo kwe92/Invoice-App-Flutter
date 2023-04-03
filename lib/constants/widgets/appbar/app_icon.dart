@@ -91,7 +91,7 @@ final _iconImage = Container(
   alignment: Alignment.center,
   child: SvgPicture.asset(
     'assets/logo.svg',
-    colorFilter: ColorFilter.mode(
-        CustomTheme.lightColors['shade3'] as Color, BlendMode.srcIn),
+    // colorFilter: ColorFilter.mode(
+    //     CustomTheme.lightColors['shade3'] as Color, BlendMode.srcIn),
   ),
 );
