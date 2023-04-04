@@ -14,50 +14,35 @@ class AppRouter {
     GoRoute(
         path: '/',
         builder: (context, state) {
-          return SignInScreen(actions: [
-            ForgotPasswordAction(((context, email) {
-              final uri = Uri(
-                path: '/sign-in/forgot-password',
-                queryParameters: <String, String?>{
-                  'email': email,
-                },
-              );
-              context.push(uri.toString());
-            })),
-            AuthStateChangeAction(((context, state) {
-              if (state is SignedIn || state is UserCreated) {
-                var user = (state is SignedIn)
-                    ? state.user
-                    : (state as UserCreated).credential.user;
-                if (user == null) {
-                  return;
-                }
-                if (state is UserCreated) {
-                  user.updateDisplayName(user.email!.split('@')[0]);
-                }
-                if (!user.emailVerified) {
-                  user.sendEmailVerification();
-                  const snackBar = SnackBar(
-                      content: Text(
-                          'Please check your email to verify your email address'));
-                  ScaffoldMessenger.of(context).showSnackBar(snackBar);
-                }
-                context.pushReplacement('/');
-              }
-            })),
-          ]);
+          final providers = [EmailAuthProvider()];
+          return SafeArea(
+            child: Scaffold(
+              body: SignInScreen(
+                providers: providers,
+                actions: [
+                  AuthStateChangeAction<SignedIn>((context, state) {
+                    context.go('/invoices');
+                  }),
+                ],
+              ),
+            ),
+          );
         },
         routes: <GoRoute>[
           GoRoute(
+            path: 'invoices',
+            builder: _invoiceScreen,
+          ),
+          GoRoute(
             path: 'newInvoice',
-            builder: (context, state) => const NewInvoice(),
-          )
+            builder: _newInvoiceScreen,
+          ),
         ]),
-    ...authRoutes
   ]);
 }
 
-final authRoutes = [GoRoute(path: '/home', builder: _homePath)];
-
-Widget _homePath(BuildContext context, GoRouterState state) =>
+Widget _invoiceScreen(BuildContext context, GoRouterState state) =>
     const InvoiceScreen();
+
+Widget _newInvoiceScreen(BuildContext context, GoRouterState state) =>
+    const NewInvoice();
