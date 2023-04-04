@@ -9,7 +9,7 @@ class NewInvoiceButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => GestureDetector(
-        onTap: () => context.go('/newInvoice'),
+        onTap: () => context.push('/newInvoice'),
         child: Container(
           width: 118,
           height: 58,
