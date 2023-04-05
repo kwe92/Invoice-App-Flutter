@@ -128,15 +128,15 @@ class BillTo extends StatelessWidget {
                 onPressed: () {
                   // TODO: Remove list item model if the list item is removed
                   final model = CustomListItemModel();
-                  final index = _randInt(1001, 999999);
+                  final String index = _randInt(1001, 999999).toString();
                   final listItem = CustomListItem(
                     listItemModel: model,
                     index: index,
                     onPress: itemsModel.removeItem,
                   );
 
-                  final Map<int, CustomListItem> entry = {index: listItem};
-                  final Map<int, CustomListItemModel> itemModelEntry = {
+                  final Map<String, CustomListItem> entry = {index: listItem};
+                  final Map<String, CustomListItemModel> itemModelEntry = {
                     index: model
                   };
 
