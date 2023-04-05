@@ -6,10 +6,10 @@ import 'package:invoiceapp/src/features/newInvoice/presentation/custom_text_form
 import 'package:invoiceapp/theme/source_of_truth.dart';
 import 'package:provider/provider.dart';
 
-typedef VoidCallback = Function(int index);
+typedef VoidCallback = Function(String index);
 
 class CustomListItem extends StatelessWidget {
-  final int index;
+  final String index;
   final VoidCallback onPress;
   final CustomListItemModel listItemModel;
   const CustomListItem(
