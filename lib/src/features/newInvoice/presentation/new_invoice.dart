@@ -1,4 +1,6 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:invoiceapp/constants/firebase/app_firebase.dart';
 import 'package:invoiceapp/constants/widgets/base_scaffold/base_scaffold.dart';
 import 'package:invoiceapp/src/features/newInvoice/domain/bill_from_model.dart';
 import 'package:invoiceapp/src/features/newInvoice/domain/bill_to_model.dart';
@@ -40,33 +42,30 @@ class NewInvoice extends StatelessWidget {
                   model: billToModel,
                   itemsModel: itemsModel,
                 ),
-                // OutlinedButton(
-                //   key: BillFrom.clearTextKey,
-                //   onPressed: () {
-                //     model.clearAllControllers();
-                //     btm.clearAllControllers();
-                //   },
-                //   child: const Text('Clear Text'),
-                // ),
                 Gaps.gaph12,
                 OutlinedButton(
-                  onPressed: () {
+                  onPressed: () async {
                     final Map<String, String> billFromText =
                         billFromModel.allControllerText;
 
                     final Map<String, String> billToText =
                         billToModel.allControllerText;
 
-                    billFromText.forEach((key, value) => print("$key: $value"));
-                    billToText.forEach((key, value) => print("$key: $value"));
-                    itemsModel.itemModels.forEach((key, value) {
-                      final Map<String, String> listItems =
-                          value.allControllerText;
+                    final List<Map<String, String>> itemslist = itemsModel
+                        .itemModels.values
+                        .map((value) => value.allControllerText)
+                        .toList();
 
-                      listItems.forEach((key, value) {
-                        print("$key: $value");
-                      });
-                    });
+                    // TODO: Create a model for this Map instead
+                    final formData = {
+                      'userId': AppFirebase.getCurrentUserId(),
+                      'timeStamp': Timestamp.now(),
+                      'billToText': billToText,
+                      'billFromText': billFromText,
+                      'listItems': itemslist
+                    };
+
+                    await AppFirebase.loadData('invoices', formData);
                   },
                   child: const Text('Save & Send'),
                 )
@@ -76,3 +75,16 @@ class NewInvoice extends StatelessWidget {
         ),
       );
 }
+
+// Print All Form Data
+
+  // billFromText.forEach((key, value) => print("$key: $value"));
+  //                   billToText.forEach((key, value) => print("$key: $value"));
+  //                   itemsModel.itemModels.forEach((key, value) {
+  //                     final Map<String, String> listItems =
+  //                         value.allControllerText;
+
+  //                     listItems.forEach((key, value) {
+  //                       print("$key: $value");
+  //                     });
+  //                   });
