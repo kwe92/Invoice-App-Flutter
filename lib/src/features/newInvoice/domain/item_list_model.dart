@@ -5,29 +5,29 @@ import 'package:invoiceapp/src/features/newInvoice/domain/list_item_model.dart';
 import 'package:invoiceapp/src/features/newInvoice/presentation/list_item.dart';
 
 class ItemListModel extends ChangeNotifier {
-  final Map<int, CustomListItem> _items = {};
-  final Map<int, CustomListItemModel> _itemModels = {};
+  final Map<String, CustomListItem> _items = {};
+  final Map<String, CustomListItemModel> _itemModels = {};
 
-  Map<int, CustomListItem> get items => _items;
-  Map<int, CustomListItemModel> get itemModels => _itemModels;
+  Map<String, CustomListItem> get items => _items;
+  Map<String, CustomListItemModel> get itemModels => _itemModels;
 
-  void addItem(Map<int, CustomListItem> entry) {
+  void addItem(Map<String, CustomListItem> entry) {
     _items.addAll(entry);
     notifyListeners();
   }
 
-  void addItemModel(Map<int, CustomListItemModel> entry) {
+  void addItemModel(Map<String, CustomListItemModel> entry) {
     _itemModels.addAll(entry);
     notifyListeners();
   }
 
-  void removeItem(int index) {
-    _items.remove(index);
+  void removeItem(String index) {
+    _items.remove(int.parse(index));
     notifyListeners();
     _removeItemModel(index);
   }
 
-  void _removeItemModel(int index) {
+  void _removeItemModel(String index) {
     _itemModels.remove(index);
     notifyListeners();
   }
