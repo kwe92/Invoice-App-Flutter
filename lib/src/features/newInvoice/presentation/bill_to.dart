@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:invoiceapp/constants/utils/random_nums.dart';
 import 'package:invoiceapp/src/features/newInvoice/domain/bill_to_model.dart';
 import 'package:invoiceapp/src/features/newInvoice/domain/item_list_model.dart';
 import 'package:invoiceapp/src/features/newInvoice/domain/list_item_model.dart';
@@ -128,7 +129,8 @@ class BillTo extends StatelessWidget {
                 onPressed: () {
                   // TODO: Remove list item model if the list item is removed
                   final model = CustomListItemModel();
-                  final String index = _randInt(1001, 999999).toString();
+                  final String index =
+                      RandomRange.integer(1001, 999999).toString();
                   final listItem = CustomListItem(
                     listItemModel: model,
                     index: index,
@@ -171,5 +173,3 @@ DateTime _initDateTime() => DateTime(2023);
 
 String _dateTimeToString(DateTime date) =>
     '${date.month.toString()}-${date.day.toString()}-${date.year.toString()}';
-
-int _randInt(int min, int max) => min + Random().nextInt((max + 1) - min);
