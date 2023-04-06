@@ -7,6 +7,7 @@ class CustomBackButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => GestureDetector(
+        // TODO: Dispose of text form fields on screen change??
         onTap: () => Navigator.pop(context),
         child: const _BackButton(),
       );
