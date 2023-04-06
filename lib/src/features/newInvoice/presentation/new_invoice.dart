@@ -57,15 +57,28 @@ class NewInvoice extends StatelessWidget {
                         .map((value) => value.allControllerText)
                         .toList();
 
+                    final double total = itemsModel.itemModels.values
+                        .map(
+                            (value) => double.parse(value.totalController.text))
+                        .toList()
+                        .reduce((value, element) => value + element);
+
+                    final DateTime createdDate = DateTime.now();
+
+                    final String paymentTerm =
+                        billToModel.dropDownMenuController.text;
+
                     // TODO: Create a model for this Map instead
                     final formData = {
                       'invoiceId': _createId(),
                       'userId': AppFirebase.getCurrentUserId(),
-                      'timeStamp': Timestamp.now(),
+                      'createdAt': createdDate,
+                      'paymentDue': _paymentDue(createdDate, paymentTerm),
                       'status': 'pending',
                       'billToText': billToText,
                       'billFromText': billFromText,
-                      'listItems': itemslist
+                      'listItems': itemslist,
+                      'total': total
                     };
 
                     await AppFirebase.loadData('invoices', formData);
@@ -84,6 +97,16 @@ class NewInvoice extends StatelessWidget {
       );
 }
 
+DateTime _paymentDue(DateTime date, String paymentTerm) {
+  final newDate =
+      DateTime(date.year, date.month, date.day + parseInt(paymentTerm));
+
+  return newDate;
+}
+
+int parseInt(String s) => int.parse(s.replaceAll(RegExp(r'[^0-9]'), ''));
+
+// Function to generate random ID
 String _createId() {
   final alphabet = [
     'A',
