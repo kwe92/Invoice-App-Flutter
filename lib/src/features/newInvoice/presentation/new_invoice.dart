@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:invoiceapp/constants/firebase/app_firebase.dart';
+import 'package:invoiceapp/constants/utils/random_nums.dart';
 import 'package:invoiceapp/constants/widgets/base_scaffold/base_scaffold.dart';
 import 'package:invoiceapp/src/features/newInvoice/domain/bill_from_model.dart';
 import 'package:invoiceapp/src/features/newInvoice/domain/bill_to_model.dart';
@@ -58,14 +59,21 @@ class NewInvoice extends StatelessWidget {
 
                     // TODO: Create a model for this Map instead
                     final formData = {
+                      'invoiceId': _createId(),
                       'userId': AppFirebase.getCurrentUserId(),
                       'timeStamp': Timestamp.now(),
+                      'status': 'pending',
                       'billToText': billToText,
                       'billFromText': billFromText,
                       'listItems': itemslist
                     };
 
                     await AppFirebase.loadData('invoices', formData);
+                    billFromModel.clearAllControllers();
+                    billToModel.clearAllControllers();
+                    // TODO: Clear itemsModel controllers
+                    // TODO: Create a new empty list of items
+                    // itemsModel
                   },
                   child: const Text('Save & Send'),
                 )
@@ -74,6 +82,49 @@ class NewInvoice extends StatelessWidget {
           )),
         ),
       );
+}
+
+String _createId() {
+  final alphabet = [
+    'A',
+    'B',
+    'C',
+    'D',
+    'E',
+    'F',
+    'G',
+    'H',
+    'I',
+    'J',
+    'K',
+    'L',
+    'M',
+    'N',
+    'O',
+    'P',
+    'Q',
+    'R',
+    'S',
+    'T',
+    'U',
+    'V',
+    'W',
+    'X',
+    'Y',
+    'Z'
+  ];
+
+  final int randIndex1 = RandomRange.integer(0, alphabet.length - 1);
+  final int randIndex2 = RandomRange.integer(0, alphabet.length - 1);
+
+  final String firstLetter = alphabet.removeAt(randIndex1);
+  final String secondLetter = alphabet.removeAt(randIndex2);
+  final String random4numberCombo = RandomRange.integer(1001, 9999).toString();
+  const String hash = '#';
+
+  final id = hash + firstLetter + secondLetter + random4numberCombo;
+
+  return id;
 }
 
 // Print All Form Data
