@@ -5,8 +5,8 @@ import 'package:invoiceapp/src/features/newInvoice/domain/list_item_model.dart';
 import 'package:invoiceapp/src/features/newInvoice/presentation/list_item.dart';
 
 class ItemListModel extends ChangeNotifier {
-  final Map<String, CustomListItem> _items = {};
-  final Map<String, CustomListItemModel> _itemModels = {};
+  Map<String, CustomListItem> _items = {};
+  Map<String, CustomListItemModel> _itemModels = {};
 
   Map<String, CustomListItem> get items => _items;
   Map<String, CustomListItemModel> get itemModels => _itemModels;
@@ -25,6 +25,13 @@ class ItemListModel extends ChangeNotifier {
     _items.remove(int.parse(index));
     notifyListeners();
     _removeItemModel(index);
+  }
+
+  void clearItemsState() {
+    _itemModels = {};
+    _items = {};
+
+    notifyListeners();
   }
 
   void _removeItemModel(String index) {
