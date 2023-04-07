@@ -12,21 +12,27 @@ class InvoiceScreen extends StatelessWidget {
   const InvoiceScreen({super.key});
 
   @override
-  Widget build(BuildContext context) =>
-      BaseScaffold(key: InvoiceScreen.baseScaffoldKey, body: _body);
+  Widget build(BuildContext context) => const BaseScaffold(
+      key: InvoiceScreen.baseScaffoldKey, body: _InvoicesListView());
 }
 
-final Widget _body = Padding(
-  padding: const EdgeInsets.only(top: 24.0),
-  child: ListView(key: InvoiceScreen.listViewKey, children: _screenBody),
-);
+// TODO: Needs to be its own widget
 
-final _screenBody = <Widget>[
-  const TitleIconListTile(
-    key: InvoiceScreen.titleIconListTileKey,
-  ),
-  for (int i = 0; i < 12; i++) InvoiceListTile(invoice: _invoice),
-];
+class _InvoicesListView extends StatelessWidget {
+  const _InvoicesListView({super.key});
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.only(top: 24.0),
+      child: ListView(key: InvoiceScreen.listViewKey, children: <Widget>[
+        const TitleIconListTile(
+          key: InvoiceScreen.titleIconListTileKey,
+        ),
+        for (int i = 0; i < 12; i++) InvoiceListTile(invoice: _invoice),
+      ]),
+    );
+  }
+}
 
 final Invoice _invoice = Invoice(
   id: '#RT3080',
