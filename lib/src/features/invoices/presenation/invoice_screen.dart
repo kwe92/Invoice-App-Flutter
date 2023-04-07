@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:invoiceapp/constants/widgets/base_scaffold/base_scaffold.dart';
-import 'package:invoiceapp/src/features/invoices/data/invoice.dart';
 import 'package:invoiceapp/src/features/invoices/domain/invoices_model.dart';
 import 'package:invoiceapp/src/features/invoices/presenation/invoice_list_tile/invoice_list_tile.dart';
 import 'package:invoiceapp/src/features/invoices/presenation/title_icon_list_tile.dart';
 import 'package:invoiceapp/src/features/shared/models/invoice_form_model.dart';
+import 'package:invoiceapp/theme/source_of_truth.dart';
+import 'package:invoiceapp/theme/theme.dart';
 import 'package:provider/provider.dart';
 
 class InvoiceScreen extends StatelessWidget {
@@ -30,12 +32,18 @@ class _InvoicesListView extends StatelessWidget {
       child: Consumer(
         builder: (BuildContext context, InvoicesModel model, _) {
           // model.notifyListeners();
+          print('Map of invoices: ${model.invoices}');
           return ListView(key: InvoiceScreen.listViewKey, children: <Widget>[
             const TitleIconListTile(
               key: InvoiceScreen.titleIconListTileKey,
             ),
-            for (final InvoiceFormModel invoice in model.invoices)
-              InvoiceListTile(invoice: invoice),
+            for (final InvoiceFormModel invoice in model.invoices.values)
+              GestureDetector(
+                  // TODO: Implement onLong press
+                  onLongPress: () {
+                    _bottomModal(context, invoice);
+                  },
+                  child: InvoiceListTile(invoice: invoice)),
           ]);
         },
       ),
@@ -43,11 +51,32 @@ class _InvoicesListView extends StatelessWidget {
   }
 }
 
-final Invoice _invoice = Invoice(
-  id: '#RT3080',
-  fname: 'Baki',
-  lname: 'Hanma',
-  invoiceAmnt: 1800.90,
-  invoiceStatus: 'Pending',
-  date: DateTime.now(),
-);
+void _bottomModal(BuildContext context, InvoiceFormModel invoice) =>
+// TODO: Style and clean up the bottom modal
+    showModalBottomSheet<void>(
+      context: context,
+      builder: (BuildContext context) {
+        return Container(
+          height: 325,
+          color: CustomTheme.lightColors['shade2'],
+          child: Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisSize: MainAxisSize.min,
+              children: <Widget>[
+                const Text('Modal BottomSheet'),
+                ElevatedButton(
+                  child: const Text('Edit Invoice'),
+                  onPressed: () => context.push('/editInvoice', extra: invoice),
+                ),
+                Gaps.gaph12,
+                ElevatedButton(
+                  child: const Text('Close BottomSheet'),
+                  onPressed: () => context.pop(),
+                ),
+              ],
+            ),
+          ),
+        );
+      },
+    );
