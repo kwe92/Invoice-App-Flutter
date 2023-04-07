@@ -1,36 +1,30 @@
 import 'package:flutter/material.dart';
-import 'package:invoiceapp/constants/utils/locale_formatter.dart';
+import 'package:invoiceapp/constants/utils/formatters.dart';
 import 'package:invoiceapp/src/features/invoices/data/invoice.dart';
+import 'package:invoiceapp/src/features/shared/models/invoice_form_model.dart';
 import 'package:invoiceapp/theme/source_of_truth.dart';
 import 'package:invoiceapp/theme/theme.dart';
 
 class ListTileLeftSide extends StatelessWidget {
-  final Invoice invoice;
+  final InvoiceFormModel invoice;
   const ListTileLeftSide({required this.invoice, super.key});
 
   @override
   Widget build(BuildContext context) {
-    final List<Widget> invoceNumber = _invoceNumber(invoice);
-
-    final String invoiceAmnt = _invoiceAmnt(invoice);
-
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: invoceNumber,
-        ),
+        Text(invoice.invoiceId),
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             Text(
-              'Due ${invoice.date.day} ${_getStringMonth(invoice.date.month)} ${invoice.date.year}',
+              'Due ${DateFormatter.dateTimeToString(invoice.paymentDue)}',
               style: TextStyle(color: CustomTheme.lightColors['shade0']),
             ),
             Gaps.gaph8,
-            Text('\$$invoiceAmnt'),
+            Text(invoice.total.toString()),
           ],
         )
       ],
@@ -38,12 +32,14 @@ class ListTileLeftSide extends StatelessWidget {
   }
 }
 
-List<Widget> _invoceNumber(Invoice invoice) => [
+// TODO: Fix _invoceNumber
+
+List<Widget> _invoceNumber(InvoiceFormModel invoice) => [
       Text(
-        invoice.id.substring(0, 1),
+        invoice.invoiceId,
         style: TextStyle(color: CustomTheme.lightColors['shade0']),
       ),
-      Text(invoice.id.substring(1))
+      // Text(invoice.id.substring(1))
     ];
 
 String _invoiceAmnt(Invoice invoice) =>
