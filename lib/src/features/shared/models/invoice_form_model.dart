@@ -1,15 +1,15 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class InvoiceFormModel {
-  final invoiceId;
-  final userId;
-  final createdAt;
-  final paymentDue;
-  final status;
-  final billToText;
-  final billFromText;
-  final listItems;
-  final total;
+  final String invoiceId;
+  final String userId;
+  final DateTime createdAt;
+  final DateTime paymentDue;
+  final String status;
+  final Map<String, dynamic> billToText;
+  final Map<String, dynamic> billFromText;
+  final List listItems;
+  final double total;
 
   const InvoiceFormModel(
       {required this.invoiceId,
@@ -26,14 +26,11 @@ class InvoiceFormModel {
       InvoiceFormModel(
           invoiceId: json['invoiceId'],
           userId: json['userId'],
-          createdAt: json['createdAt'],
+          createdAt: json['createdAt'].toDate(),
           paymentDue: json['paymentDue'].toDate(),
-          status: ['status'],
-          billFromText: ['billFromText'],
-          billToText: ['billToText'],
+          status: json['status'],
+          billFromText: json['billFromText'],
+          billToText: json['billToText'],
           listItems: json['listItems'],
           total: json['total']);
-
-  static DateTime _fromTimeStamp(timestamp) =>
-      DateTime.fromMicrosecondsSinceEpoch(timestamp);
 }
