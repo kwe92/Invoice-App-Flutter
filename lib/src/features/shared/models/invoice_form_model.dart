@@ -1,13 +1,15 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 class InvoiceFormModel {
-  final String invoiceId;
-  final String userId;
-  final DateTime createdAt;
-  final DateTime paymentDue;
-  final String status;
-  final Map<String, Object> billToText;
-  final Map<String, Object> billFromText;
-  final Map<String, Object> listItems;
-  final double total;
+  final invoiceId;
+  final userId;
+  final createdAt;
+  final paymentDue;
+  final status;
+  final billToText;
+  final billFromText;
+  final listItems;
+  final total;
 
   const InvoiceFormModel(
       {required this.invoiceId,
@@ -20,15 +22,18 @@ class InvoiceFormModel {
       required this.listItems,
       required this.total});
 
-  factory InvoiceFormModel.fromJSON(Map<String, Object> json) =>
+  factory InvoiceFormModel.fromJSON(Map<String, dynamic> json) =>
       InvoiceFormModel(
-          invoiceId: json['invoiceId'] as String,
-          userId: json['userId'] as String,
-          createdAt: DateTime.parse(json['createdAt'] as String),
-          paymentDue: DateTime.parse(json['paymentDue'] as String),
-          status: ['status'] as String,
-          billFromText: ['billFromText'] as Map<String, Object>,
-          billToText: ['billToText'] as Map<String, Object>,
-          listItems: json['listItems'] as Map<String, Object>,
-          total: double.parse(json['total'] as String));
+          invoiceId: json['invoiceId'],
+          userId: json['userId'],
+          createdAt: json['createdAt'],
+          paymentDue: json['paymentDue'].toDate(),
+          status: ['status'],
+          billFromText: ['billFromText'],
+          billToText: ['billToText'],
+          listItems: json['listItems'],
+          total: json['total']);
+
+  static DateTime _fromTimeStamp(timestamp) =>
+      DateTime.fromMicrosecondsSinceEpoch(timestamp);
 }
