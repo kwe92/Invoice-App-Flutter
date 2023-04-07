@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:invoiceapp/constants/enums/status.dart';
@@ -82,7 +84,7 @@ class NewInvoice extends StatelessWidget {
                             total: total)
                         .toMap();
 
-                    // await AppFirebase.loadData('invoices', formData);
+                    await AppFirebase.loadData('invoices', formData);
                     billFromModel.clearAllControllers();
                     billToModel.clearAllControllers();
                     itemsModel.clearItemsState();
