@@ -1,5 +1,5 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:invoiceapp/constants/enums/status.dart';
 import 'package:invoiceapp/constants/firebase/app_firebase.dart';
 import 'package:invoiceapp/constants/utils/random_nums.dart';
@@ -10,6 +10,7 @@ import 'package:invoiceapp/src/features/newInvoice/domain/item_list_model.dart';
 import 'package:invoiceapp/src/features/newInvoice/presentation/back_button.dart';
 import 'package:invoiceapp/src/features/newInvoice/presentation/bill_from.dart';
 import 'package:invoiceapp/src/features/newInvoice/presentation/bill_to.dart';
+import 'package:invoiceapp/src/features/shared/models/invoice_form_model.dart';
 import 'package:invoiceapp/theme/source_of_truth.dart';
 import 'package:invoiceapp/theme/theme.dart';
 import 'package:provider/provider.dart';
@@ -69,25 +70,24 @@ class NewInvoice extends StatelessWidget {
                     final String paymentTerm =
                         billToModel.dropDownMenuController.text;
 
-                    // TODO: Create a model for this Map instead
-                    final formData = {
-                      'invoiceId': _createId(),
-                      'userId': AppFirebase.getCurrentUserId(),
-                      'createdAt': createdDate,
-                      'paymentDue': _paymentDue(createdDate, paymentTerm),
-                      'status': InvoiceStatus.pending.name,
-                      'billToText': billToText,
-                      'billFromText': billFromText,
-                      'listItems': itemslist,
-                      'total': total
-                    };
+                    final formData = InvoiceFormModel(
+                            invoiceId: _createId(),
+                            userId: AppFirebase.getCurrentUserId(),
+                            createdAt: createdDate,
+                            paymentDue: _paymentDue(createdDate, paymentTerm),
+                            status: InvoiceStatus.pending.name,
+                            billFromText: billFromText,
+                            billToText: billToText,
+                            listItems: itemslist,
+                            total: total)
+                        .toMap();
 
-                    await AppFirebase.loadData('invoices', formData);
+                    // await AppFirebase.loadData('invoices', formData);
                     billFromModel.clearAllControllers();
                     billToModel.clearAllControllers();
-                    // TODO: Clear itemsModel controllers
-                    // TODO: Create a new empty list of items
                     itemsModel.clearItemsState();
+
+                    context.pop();
                   },
                   child: const Text('Save & Send'),
                 )
