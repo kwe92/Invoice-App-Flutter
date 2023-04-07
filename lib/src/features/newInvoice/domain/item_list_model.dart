@@ -22,7 +22,7 @@ class ItemListModel extends ChangeNotifier {
   }
 
   void removeItem(String index) {
-    _items.remove(int.parse(index));
+    _items.remove(index);
     notifyListeners();
     _removeItemModel(index);
   }
