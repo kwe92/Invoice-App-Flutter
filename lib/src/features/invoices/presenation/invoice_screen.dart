@@ -51,32 +51,38 @@ class _InvoicesListView extends StatelessWidget {
   }
 }
 
-void _bottomModal(BuildContext context, InvoiceFormModel invoice) =>
 // TODO: Style and clean up the bottom modal
-    showModalBottomSheet<void>(
-      context: context,
-      builder: (BuildContext context) {
-        return Container(
-          height: 325,
-          color: CustomTheme.lightColors['shade2'],
-          child: Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              mainAxisSize: MainAxisSize.min,
-              children: <Widget>[
-                const Text('Modal BottomSheet'),
-                ElevatedButton(
-                  child: const Text('Edit Invoice'),
-                  onPressed: () => context.push('/editInvoice', extra: invoice),
-                ),
-                Gaps.gaph12,
-                ElevatedButton(
-                  child: const Text('Close BottomSheet'),
-                  onPressed: () => context.pop(),
-                ),
-              ],
-            ),
+
+void _bottomModal(BuildContext context, InvoiceFormModel invoice) {
+  final buttonStyle = ElevatedButton.styleFrom(
+      backgroundColor: CustomTheme.otherColors['purple0']);
+
+  showModalBottomSheet<void>(
+    context: context,
+    builder: (BuildContext context) {
+      return Container(
+        height: 325,
+        color: CustomTheme.lightColors['shade3'],
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisSize: MainAxisSize.min,
+            children: <Widget>[
+              ElevatedButton(
+                style: buttonStyle,
+                child: const Text('Edit Invoice'),
+                onPressed: () => context.push('/editInvoice', extra: invoice),
+              ),
+              Gaps.gaph12,
+              ElevatedButton(
+                style: buttonStyle,
+                child: const Text('Close'),
+                onPressed: () => context.pop(),
+              ),
+            ],
           ),
-        );
-      },
-    );
+        ),
+      );
+    },
+  );
+}
