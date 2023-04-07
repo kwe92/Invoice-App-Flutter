@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:invoiceapp/constants/enums/status.dart';
 import 'package:invoiceapp/constants/firebase/app_firebase.dart';
 import 'package:invoiceapp/constants/utils/random_nums.dart';
 import 'package:invoiceapp/constants/widgets/base_scaffold/base_scaffold.dart';
@@ -74,7 +75,7 @@ class NewInvoice extends StatelessWidget {
                       'userId': AppFirebase.getCurrentUserId(),
                       'createdAt': createdDate,
                       'paymentDue': _paymentDue(createdDate, paymentTerm),
-                      'status': 'pending',
+                      'status': InvoiceStatus.pending.name,
                       'billToText': billToText,
                       'billFromText': billFromText,
                       'listItems': itemslist,
@@ -86,7 +87,7 @@ class NewInvoice extends StatelessWidget {
                     billToModel.clearAllControllers();
                     // TODO: Clear itemsModel controllers
                     // TODO: Create a new empty list of items
-                    // itemsModel
+                    itemsModel.clearItemsState();
                   },
                   child: const Text('Save & Send'),
                 )
