@@ -1,15 +1,28 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:invoiceapp/src/features/newInvoice/domain/bill_from_model.dart';
+import 'package:invoiceapp/src/features/newInvoice/domain/bill_to_model.dart';
+import 'package:invoiceapp/src/features/newInvoice/domain/item_list_model.dart';
 import 'package:invoiceapp/theme/source_of_truth.dart';
+import 'package:provider/provider.dart';
 
 class CustomBackButton extends StatelessWidget {
   const CustomBackButton({super.key});
 
   @override
-  Widget build(BuildContext context) => GestureDetector(
-        // TODO: Dispose of text form fields on screen change??
-        onTap: () => Navigator.pop(context),
-        child: const _BackButton(),
+  Widget build(BuildContext context) => Consumer3(
+        builder: (context, BillFromModel billFromModel, BillToModel billToModel,
+                ItemListModel itemsModel, child) =>
+            GestureDetector(
+          // TODO: Dispose of text form fields on screen change??
+          onTap: () {
+            billFromModel.clearAllControllers();
+            billToModel.clearAllControllers();
+            itemsModel.clearItemsState();
+            Navigator.pop(context);
+          },
+          child: const _BackButton(),
+        ),
       );
 }
 
