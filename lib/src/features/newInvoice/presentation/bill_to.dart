@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:invoiceapp/constants/utils/formatters.dart';
 import 'package:invoiceapp/constants/utils/random_nums.dart';
 import 'package:invoiceapp/src/features/newInvoice/domain/bill_to_model.dart';
 import 'package:invoiceapp/src/features/newInvoice/domain/item_list_model.dart';
@@ -36,7 +37,7 @@ class BillTo extends StatelessWidget {
     final gaph = Gaps.heigth(18);
     final textStyle = TextStyle(fontSize: 18, color: purple);
     const double textInputWidth = 170;
-    final String initDate = _dateTimeToString(_initDateTime());
+    final String initDate = DateFormatter.dateTimeToString(_initDateTime());
 
     model.setDateControllerText(initDate);
 
@@ -102,7 +103,8 @@ class BillTo extends StatelessWidget {
                 lastDate: DateTime(3000),
               );
               if (newDate != null) {
-                model.dateController.text = _dateTimeToString(newDate);
+                model.dateController.text =
+                    DateFormatter.dateTimeToString(newDate);
               }
             },
           ),
@@ -170,6 +172,3 @@ class _AddButton extends StatelessWidget {
 }
 
 DateTime _initDateTime() => DateTime(2023);
-
-String _dateTimeToString(DateTime date) =>
-    '${date.month.toString()}-${date.day.toString()}-${date.year.toString()}';
