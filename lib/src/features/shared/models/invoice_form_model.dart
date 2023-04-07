@@ -33,4 +33,16 @@ class InvoiceFormModel {
           billToText: json['billToText'],
           listItems: json['listItems'],
           total: json['total']);
+
+  Map<String, dynamic> toMap() => {
+        'invoiceId': invoiceId,
+        'userId': userId,
+        'createdAt': createdAt,
+        'paymentDue': paymentDue,
+        'status': status,
+        'billToText': billToText,
+        'billFromText': billFromText,
+        'listItems': listItems,
+        'total': total
+      };
 }
