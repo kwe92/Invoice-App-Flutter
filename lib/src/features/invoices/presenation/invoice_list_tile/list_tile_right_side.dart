@@ -1,10 +1,10 @@
 import 'package:flutter/widgets.dart';
-import 'package:invoiceapp/src/features/invoices/data/invoice.dart';
+import 'package:invoiceapp/src/features/shared/models/invoice_form_model.dart';
 import 'package:invoiceapp/theme/source_of_truth.dart';
 import 'package:invoiceapp/theme/theme.dart';
 
 class ListTileRightSide extends StatelessWidget {
-  final Invoice invoice;
+  final InvoiceFormModel invoice;
   const ListTileRightSide({required this.invoice, super.key});
 
   @override
@@ -19,13 +19,17 @@ class ListTileRightSide extends StatelessWidget {
         Column(
           crossAxisAlignment: CrossAxisAlignment.end,
           children: <Widget>[
-            Text(
-              invoice.fname,
-              style: nameStyle,
+            FittedBox(
+              child: Text(
+                'Needs to be filled',
+                style: nameStyle,
+              ),
             ),
-            Text(
-              invoice.lname,
-              style: nameStyle,
+            FittedBox(
+              child: Text(
+                'Needs to be filled',
+                style: nameStyle,
+              ),
             )
           ],
         ),
