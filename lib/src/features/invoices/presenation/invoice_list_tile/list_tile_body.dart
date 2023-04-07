@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:invoiceapp/src/features/invoices/data/invoice.dart';
 import 'package:invoiceapp/src/features/invoices/presenation/invoice_list_tile/list_tile_decoration.dart';
 import 'package:invoiceapp/src/features/invoices/presenation/invoice_list_tile/list_tile_left_side.dart';
 import 'package:invoiceapp/src/features/invoices/presenation/invoice_list_tile/list_tile_right_side.dart';
+import 'package:invoiceapp/src/features/shared/models/invoice_form_model.dart';
 
 class InvoiceListTileBody extends StatelessWidget {
-  final Invoice invoice;
+  final InvoiceFormModel invoice;
   const InvoiceListTileBody({required this.invoice, super.key});
 
   @override
