@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:invoiceapp/src/features/invoices/domain/invoices_model.dart';
 import 'package:invoiceapp/src/features/invoices/presenation/filter_button.dart';
 import 'package:invoiceapp/src/features/invoices/presenation/new_invoice_button.dart';
 import 'package:invoiceapp/theme/source_of_truth.dart';
 import 'package:invoiceapp/theme/theme.dart';
+import 'package:provider/provider.dart';
 
 class TitleIconListTile extends StatelessWidget {
   static const newInvoiceButtonKey = Key('newInvoiceButtonKey');
@@ -53,10 +55,11 @@ class _Title extends StatelessWidget {
                 fontWeight: FontWeight.w500,
                 letterSpacing: -1),
           ),
-          Text(
-            '7 invocies',
-            style: TextStyle(color: CustomTheme.lightColors['shade0']),
-          )
+          Consumer(
+              builder: (context, InvoicesModel model, _) => Text(
+                    '${model.invoices.length} invoices',
+                    style: TextStyle(color: CustomTheme.lightColors['shade0']),
+                  ))
         ],
       );
 }
