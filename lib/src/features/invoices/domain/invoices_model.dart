@@ -9,6 +9,8 @@ class InvoicesModel extends ChangeNotifier {
   // Map<String, Object> _invoices = {};
   List _invoices = [];
 
+  List get invoices => _invoices;
+
   InvoicesModel() {
     _init();
   }
@@ -24,7 +26,9 @@ class InvoicesModel extends ChangeNotifier {
   void _invoicesCallback(QuerySnapshot snapshot) {
     _invoices = [
       for (final document in snapshot.docs)
-        InvoiceFormModel.fromJSON(document.data() as Map<String, Object>)
+
+        // print(document.data())
+        InvoiceFormModel.fromJSON(document.data() as Map<String, dynamic>)
     ];
 
     notifyListeners();
