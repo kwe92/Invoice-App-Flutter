@@ -1,4 +1,5 @@
 import 'package:flutter/widgets.dart';
+import 'package:invoiceapp/constants/enums/status.dart';
 import 'package:invoiceapp/src/features/shared/models/invoice_form_model.dart';
 import 'package:invoiceapp/theme/source_of_truth.dart';
 import 'package:invoiceapp/theme/theme.dart';
@@ -9,6 +10,10 @@ class ListTileRightSide extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final nameArray =
+        invoice.billToText['clientName'].split(' ') as List<String>;
+    final fname = nameArray[0];
+    final lname = nameArray.length > 1 ? nameArray[1] : ' ';
     final TextStyle nameStyle =
         TextStyle(color: CustomTheme.lightColors['shade0']);
     const double circleSize = 10;
@@ -21,13 +26,13 @@ class ListTileRightSide extends StatelessWidget {
           children: <Widget>[
             FittedBox(
               child: Text(
-                'Needs to be filled',
+                fname,
                 style: nameStyle,
               ),
             ),
             FittedBox(
               child: Text(
-                'Needs to be filled',
+                lname,
                 style: nameStyle,
               ),
             )
@@ -51,10 +56,11 @@ class ListTileRightSide extends StatelessWidget {
                   ),
                 ),
                 Gaps.gapw10,
-                const Expanded(
+                FittedBox(
                   child: Text(
-                    'Pending',
-                    style: TextStyle(color: Color.fromARGB(255, 92, 205, 95)),
+                    invoice.status,
+                    style: const TextStyle(
+                        color: Color.fromARGB(255, 92, 205, 95)),
                   ),
                 )
               ]),
@@ -62,4 +68,12 @@ class ListTileRightSide extends StatelessWidget {
       ],
     );
   }
+}
+
+// TODO: FInish implementing statusCOlor function
+
+Color? _statusColor(String status) {
+  final statusColors = {
+    InvoiceStatus.paid.name: const Color.fromARGB(255, 81, 215, 85)
+  };
 }
