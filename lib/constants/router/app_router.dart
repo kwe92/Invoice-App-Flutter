@@ -3,6 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:invoiceapp/constants/widgets/base_scaffold/base_scaffold.dart';
 import 'package:invoiceapp/src/features/authentication/presentation/profile_screen.dart';
 import 'package:invoiceapp/src/features/authentication/presentation/sign_in_screen.dart';
+import 'package:invoiceapp/src/features/edit_invoice/edit_invoice_screen.dart';
 import 'package:invoiceapp/src/features/invoices/presenation/invoice_screen.dart';
 import 'package:invoiceapp/src/features/newInvoice/presentation/new_invoice.dart';
 import 'package:invoiceapp/src/features/shared/models/invoice_form_model.dart';
@@ -31,22 +32,7 @@ class AppRouter {
           builder: (context, state) {
             InvoiceFormModel invoice = state.extra as InvoiceFormModel;
             print('From app_router: ${invoice.billToText}');
-            return BaseScaffold(
-              body: Center(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    const Text('Edit Invoice Page'),
-                    Gaps.gaph12,
-                    ElevatedButton(
-                        onPressed: () {
-                          context.pop();
-                        },
-                        child: const Text('Back'))
-                  ],
-                ),
-              ),
-            );
+            return EditInvoiceScreen(invoice: invoice);
           })
     ]),
   ]);
