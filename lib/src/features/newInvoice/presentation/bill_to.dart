@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:invoiceapp/constants/utils/formatters.dart';
 import 'package:invoiceapp/constants/utils/random_nums.dart';

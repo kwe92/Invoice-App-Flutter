@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:invoiceapp/src/features/newInvoice/domain/bill_from_model.dart';
+import 'package:invoiceapp/src/features/shared/models/invoice_form_model.dart';
 import 'package:invoiceapp/src/features/shared/widgets/custom_text_form_field.dart';
 import 'package:invoiceapp/theme/source_of_truth.dart';
 import 'package:invoiceapp/theme/theme.dart';
@@ -13,14 +14,22 @@ class BillFrom extends StatelessWidget {
   static const clearTextKey = Key('clearTextKey');
 
   final BillFromModel model;
+  final InvoiceFormModel? invoice;
 
-  const BillFrom({required this.model, super.key});
+  const BillFrom({required this.model, this.invoice, super.key});
 
   @override
   Widget build(BuildContext context) {
     final purple = CustomTheme.otherColors['purple0'] as Color;
     final gaph = Gaps.heigth(18);
     const double textInputWidth = 170;
+
+    if (invoice != null
+        // TODO: Implement edit
+        // && model.edit == true
+        ) {
+      model.loadControllers(invoice!);
+    }
 
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 18.0),
