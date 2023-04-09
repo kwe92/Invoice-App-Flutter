@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_final_fields
 
 import 'package:flutter/material.dart';
+import 'package:invoiceapp/src/features/shared/models/invoice_form_model.dart';
 
 class BillToModel extends ChangeNotifier {
   TextEditingController _streetAddController = TextEditingController();
@@ -25,6 +26,7 @@ class BillToModel extends ChangeNotifier {
 
   Map<String, String> get allControllerText {
     return {
+      // TODO: Place all Hash Table keys that are repeated in an ENUM
       'streetAdd': streetAddController.text,
       'city': cityController.text,
       'postCode': postCodeController.text,
@@ -95,5 +97,17 @@ class BillToModel extends ChangeNotifier {
     clearProjectDescController();
     clearDateController();
     clearDropDownMenuController();
+  }
+
+  void loadControllers(InvoiceFormModel invoice) {
+    streetAddController.text = invoice.billToText['streetAdd'];
+    cityController.text = invoice.billToText['city'];
+    postCodeController.text = invoice.billToText['postCode'];
+    countryController.text = invoice.billToText['country'];
+    clientNameController.text = invoice.billToText['clientName'];
+    clientEmailController.text = invoice.billToText['clientEmail'];
+    projectDescController.text = invoice.billToText['projectDesc'];
+    dateController.text = invoice.billToText['date'];
+    dropDownMenuController.text = invoice.billToText['paymentTerm'];
   }
 }
