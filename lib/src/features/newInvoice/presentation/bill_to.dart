@@ -6,7 +6,7 @@ import 'package:invoiceapp/constants/utils/random_nums.dart';
 import 'package:invoiceapp/src/features/newInvoice/domain/bill_to_model.dart';
 import 'package:invoiceapp/src/features/newInvoice/domain/item_list_model.dart';
 import 'package:invoiceapp/src/features/newInvoice/domain/list_item_model.dart';
-import 'package:invoiceapp/src/features/newInvoice/presentation/custom_text_form_field.dart';
+import 'package:invoiceapp/src/features/shared/widgets/custom_text_form_field.dart';
 import 'package:invoiceapp/src/features/newInvoice/presentation/drop_down_menu.dart';
 import 'package:invoiceapp/src/features/newInvoice/presentation/list_item.dart';
 import 'package:invoiceapp/theme/source_of_truth.dart';

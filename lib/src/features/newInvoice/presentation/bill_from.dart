@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:invoiceapp/src/features/newInvoice/domain/bill_from_model.dart';
-import 'package:invoiceapp/src/features/newInvoice/presentation/custom_text_form_field.dart';
+import 'package:invoiceapp/src/features/shared/widgets/custom_text_form_field.dart';
 import 'package:invoiceapp/theme/source_of_truth.dart';
 import 'package:invoiceapp/theme/theme.dart';
 
