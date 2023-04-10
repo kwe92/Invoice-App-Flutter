@@ -41,4 +41,12 @@ class CustomListItemModel extends ChangeNotifier {
     _totalController.clear();
     notifyListeners();
   }
+
+  void loadControllers(Map<String, dynamic> item) {
+    quantityController.text = item['quantity'];
+    itemNameController.text = item['itemName'];
+    priceController.text = item['price'];
+    totalController.text = item['total'];
+    notifyListeners();
+  }
 }

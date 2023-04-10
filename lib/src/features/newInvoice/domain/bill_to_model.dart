@@ -97,6 +97,7 @@ class BillToModel extends ChangeNotifier {
     clearProjectDescController();
     clearDateController();
     clearDropDownMenuController();
+    notifyListeners();
   }
 
   void loadControllers(InvoiceFormModel invoice) {
@@ -109,5 +110,6 @@ class BillToModel extends ChangeNotifier {
     projectDescController.text = invoice.billToText['projectDesc'];
     dateController.text = invoice.billToText['date'];
     dropDownMenuController.text = invoice.billToText['paymentTerm'];
+    notifyListeners();
   }
 }
