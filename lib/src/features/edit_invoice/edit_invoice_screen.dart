@@ -15,32 +15,10 @@ import 'package:invoiceapp/src/features/newInvoice/presentation/bill_to.dart';
 import 'package:invoiceapp/theme/theme.dart';
 import 'package:provider/provider.dart';
 
-// class EditInvoiceScreen extends StatelessWidget {
-//   final InvoiceFormModel invoice;
-//   const EditInvoiceScreen({required this.invoice, super.key});
-
-//   Widget build(BuildContext context) => BaseScaffold(
-//         body: Center(
-//           child: Column(
-//             mainAxisAlignment: MainAxisAlignment.center,
-//             children: [
-//               const Text('Edit Invoice Page'),
-//               Gaps.gaph12,
-//               ElevatedButton(
-//                 onPressed: () => context.pop(),
-//                 child: const Text('Back'),
-//               )
-//             ],
-//           ),
-//         ),
-//       );
-// }
-
 // TODO: Make more modular | New Invoice && Edit invoice Screen should be mostly modular | buttons at the bottom may differ
 
 class EditInvoiceScreen extends StatelessWidget {
-  final InvoiceFormModel invoice;
-  const EditInvoiceScreen({required this.invoice, super.key});
+  const EditInvoiceScreen({super.key});
   @override
   Widget build(BuildContext context) => BaseScaffold(
         body: Padding(
@@ -60,12 +38,11 @@ class EditInvoiceScreen extends StatelessWidget {
                 ),
                 BillFrom(
                   model: billFromModel,
-                  invoice: invoice,
                 ),
-                // BillTo(
-                //   model: billToModel,
-                //   itemsModel: itemsModel,
-                // ),
+                BillTo(
+                  model: billToModel,
+                  itemsModel: itemsModel,
+                ),
                 // Gaps.gaph12,
                 // OutlinedButton(
                 //   onPressed: () async {
