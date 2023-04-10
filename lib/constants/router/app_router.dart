@@ -30,9 +30,7 @@ class AppRouter {
       GoRoute(
           path: 'editInvoice',
           builder: (context, state) {
-            InvoiceFormModel invoice = state.extra as InvoiceFormModel;
-            print('From app_router: ${invoice.billToText}');
-            return EditInvoiceScreen(invoice: invoice);
+            return const EditInvoiceScreen();
           })
     ]),
   ]);
