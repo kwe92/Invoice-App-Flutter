@@ -1,9 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:invoiceapp/constants/utils/random_nums.dart';
 import 'package:invoiceapp/constants/widgets/base_scaffold/base_scaffold.dart';
 import 'package:invoiceapp/src/features/invoices/domain/invoices_model.dart';
 import 'package:invoiceapp/src/features/invoices/presenation/invoice_list_tile/invoice_list_tile.dart';
 import 'package:invoiceapp/src/features/invoices/presenation/title_icon_list_tile.dart';
+import 'package:invoiceapp/src/features/newInvoice/domain/bill_from_model.dart';
+import 'package:invoiceapp/src/features/newInvoice/domain/bill_to_model.dart';
+import 'package:invoiceapp/src/features/newInvoice/domain/item_list_model.dart';
+import 'package:invoiceapp/src/features/newInvoice/domain/list_item_model.dart';
+import 'package:invoiceapp/src/features/newInvoice/presentation/list_item.dart';
 import 'package:invoiceapp/src/features/shared/models/invoice_form_model.dart';
 import 'package:invoiceapp/theme/source_of_truth.dart';
 import 'package:invoiceapp/theme/theme.dart';
@@ -68,10 +74,42 @@ void _bottomModal(BuildContext context, InvoiceFormModel invoice) {
             mainAxisAlignment: MainAxisAlignment.center,
             mainAxisSize: MainAxisSize.min,
             children: <Widget>[
-              ElevatedButton(
-                style: buttonStyle,
-                child: const Text('Edit Invoice'),
-                onPressed: () => context.push('/editInvoice', extra: invoice),
+              Consumer3(
+                builder: (context,
+                        BillFromModel billFromModel,
+                        BillToModel billToModel,
+                        ItemListModel itemsModel,
+                        child) =>
+                    ElevatedButton(
+                  style: buttonStyle,
+                  child: const Text('Edit Invoice'),
+                  onPressed: () {
+                    billFromModel.loadControllers(invoice);
+                    billToModel.loadControllers(invoice);
+
+                    // TODO: Implement editing items list
+                    // for (var item in invoice.listItems) {
+                    //   final model = CustomListItemModel();
+                    //   model.loadControllers(item);
+                    //   final String index =
+                    //       RandomRange.integer(1001, 999999).toString();
+                    //   final Map<String, CustomListItemModel> itemModelEntry = {
+                    //     index: model
+                    //   };
+
+                    //   final listItem = CustomListItem(
+                    //       index: index,
+                    //       onPress: itemsModel.removeItem,
+                    //       listItemModel: model);
+
+                    //   itemsModel.addItem({index: listItem});
+                    //   itemsModel.addItemModel(itemModelEntry);
+                    // }
+
+                    print('list items: ${invoice.listItems}');
+                    context.push('/editInvoice');
+                  },
+                ),
               ),
               Gaps.gaph12,
               ElevatedButton(
