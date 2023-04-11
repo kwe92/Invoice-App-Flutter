@@ -88,23 +88,23 @@ void _bottomModal(BuildContext context, InvoiceFormModel invoice) {
                     billToModel.loadControllers(invoice);
 
                     // TODO: Implement editing items list
-                    // for (var item in invoice.listItems) {
-                    //   final model = CustomListItemModel();
-                    //   model.loadControllers(item);
-                    //   final String index =
-                    //       RandomRange.integer(1001, 999999).toString();
-                    //   final Map<String, CustomListItemModel> itemModelEntry = {
-                    //     index: model
-                    //   };
+                    for (var item in invoice.listItems) {
+                      final model = CustomListItemModel();
+                      model.loadControllers(item);
+                      final String index =
+                          RandomRange.integer(1001, 999999).toString();
+                      final Map<String, CustomListItemModel> itemModelEntry = {
+                        index: model
+                      };
 
-                    //   final listItem = CustomListItem(
-                    //       index: index,
-                    //       onPress: itemsModel.removeItem,
-                    //       listItemModel: model);
+                      final listItem = CustomListItem(
+                          index: index,
+                          onPress: itemsModel.removeItem,
+                          listItemModel: model);
 
-                    //   itemsModel.addItem({index: listItem});
-                    //   itemsModel.addItemModel(itemModelEntry);
-                    // }
+                      itemsModel.addItem({index: listItem});
+                      itemsModel.addItemModel(itemModelEntry);
+                    }
 
                     print('list items: ${invoice.listItems}');
                     context.push('/editInvoice');
