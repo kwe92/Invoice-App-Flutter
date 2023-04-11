@@ -90,6 +90,7 @@ void _bottomModal(BuildContext context, InvoiceFormModel invoice) {
                     // TODO: Implement editing items list
                     for (var item in invoice.listItems) {
                       final model = CustomListItemModel();
+
                       model.loadControllers(item);
                       final String index =
                           RandomRange.integer(1001, 999999).toString();
@@ -124,3 +125,16 @@ void _bottomModal(BuildContext context, InvoiceFormModel invoice) {
     },
   );
 }
+
+// TODO : Implement Item Model
+// class ItemModel {
+//   final itemName;
+//   final quantity;
+//   final price;
+//   final total;
+//   const ItemModel(
+//       {required this.itemName,
+//       required this.quantity,
+//       required this.price,
+//       required this.total});
+// }
