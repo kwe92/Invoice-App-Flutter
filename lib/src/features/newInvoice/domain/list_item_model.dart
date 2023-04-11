@@ -17,7 +17,7 @@ class CustomListItemModel extends ChangeNotifier {
     return {
       'itemName': itemNameController.text,
       'quantity': quantityController.text,
-      ' price': priceController.text,
+      'price': priceController.text,
       'total': totalController.text,
     };
   }
@@ -44,6 +44,9 @@ class CustomListItemModel extends ChangeNotifier {
 
   void loadControllers(Map<String, dynamic> item) {
     print('ITEM FROM loadControllers:$item');
+    print('ITEM: FROM loadControllers:${item["price"]}');
+
+    print('Item keys loadControllers: ${item.keys}');
     quantityController.text = item['quantity'] ?? '';
     itemNameController.text = item['itemName'] ?? '';
     // TODO: Fix the price, it is not displaying even though there is data
