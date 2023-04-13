@@ -30,7 +30,10 @@ class AppRouter {
       GoRoute(
           path: 'editInvoice',
           builder: (context, state) {
-            return const EditInvoiceScreen();
+            final docId = state.extra as String;
+            return EditInvoiceScreen(
+              docId: docId,
+            );
           })
     ]),
   ]);
