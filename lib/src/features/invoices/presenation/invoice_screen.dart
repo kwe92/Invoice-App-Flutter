@@ -83,7 +83,7 @@ void _bottomModal(BuildContext context, InvoiceFormModel invoice) {
                     ElevatedButton(
                   style: buttonStyle,
                   child: const Text('Edit Invoice'),
-                  onPressed: () {
+                  onPressed: () async {
                     billFromModel.loadControllers(invoice);
                     billToModel.loadControllers(invoice);
 
@@ -109,6 +109,8 @@ void _bottomModal(BuildContext context, InvoiceFormModel invoice) {
 
                     print('list items: ${invoice.listItems}');
                     context.push('/editInvoice', extra: invoice.docId);
+                    // TODO: Ensure this is proper use of navigator
+                    Navigator.pop(context);
                   },
                 ),
               ),
