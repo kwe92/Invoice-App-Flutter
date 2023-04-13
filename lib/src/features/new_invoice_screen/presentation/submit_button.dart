@@ -12,10 +12,12 @@ class SubmitButton extends StatelessWidget {
   final BillFromModel billFromModel;
   final BillToModel billToModel;
   final ItemListModel itemsModel;
+  final String? firebaseId;
   const SubmitButton(
       {required this.billFromModel,
       required this.billToModel,
       required this.itemsModel,
+      this.firebaseId,
       super.key});
 
   @override
@@ -40,9 +42,15 @@ class SubmitButton extends StatelessWidget {
 
           final String paymentTerm = billToModel.dropDownMenuController.text;
 
+          const path = 'invoices';
+
+          // TODO: Called when user is editing and doesnt need to be | low priority but stull bad I think
+          final docId = AppFirebase.createDocGetId(path);
+
           final formData = InvoiceFormModel(
                   invoiceId: _createId(),
                   userId: AppFirebase.getCurrentUserId(),
+                  docId: firebaseId == null ? docId : firebaseId!,
                   createdAt: createdDate,
                   paymentDue: _paymentDue(createdDate, paymentTerm),
                   status: InvoiceStatus.pending.name,
@@ -52,7 +60,25 @@ class SubmitButton extends StatelessWidget {
                   total: total)
               .toMap();
 
-          await AppFirebase.loadData('invoices', formData);
+          // final formData = {
+          //   'invoiceId': _createId(),
+          //   'userId': AppFirebase.getCurrentUserId(),
+          //   'createdAt': createdDate,
+          //   'paymentDue': _paymentDue(createdDate, paymentTerm),
+          //   'status': InvoiceStatus.pending.name,
+          //   'billFromText': billFromText,
+          //   'billToText': billToText,
+          //   'listItems': itemslist,
+          //   'total': total
+          // };
+
+          if (firebaseId == null) {
+            await AppFirebase.loadData(
+                path: path, docId: docId, data: formData);
+          } else {
+            await AppFirebase.loadData(
+                path: path, docId: firebaseId, data: formData);
+          }
           billFromModel.clearAllControllers();
           billToModel.clearAllControllers();
           itemsModel.clearItemsState();
