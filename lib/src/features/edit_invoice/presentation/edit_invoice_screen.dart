@@ -4,10 +4,11 @@ import 'package:invoiceapp/src/features/shared/widgets/invoice_form_screen/prese
 // TODO: Make more modular | New Invoice && Edit invoice Screen should be mostly modular | buttons at the bottom may differ
 
 class EditInvoiceScreen extends StatelessWidget {
-  const EditInvoiceScreen({super.key});
+  final String docId;
+  const EditInvoiceScreen({required this.docId, super.key});
   @override
-  Widget build(BuildContext context) =>
-      // TODO need edit button connected to firebase
-
-      const InvoiceFormScreen(button: Text('A BUTTON GOES HERE!'));
+  Widget build(BuildContext context) {
+    print('FROM EDIT INVOICE SCREEN: $docId');
+    return const InvoiceFormScreen();
+  }
 }
