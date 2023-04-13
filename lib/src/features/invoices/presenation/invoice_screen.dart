@@ -108,7 +108,7 @@ void _bottomModal(BuildContext context, InvoiceFormModel invoice) {
                     }
 
                     print('list items: ${invoice.listItems}');
-                    context.push('/editInvoice');
+                    context.push('/editInvoice', extra: invoice.docId);
                   },
                 ),
               ),
