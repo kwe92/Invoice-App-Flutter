@@ -1,8 +1,8 @@
 // ignore_for_file: prefer_final_fields
 
 import 'package:flutter/material.dart';
-import 'package:invoiceapp/src/features/newInvoice/domain/list_item_model.dart';
 import 'package:invoiceapp/src/features/shared/widgets/custom_text_form_field.dart';
+import 'package:invoiceapp/src/features/shared/widgets/invoice_form_screen/domain/list_item_model.dart';
 import 'package:invoiceapp/theme/source_of_truth.dart';
 import 'package:provider/provider.dart';
 

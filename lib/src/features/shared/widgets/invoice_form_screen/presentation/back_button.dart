@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:invoiceapp/src/features/newInvoice/domain/bill_from_model.dart';
-import 'package:invoiceapp/src/features/newInvoice/domain/bill_to_model.dart';
-import 'package:invoiceapp/src/features/newInvoice/domain/item_list_model.dart';
+import 'package:invoiceapp/src/features/shared/widgets/invoice_form_screen/domain/bill_from_model.dart';
+import 'package:invoiceapp/src/features/shared/widgets/invoice_form_screen/domain/bill_to_model.dart';
+import 'package:invoiceapp/src/features/shared/widgets/invoice_form_screen/domain/item_list_model.dart';
 import 'package:invoiceapp/theme/source_of_truth.dart';
 import 'package:provider/provider.dart';
 

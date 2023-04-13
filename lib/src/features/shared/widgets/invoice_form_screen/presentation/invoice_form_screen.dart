@@ -6,27 +6,29 @@ import 'package:invoiceapp/constants/enums/status.dart';
 import 'package:invoiceapp/constants/firebase/app_firebase.dart';
 import 'package:invoiceapp/constants/utils/random_nums.dart';
 import 'package:invoiceapp/constants/widgets/base_scaffold/base_scaffold.dart';
-import 'package:invoiceapp/src/features/newInvoice/domain/bill_from_model.dart';
-import 'package:invoiceapp/src/features/newInvoice/domain/bill_to_model.dart';
-import 'package:invoiceapp/src/features/newInvoice/domain/item_list_model.dart';
-import 'package:invoiceapp/src/features/newInvoice/presentation/back_button.dart';
-import 'package:invoiceapp/src/features/newInvoice/presentation/bill_from.dart';
-import 'package:invoiceapp/src/features/newInvoice/presentation/bill_to.dart';
 import 'package:invoiceapp/src/features/shared/models/invoice_form_model.dart';
+import 'package:invoiceapp/src/features/shared/widgets/invoice_form_screen/domain/bill_from_model.dart';
+import 'package:invoiceapp/src/features/shared/widgets/invoice_form_screen/domain/bill_to_model.dart';
+import 'package:invoiceapp/src/features/shared/widgets/invoice_form_screen/domain/item_list_model.dart';
+import 'package:invoiceapp/src/features/shared/widgets/invoice_form_screen/presentation/back_button.dart';
+import 'package:invoiceapp/src/features/shared/widgets/invoice_form_screen/presentation/bill_from.dart';
+import 'package:invoiceapp/src/features/shared/widgets/invoice_form_screen/presentation/bill_to.dart';
 import 'package:invoiceapp/theme/source_of_truth.dart';
 import 'package:invoiceapp/theme/theme.dart';
 import 'package:provider/provider.dart';
 
-class NewInvoice extends StatelessWidget {
+class InvoiceFormScreen extends StatelessWidget {
   static const baseScaffoldKey = Key('baseScaffoldKey');
   static const backButtonKey = Key('backButtonKey');
   static const billFromKey = Key('billFromKey');
 
-  const NewInvoice({Key? key}) : super(key: key);
+  final Widget button;
+
+  const InvoiceFormScreen({required this.button, Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) => BaseScaffold(
-        key: NewInvoice.baseScaffoldKey,
+        key: InvoiceFormScreen.baseScaffoldKey,
         body: Padding(
           padding: CustomTheme.mainContentPadding,
           child: SingleChildScrollView(
@@ -42,57 +44,59 @@ class NewInvoice extends StatelessWidget {
                   'New Invoice',
                   style: TextStyle(fontSize: 26, fontWeight: FontWeight.w400),
                 ),
-                BillFrom(model: billFromModel, key: NewInvoice.billFromKey),
+                BillFrom(
+                    model: billFromModel, key: InvoiceFormScreen.billFromKey),
                 BillTo(
                   model: billToModel,
                   itemsModel: itemsModel,
                 ),
                 Gaps.gaph12,
-                OutlinedButton(
-                  onPressed: () async {
-                    final Map<String, String> billFromText =
-                        billFromModel.allControllerText;
+                button
+                // OutlinedButton(
+                //   onPressed: () async {
+                //     final Map<String, String> billFromText =
+                //         billFromModel.allControllerText;
 
-                    final Map<String, String> billToText =
-                        billToModel.allControllerText;
+                //     final Map<String, String> billToText =
+                //         billToModel.allControllerText;
 
-                    final List<Map<String, String>> itemslist = itemsModel
-                        .itemModels.values
-                        .map((value) => value.allControllerText)
-                        .toList();
+                //     final List<Map<String, String>> itemslist = itemsModel
+                //         .itemModels.values
+                //         .map((value) => value.allControllerText)
+                //         .toList();
 
-                    final double total = itemsModel.itemModels.values
-                        .map(
-                            (value) => double.parse(value.totalController.text))
-                        .toList()
-                        .reduce((value, element) => value + element);
+                //     final double total = itemsModel.itemModels.values
+                //         .map(
+                //             (value) => double.parse(value.totalController.text))
+                //         .toList()
+                //         .reduce((value, element) => value + element);
 
-                    final DateTime createdDate = DateTime.now();
+                //     final DateTime createdDate = DateTime.now();
 
-                    final String paymentTerm =
-                        billToModel.dropDownMenuController.text;
+                //     final String paymentTerm =
+                //         billToModel.dropDownMenuController.text;
 
-                    final formData = InvoiceFormModel(
-                            invoiceId: _createId(),
-                            userId: AppFirebase.getCurrentUserId(),
-                            createdAt: createdDate,
-                            paymentDue: _paymentDue(createdDate, paymentTerm),
-                            status: InvoiceStatus.pending.name,
-                            billFromText: billFromText,
-                            billToText: billToText,
-                            listItems: itemslist,
-                            total: total)
-                        .toMap();
+                //     final formData = InvoiceFormModel(
+                //             invoiceId: _createId(),
+                //             userId: AppFirebase.getCurrentUserId(),
+                //             createdAt: createdDate,
+                //             paymentDue: _paymentDue(createdDate, paymentTerm),
+                //             status: InvoiceStatus.pending.name,
+                //             billFromText: billFromText,
+                //             billToText: billToText,
+                //             listItems: itemslist,
+                //             total: total)
+                //         .toMap();
 
-                    await AppFirebase.loadData('invoices', formData);
-                    billFromModel.clearAllControllers();
-                    billToModel.clearAllControllers();
-                    itemsModel.clearItemsState();
+                //     await AppFirebase.loadData('invoices', formData);
+                //     billFromModel.clearAllControllers();
+                //     billToModel.clearAllControllers();
+                //     itemsModel.clearItemsState();
 
-                    context.pop();
-                  },
-                  child: const Text('Save & Send'),
-                )
+                //     context.pop();
+                //   },
+                //   child: const Text('Save & Send'),
+                // )
               ],
             ),
           )),
@@ -100,14 +104,14 @@ class NewInvoice extends StatelessWidget {
       );
 }
 
+int parseInt(String s) => int.parse(s.replaceAll(RegExp(r'[^0-9]'), ''));
+
 DateTime _paymentDue(DateTime date, String paymentTerm) {
   final newDate =
       DateTime(date.year, date.month, date.day + parseInt(paymentTerm));
 
   return newDate;
 }
-
-int parseInt(String s) => int.parse(s.replaceAll(RegExp(r'[^0-9]'), ''));
 
 // Function to generate random ID
 String _createId() {
