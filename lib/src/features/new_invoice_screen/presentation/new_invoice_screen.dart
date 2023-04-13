@@ -14,10 +14,10 @@ class NewInvoice extends StatelessWidget {
         builder: (context, BillFromModel billFromModel, BillToModel billToModel,
                 ItemListModel itemsModel, child) =>
             InvoiceFormScreen(
-                // button: SubmitButton(
-                //     billFromModel: billFromModel,
-                //     billToModel: billToModel,
-                //     itemsModel: itemsModel),
-                ),
+          button: SubmitButton(
+              billFromModel: billFromModel,
+              billToModel: billToModel,
+              itemsModel: itemsModel),
+        ),
       );
 }
