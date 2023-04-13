@@ -6,6 +6,7 @@ import 'package:invoiceapp/constants/enums/status.dart';
 import 'package:invoiceapp/constants/firebase/app_firebase.dart';
 import 'package:invoiceapp/constants/utils/random_nums.dart';
 import 'package:invoiceapp/constants/widgets/base_scaffold/base_scaffold.dart';
+import 'package:invoiceapp/src/features/new_invoice_screen/presentation/submit_button.dart';
 import 'package:invoiceapp/src/features/shared/models/invoice_form_model.dart';
 import 'package:invoiceapp/src/features/shared/widgets/invoice_form_screen/domain/bill_from_model.dart';
 import 'package:invoiceapp/src/features/shared/widgets/invoice_form_screen/domain/bill_to_model.dart';
@@ -22,9 +23,14 @@ class InvoiceFormScreen extends StatelessWidget {
   static const backButtonKey = Key('backButtonKey');
   static const billFromKey = Key('billFromKey');
 
-  final Widget button;
+  // final Widget button;
 
-  const InvoiceFormScreen({required this.button, Key? key}) : super(key: key);
+  const InvoiceFormScreen(
+      {
+      // required this.button
+
+      Key? key})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) => BaseScaffold(
@@ -51,7 +57,11 @@ class InvoiceFormScreen extends StatelessWidget {
                   itemsModel: itemsModel,
                 ),
                 Gaps.gaph12,
-                button
+                SubmitButton(
+                    billFromModel: billFromModel,
+                    billToModel: billToModel,
+                    itemsModel: itemsModel)
+                // button
                 // OutlinedButton(
                 //   onPressed: () async {
                 //     final Map<String, String> billFromText =
