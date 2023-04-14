@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:invoiceapp/constants/widgets/base_scaffold/base_scaffold.dart';
+import 'package:invoiceapp/src/features/view_invoice/presentation/view_invoice_screen.dart';
 import 'package:invoiceapp/src/features/authentication/presentation/profile_screen.dart';
 import 'package:invoiceapp/src/features/authentication/presentation/sign_in_screen.dart';
 import 'package:invoiceapp/src/features/edit_invoice/presentation/edit_invoice_screen.dart';
@@ -26,15 +27,8 @@ class AppRouter {
         builder: _newInvoiceScreen,
       ),
       GoRoute(path: 'profile', builder: _profileScreen),
-      // TODO: Create edit Invoice screen
-      GoRoute(
-          path: 'editInvoice',
-          builder: (context, state) {
-            final docId = state.extra as String;
-            return EditInvoiceScreen(
-              docId: docId,
-            );
-          })
+      GoRoute(path: 'editInvoice', builder: _editInvoice),
+      GoRoute(path: 'viewInvoice', builder: _viewInvoiceScreen)
     ]),
   ]);
 }
@@ -50,3 +44,14 @@ Widget _signInScreen(BuildContext context, GoRouterState state) =>
 
 Widget _profileScreen(BuildContext context, GoRouterState state) =>
     const CustomProfileScreen();
+
+Widget _viewInvoiceScreen(BuildContext context, GoRouterState state) =>
+    const ViewInvoiceScreen();
+
+Widget _editInvoice(context, GoRouterState state) {
+  final docId = state.extra as String;
+  print('DOC ID: $docId');
+  return EditInvoiceScreen(
+    docId: docId,
+  );
+}
