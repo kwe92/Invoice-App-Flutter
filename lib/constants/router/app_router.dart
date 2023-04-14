@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:invoiceapp/constants/widgets/base_scaffold/base_scaffold.dart';
+import 'package:invoiceapp/src/features/view_invoice/presentation/view_invoice_screen.dart';
 import 'package:invoiceapp/src/features/authentication/presentation/profile_screen.dart';
 import 'package:invoiceapp/src/features/authentication/presentation/sign_in_screen.dart';
 import 'package:invoiceapp/src/features/edit_invoice/presentation/edit_invoice_screen.dart';

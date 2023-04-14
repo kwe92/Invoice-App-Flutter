@@ -3,6 +3,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 class InvoiceFormModel {
   final String invoiceId;
   final String userId;
+  final String docId;
   final DateTime createdAt;
   final DateTime paymentDue;
   final String status;
@@ -14,6 +15,7 @@ class InvoiceFormModel {
   const InvoiceFormModel(
       {required this.invoiceId,
       required this.userId,
+      required this.docId,
       required this.createdAt,
       required this.paymentDue,
       required this.status,
@@ -26,6 +28,7 @@ class InvoiceFormModel {
       InvoiceFormModel(
           invoiceId: json['invoiceId'],
           userId: json['userId'],
+          docId: json['docId'],
           createdAt: json['createdAt'].toDate(),
           paymentDue: json['paymentDue'].toDate(),
           status: json['status'],
@@ -37,6 +40,7 @@ class InvoiceFormModel {
   Map<String, dynamic> toMap() => {
         'invoiceId': invoiceId,
         'userId': userId,
+        'docId': docId,
         'createdAt': createdAt,
         'paymentDue': paymentDue,
         'status': status,
