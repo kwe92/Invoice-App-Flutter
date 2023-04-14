@@ -3,6 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:invoiceapp/constants/utils/random_nums.dart';
 import 'package:invoiceapp/constants/widgets/base_scaffold/base_scaffold.dart';
 import 'package:invoiceapp/src/features/invoices/domain/invoices_model.dart';
+import 'package:invoiceapp/src/features/invoices/presenation/edit_modal.dart';
 import 'package:invoiceapp/src/features/invoices/presenation/invoice_list_tile/invoice_list_tile.dart';
 import 'package:invoiceapp/src/features/invoices/presenation/title_icon_list_tile.dart';
 import 'package:invoiceapp/src/features/shared/models/invoice_form_model.dart';
@@ -47,7 +48,8 @@ class _InvoicesListView extends StatelessWidget {
               GestureDetector(
                   // TODO: Implement onLong press
                   onLongPress: () {
-                    _bottomModal(context, invoice);
+                    EditModal.modal(context, invoice);
+                    // _bottomModal(context, invoice);
                   },
                   child: InvoiceListTile(invoice: invoice)),
           ]);
