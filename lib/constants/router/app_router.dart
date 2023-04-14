@@ -10,6 +10,7 @@ import 'package:invoiceapp/src/features/shared/models/invoice_form_model.dart';
 import 'package:invoiceapp/src/features/shared/services/get_it.dart';
 import 'package:invoiceapp/src/features/view_invoice/presentation/view_invoice_screen.dart';
 import 'package:invoiceapp/theme/source_of_truth.dart';
+import 'package:invoiceapp/src/features/view_invoice/presentation/view_invoice_screen.dart';
 
 AppRouter get appRouter {
   return getIt.get<AppRouter>();
@@ -48,4 +49,10 @@ Widget _profileScreen(BuildContext context, GoRouterState state) =>
 Widget _viewInvoiceScreen(BuildContext context, GoRouterState state) =>
     const ViewInvoiceScreen();
 
-Widget _editInvoice(context, state) => const EditInvoiceScreen();
+Widget _editInvoice(context, GoRouterState state) {
+  final docId = state.extra as String;
+  print('DOC ID: $docId');
+  return EditInvoiceScreen(
+    docId: docId,
+  );
+}
