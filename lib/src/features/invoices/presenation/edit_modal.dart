@@ -13,9 +13,6 @@ import 'package:provider/provider.dart';
 
 class EditModal {
   static void modal(BuildContext context, InvoiceFormModel invoice) {
-    final buttonStyle = ElevatedButton.styleFrom(
-        backgroundColor: CustomTheme.otherColors['purple0']);
-
     showModalBottomSheet<void>(
       context: context,
       builder: (BuildContext context) {
@@ -59,7 +56,8 @@ class EditModal {
                       }
 
                       print('list items: ${invoice.listItems}');
-                      context.push('/editInvoice');
+                      context.push('/editInvoice', extra: invoice.docId);
+                      Navigator.pop(context);
                     },
                   ),
                 ),
@@ -67,6 +65,7 @@ class EditModal {
                 _ModalButton(
                     onPressed: () {
                       context.push('/viewInvoice');
+                      Navigator.pop(context);
                     },
                     text: const Text('View Invoice')),
                 Gaps.gaph8,
