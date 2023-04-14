@@ -8,6 +8,7 @@ import 'package:invoiceapp/src/features/invoices/presenation/invoice_screen.dart
 import 'package:invoiceapp/src/features/new_invoice_screen/presentation/new_invoice_screen.dart';
 import 'package:invoiceapp/src/features/shared/models/invoice_form_model.dart';
 import 'package:invoiceapp/src/features/shared/services/get_it.dart';
+import 'package:invoiceapp/src/features/view_invoice/presentation/view_invoice_screen.dart';
 import 'package:invoiceapp/theme/source_of_truth.dart';
 
 AppRouter get appRouter {
@@ -26,12 +27,8 @@ class AppRouter {
         builder: _newInvoiceScreen,
       ),
       GoRoute(path: 'profile', builder: _profileScreen),
-      // TODO: Create edit Invoice screen
-      GoRoute(
-          path: 'editInvoice',
-          builder: (context, state) {
-            return const EditInvoiceScreen();
-          })
+      GoRoute(path: 'editInvoice', builder: _editInvoice),
+      GoRoute(path: 'viewInvoice', builder: _viewInvoiceScreen)
     ]),
   ]);
 }
@@ -47,3 +44,8 @@ Widget _signInScreen(BuildContext context, GoRouterState state) =>
 
 Widget _profileScreen(BuildContext context, GoRouterState state) =>
     const CustomProfileScreen();
+
+Widget _viewInvoiceScreen(BuildContext context, GoRouterState state) =>
+    const ViewInvoiceScreen();
+
+Widget _editInvoice(context, state) => const EditInvoiceScreen();
