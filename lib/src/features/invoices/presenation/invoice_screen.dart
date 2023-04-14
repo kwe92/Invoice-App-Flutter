@@ -49,7 +49,6 @@ class _InvoicesListView extends StatelessWidget {
                   // TODO: Implement onLong press
                   onLongPress: () {
                     EditModal.modal(context, invoice);
-                    // _bottomModal(context, invoice);
                   },
                   child: InvoiceListTile(invoice: invoice)),
           ]);
