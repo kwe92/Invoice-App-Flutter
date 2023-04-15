@@ -15,9 +15,34 @@ class ViewInvoiceScreen extends StatelessWidget {
             children: const <Widget>[
               CustomBackButton(),
               Gaps.gaph12,
-              Text('View invoice Screen')
+              _ListTile()
             ],
           ),
         ),
       );
+}
+
+class _ListTile extends StatelessWidget {
+  const _ListTile({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        const Text(
+          'Bill From User',
+          style: TextStyle(fontSize: 21, fontWeight: FontWeight.w600),
+        ),
+        Gaps.gaph6,
+        Row(
+          children: [
+            const Text('Invoice #'),
+            OutlinedButton(onPressed: () {}, child: const Text('Pending'))
+          ],
+        )
+      ],
+    );
+  }
 }
