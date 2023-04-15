@@ -39,6 +39,7 @@ class _ListTile extends StatelessWidget {
         Row(
           children: [
             const Text('Invoice #'),
+            // TODO: Add status indicator from invoice page
             OutlinedButton(onPressed: () {}, child: const Text('Pending'))
           ],
         )
