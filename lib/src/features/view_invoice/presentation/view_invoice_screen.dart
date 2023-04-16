@@ -116,7 +116,9 @@ class _DescriptionCard extends StatelessWidget {
             ],
           ),
           _verticalLine(),
-          _middleSection(invoice)
+          _middleSection(invoice),
+          Gaps.gaph12,
+          _iconListTile(invoice)
         ],
       ),
     );
@@ -146,20 +148,58 @@ Widget _middleSection(InvoiceFormModel invoice) => Row(
             )
           ],
         )),
-        _customContainer(Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const Text('Due on'),
-            Gaps.gaph6,
-            Text(invoice.billToText['date'])
-          ],
-        ))
+        _customContainer(
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const Text('Due on'),
+              Gaps.gaph6,
+              Text(invoice.billToText['date'])
+            ],
+          ),
+        )
       ],
     );
 
 Widget _customContainer(Widget child) => Expanded(
       child: SizedBox(
-        width: 200,
         child: child,
       ),
     );
+
+Widget _iconListTile(InvoiceFormModel invoice) => Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        const Text('Invoice for'),
+        Gaps.gaph10,
+        Row(
+          children: [
+            CircleAvatar(
+              child: Text(
+                invoice.billToText['clientName']
+                    .toString()
+                    .trim()
+                    .substring(0, 1),
+              ),
+            ),
+            Gaps.gapw6,
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  invoice.billToText['clientName'].toString().trim(),
+                ),
+                Gaps.gaph4,
+                Text(
+                  invoice.billToText['clientEmail'].toString().trim(),
+                )
+              ],
+            )
+          ],
+        )
+      ],
+    );
+
+// Widget? _circleAvatar() {
+//   return CircleAvatar(child: ,);
+// }
