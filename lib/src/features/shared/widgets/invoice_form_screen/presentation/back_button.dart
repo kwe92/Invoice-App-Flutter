@@ -7,7 +7,8 @@ import 'package:invoiceapp/theme/source_of_truth.dart';
 import 'package:provider/provider.dart';
 
 class CustomBackButton extends StatelessWidget {
-  const CustomBackButton({super.key});
+  final bool showText;
+  const CustomBackButton({this.showText = true, super.key});
 
   @override
   Widget build(BuildContext context) => Consumer3(
@@ -20,21 +21,25 @@ class CustomBackButton extends StatelessWidget {
             itemsModel.clearItemsState();
             Navigator.pop(context);
           },
-          child: const _BackButton(),
+          child: _BackButton(
+            showText: showText,
+          ),
         ),
       );
 }
 
 class _BackButton extends StatelessWidget {
-  const _BackButton({super.key});
+  final bool showText;
+
+  const _BackButton({required this.showText, super.key});
 
   @override
   Widget build(BuildContext context) => Row(
         mainAxisSize: MainAxisSize.min,
-        children: const <Widget>[
-          _BackButtonImage(),
-          Gaps.gapw8,
-          _BackButtonText()
+        children: <Widget>[
+          const _BackButtonImage(),
+          showText == true ? Gaps.gapw8 : const SizedBox(),
+          showText == true ? const _BackButtonText() : const SizedBox()
         ],
       );
 }
