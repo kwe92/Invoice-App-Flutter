@@ -1,4 +1,4 @@
-import 'package:invoiceapp/constants/enums/status.dart';
+import 'package:invoiceapp/constants/enums/hash_keys.dart';
 
 class InvoiceFormModel {
   final String invoiceId;
@@ -44,8 +44,8 @@ class InvoiceFormModel {
         HashKeys.createdAt.name: createdAt,
         HashKeys.paymentDue.name: paymentDue,
         HashKeys.status.name: status,
-        HashKeys.billFromText.name: billToText,
-        HashKeys.billToText.name: billFromText,
+        HashKeys.billFromText.name: billFromText,
+        HashKeys.billToText.name: billToText,
         HashKeys.listItems.name: listItems,
         HashKeys.total.name: total
       };
