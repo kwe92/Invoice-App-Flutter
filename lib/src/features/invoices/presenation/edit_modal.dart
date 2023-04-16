@@ -63,7 +63,7 @@ class EditModal {
                 Gaps.gaph8,
                 _ModalButton(
                     onPressed: () {
-                      context.push('/viewInvoice');
+                      context.push('/viewInvoice', extra: invoice);
                       Navigator.pop(context);
                     },
                     text: const Text('View Invoice')),
