@@ -1,18 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:invoiceapp/constants/widgets/base_scaffold/base_scaffold.dart';
 import 'package:invoiceapp/src/features/view_invoice/presentation/view_invoice_screen.dart';
 import 'package:invoiceapp/src/features/authentication/presentation/profile_screen.dart';
 import 'package:invoiceapp/src/features/authentication/presentation/sign_in_screen.dart';
 import 'package:invoiceapp/src/features/edit_invoice/presentation/edit_invoice_screen.dart';
 import 'package:invoiceapp/src/features/invoices/presenation/invoice_screen.dart';
 import 'package:invoiceapp/src/features/new_invoice_screen/presentation/new_invoice_screen.dart';
-import 'package:invoiceapp/src/features/shared/models/invoice_form_model.dart';
 import 'package:invoiceapp/src/features/shared/services/get_it.dart';
-import 'package:invoiceapp/src/features/view_invoice/presentation/view_invoice_screen.dart';
-import 'package:invoiceapp/theme/source_of_truth.dart';
-import 'package:invoiceapp/src/features/view_invoice/presentation/view_invoice_screen.dart';
 
+// TODO: Clean up hard coded strings
 AppRouter get appRouter {
   return getIt.get<AppRouter>();
 }

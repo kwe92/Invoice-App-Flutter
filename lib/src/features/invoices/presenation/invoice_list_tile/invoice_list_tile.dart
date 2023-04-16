@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:invoiceapp/src/features/invoices/data/invoice.dart';
 import 'package:invoiceapp/src/features/invoices/presenation/invoice_list_tile/list_tile_body.dart';
-import 'package:invoiceapp/src/features/invoices/presenation/invoice_list_tile/list_tile_decoration.dart';
 import 'package:invoiceapp/src/features/shared/models/invoice_form_model.dart';
-import 'package:invoiceapp/theme/source_of_truth.dart';
 import 'package:invoiceapp/theme/theme.dart';
 
 class InvoiceListTile extends StatelessWidget {

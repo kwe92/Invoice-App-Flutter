@@ -17,14 +17,13 @@ class BillFromModel extends ChangeNotifier {
   TextEditingController get countryController => _countryController;
   bool get edit => _edit;
 
-  Map<String, String> get allControllerText {
-    return {
-      'streetAdd': streetAddController.text,
-      'city': cityController.text,
-      'postCode': postCodeController.text,
-      'country': countryController.text
-    };
-  }
+  Map<String, String> get allControllerText => {
+        // TODO: Place all Hash Table keys that are repeated in an ENUM
+        'streetAdd': streetAddController.text,
+        'city': cityController.text,
+        'postCode': postCodeController.text,
+        'country': countryController.text
+      };
 
   void clearStreetController() {
     _streetAddController.clear();

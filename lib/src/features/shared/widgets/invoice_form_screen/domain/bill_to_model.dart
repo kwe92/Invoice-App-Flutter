@@ -24,20 +24,18 @@ class BillToModel extends ChangeNotifier {
   TextEditingController get dateController => _dateController;
   TextEditingController get dropDownMenuController => _dropDownMenuController;
 
-  Map<String, String> get allControllerText {
-    return {
-      // TODO: Place all Hash Table keys that are repeated in an ENUM
-      'streetAdd': streetAddController.text,
-      'city': cityController.text,
-      'postCode': postCodeController.text,
-      'country': countryController.text,
-      'clientName': clientNameController.text,
-      'clientEmail': clientEmailController.text,
-      'projectDesc': projectDescController.text,
-      'date': dateController.text,
-      'paymentTerm': dropDownMenuController.text,
-    };
-  }
+  Map<String, String> get allControllerText => {
+        // TODO: Place all Hash Table keys that are repeated in an ENUM
+        'streetAdd': streetAddController.text,
+        'city': cityController.text,
+        'postCode': postCodeController.text,
+        'country': countryController.text,
+        'clientName': clientNameController.text,
+        'clientEmail': clientEmailController.text,
+        'projectDesc': projectDescController.text,
+        'date': dateController.text,
+        'paymentTerm': dropDownMenuController.text,
+      };
 
   void setDateControllerText(String date) =>
       date.isNotEmpty ? dateController.text = date : null;

@@ -5,8 +5,6 @@ import 'package:firebase_ui_auth/firebase_ui_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:invoiceapp/firebase_options.dart';
 
-// import 'firebase_options.dart';
-
 class ApplicationState extends ChangeNotifier {
   ApplicationState() {
     init();
@@ -24,11 +22,7 @@ class ApplicationState extends ChangeNotifier {
     ]);
 
     FirebaseAuth.instance.userChanges().listen((user) {
-      if (user != null) {
-        _loggedIn = true;
-      } else {
-        _loggedIn = false;
-      }
+      user != null ? _loggedIn = true : _loggedIn = false;
       notifyListeners();
     });
   }

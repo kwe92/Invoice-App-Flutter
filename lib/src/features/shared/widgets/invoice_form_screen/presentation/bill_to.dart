@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:invoiceapp/constants/utils/formatters.dart';
 import 'package:invoiceapp/constants/utils/random_nums.dart';
-import 'package:invoiceapp/src/features/shared/models/invoice_form_model.dart';
 import 'package:invoiceapp/src/features/shared/widgets/custom_text_form_field.dart';
 import 'package:invoiceapp/src/features/shared/widgets/invoice_form_screen/domain/bill_to_model.dart';
 import 'package:invoiceapp/src/features/shared/widgets/invoice_form_screen/domain/item_list_model.dart';
@@ -128,7 +127,6 @@ class BillTo extends StatelessWidget {
             children: [
               Expanded(child: _AddButton(
                 onPressed: () {
-                  // TODO: Remove list item model if the list item is removed
                   final model = CustomListItemModel();
                   final String index =
                       RandomRange.integer(1001, 999999).toString();
@@ -147,7 +145,8 @@ class BillTo extends StatelessWidget {
                   itemsModel.addItemModel(itemModelEntry);
 
                   itemsModel.itemModels.forEach((key, value) {
-                    print(value.itemNameController.text);
+                    print(
+                        'FROM invoice_from_modal itemNameController text: ${value.itemNameController.text}');
                   });
                 },
               )),
@@ -165,9 +164,11 @@ class _AddButton extends StatelessWidget {
   final VoidCallback onPressed;
   const _AddButton({required this.onPressed, super.key});
 
-  Widget build(BuildContext context) {
-    return OutlinedButton(onPressed: onPressed, child: const Text('Add Item'));
-  }
+  @override
+  Widget build(BuildContext context) => OutlinedButton(
+        onPressed: onPressed,
+        child: const Text('Add Item'),
+      );
 }
 
 DateTime _initDateTime() => DateTime(2023);

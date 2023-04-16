@@ -14,7 +14,6 @@ class CustomBackButton extends StatelessWidget {
         builder: (context, BillFromModel billFromModel, BillToModel billToModel,
                 ItemListModel itemsModel, child) =>
             GestureDetector(
-          // TODO: Dispose of text form fields on screen change??
           onTap: () {
             billFromModel.clearAllControllers();
             billToModel.clearAllControllers();

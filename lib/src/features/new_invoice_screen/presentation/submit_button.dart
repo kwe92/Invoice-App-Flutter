@@ -60,25 +60,12 @@ class SubmitButton extends StatelessWidget {
                   total: total)
               .toMap();
 
-          // final formData = {
-          //   'invoiceId': _createId(),
-          //   'userId': AppFirebase.getCurrentUserId(),
-          //   'createdAt': createdDate,
-          //   'paymentDue': _paymentDue(createdDate, paymentTerm),
-          //   'status': InvoiceStatus.pending.name,
-          //   'billFromText': billFromText,
-          //   'billToText': billToText,
-          //   'listItems': itemslist,
-          //   'total': total
-          // };
+          firebaseId == null
+              ? await AppFirebase.loadData(
+                  path: path, docId: docId, data: formData)
+              : await AppFirebase.loadData(
+                  path: path, docId: firebaseId, data: formData);
 
-          if (firebaseId == null) {
-            await AppFirebase.loadData(
-                path: path, docId: docId, data: formData);
-          } else {
-            await AppFirebase.loadData(
-                path: path, docId: firebaseId, data: formData);
-          }
           billFromModel.clearAllControllers();
           billToModel.clearAllControllers();
           itemsModel.clearItemsState();
@@ -91,12 +78,11 @@ class SubmitButton extends StatelessWidget {
 
 int parseInt(String s) => int.parse(s.replaceAll(RegExp(r'[^0-9]'), ''));
 
-DateTime _paymentDue(DateTime date, String paymentTerm) {
-  final newDate =
-      DateTime(date.year, date.month, date.day + parseInt(paymentTerm));
-
-  return newDate;
-}
+DateTime _paymentDue(DateTime date, String paymentTerm) => DateTime(
+      date.year,
+      date.month,
+      date.day + parseInt(paymentTerm),
+    );
 
 // Function to generate random ID
 String _createId() {

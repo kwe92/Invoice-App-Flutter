@@ -1,4 +1,4 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:invoiceapp/constants/enums/hash_keys.dart';
 
 class InvoiceFormModel {
   final String invoiceId;
@@ -26,27 +26,27 @@ class InvoiceFormModel {
 
   factory InvoiceFormModel.fromJSON(Map<String, dynamic> json) =>
       InvoiceFormModel(
-          invoiceId: json['invoiceId'],
-          userId: json['userId'],
-          docId: json['docId'],
-          createdAt: json['createdAt'].toDate(),
-          paymentDue: json['paymentDue'].toDate(),
-          status: json['status'],
-          billFromText: json['billFromText'],
-          billToText: json['billToText'],
-          listItems: json['listItems'],
-          total: json['total']);
+          invoiceId: json[HashKeys.invoiceId.name],
+          userId: json[HashKeys.userId.name],
+          docId: json[HashKeys.docId.name],
+          createdAt: json[HashKeys.createdAt.name].toDate(),
+          paymentDue: json[HashKeys.paymentDue.name].toDate(),
+          status: json[HashKeys.status.name],
+          billFromText: json[HashKeys.billFromText.name],
+          billToText: json[HashKeys.billToText.name],
+          listItems: json[HashKeys.listItems.name],
+          total: json[HashKeys.total.name]);
 
   Map<String, dynamic> toMap() => {
-        'invoiceId': invoiceId,
-        'userId': userId,
-        'docId': docId,
-        'createdAt': createdAt,
-        'paymentDue': paymentDue,
-        'status': status,
-        'billToText': billToText,
-        'billFromText': billFromText,
-        'listItems': listItems,
-        'total': total
+        HashKeys.invoiceId.name: invoiceId,
+        HashKeys.userId.name: userId,
+        HashKeys.docId.name: docId,
+        HashKeys.createdAt.name: createdAt,
+        HashKeys.paymentDue.name: paymentDue,
+        HashKeys.status.name: status,
+        HashKeys.billFromText.name: billFromText,
+        HashKeys.billToText.name: billToText,
+        HashKeys.listItems.name: listItems,
+        HashKeys.total.name: total
       };
 }

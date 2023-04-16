@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:go_router/go_router.dart';
 import 'package:invoiceapp/constants/widgets/appbar/app_icon.dart';
 import 'package:invoiceapp/src/features/authentication/presentation/profile_screen.dart';
 import 'package:invoiceapp/theme/source_of_truth.dart';
@@ -20,10 +19,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSize {
         child: AppBar(
             backgroundColor: CustomTheme.darkColors['shade3'],
             leading: AppIcon(radius: _radius),
-            // actions: _otherIcons(),
-            actions:
-                // _OtherIcons.otherIcons(context),
-                [
+            actions: [
               Row(
                 children: [
                   SvgPicture.asset('assets/icon-moon.svg'),
