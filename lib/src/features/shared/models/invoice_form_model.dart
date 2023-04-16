@@ -49,4 +49,8 @@ class InvoiceFormModel {
         HashKeys.listItems.name: listItems,
         HashKeys.total.name: total
       };
+
+  @override
+  String toString() =>
+      'InvoiceFormModel(invoiceId: $invoiceId, userId: $userId, docId: $docId, createdAt: $createdAt, paymentDue: $paymentDue, status: $status, billToText: $billToText, billFromText: $billFromText, listItems: $listItems, total: $total)';
 }
