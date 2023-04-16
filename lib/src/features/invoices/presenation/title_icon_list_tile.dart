@@ -56,10 +56,11 @@ class _Title extends StatelessWidget {
                 letterSpacing: -1),
           ),
           Consumer(
-              builder: (context, InvoicesModel model, _) => Text(
-                    '${model.invoices.length} invoices',
-                    style: TextStyle(color: CustomTheme.lightColors['shade0']),
-                  ))
+            builder: (context, InvoicesModel model, _) => Text(
+              '${model.invoices.length} invoices',
+              style: TextStyle(color: CustomTheme.lightColors['shade0']),
+            ),
+          )
         ],
       );
 }

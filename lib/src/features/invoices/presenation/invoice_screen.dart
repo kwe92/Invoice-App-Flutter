@@ -6,7 +6,6 @@ import 'package:invoiceapp/src/features/invoices/presenation/invoice_list_tile/i
 import 'package:invoiceapp/src/features/invoices/presenation/title_icon_list_tile.dart';
 import 'package:invoiceapp/src/features/shared/models/invoice_form_model.dart';
 import 'package:provider/provider.dart';
-import 'package:invoiceapp/src/features/invoices/presenation/edit_modal.dart';
 
 class InvoiceScreen extends StatelessWidget {
   static const baseScaffoldKey = Key('baseScaffoldKey');
@@ -25,26 +24,21 @@ class InvoiceScreen extends StatelessWidget {
 class _InvoicesListView extends StatelessWidget {
   const _InvoicesListView({super.key});
   @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(top: 24.0),
-      child: Consumer(
-        builder: (BuildContext context, InvoicesModel model, _) {
-          // model.notifyListeners();
-          print('Map of invoices: ${model.invoices}');
-          return ListView(key: InvoiceScreen.listViewKey, children: <Widget>[
-            const TitleIconListTile(
-              key: InvoiceScreen.titleIconListTileKey,
-            ),
-            for (final InvoiceFormModel invoice in model.invoices.values)
-              GestureDetector(
-                  onLongPress: () {
-                    EditModal.modal(context, invoice);
-                  },
-                  child: InvoiceListTile(invoice: invoice)),
-          ]);
-        },
-      ),
-    );
-  }
+  Widget build(BuildContext context) => Padding(
+        padding: const EdgeInsets.only(top: 24.0),
+        child: Consumer(
+          builder: (BuildContext context, InvoicesModel model, _) => ListView(
+            key: InvoiceScreen.listViewKey,
+            children: <Widget>[
+              const TitleIconListTile(
+                key: InvoiceScreen.titleIconListTileKey,
+              ),
+              for (final InvoiceFormModel invoice in model.invoices.values)
+                GestureDetector(
+                    onLongPress: () => EditModal.modal(context, invoice),
+                    child: InvoiceListTile(invoice: invoice)),
+            ],
+          ),
+        ),
+      );
 }

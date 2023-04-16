@@ -36,7 +36,6 @@ class EditModal {
                       billFromModel.loadControllers(invoice);
                       billToModel.loadControllers(invoice);
 
-                      // TODO: Implement editing items list
                       for (var item in invoice.listItems) {
                         final model = CustomListItemModel();
 
