@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:invoiceapp/src/features/invoices/presenation/invoice_list_tile/list_tile_decoration.dart';
 import 'package:invoiceapp/src/features/shared/models/invoice_form_model.dart';
-import 'package:invoiceapp/src/features/view_invoice/presentation/amount_due_section.dart';
-import 'package:invoiceapp/src/features/view_invoice/presentation/horizontal_line.dart';
-import 'package:invoiceapp/src/features/view_invoice/presentation/icon_list_tile.dart';
-import 'package:invoiceapp/src/features/view_invoice/presentation/middle_section.dart';
+import 'package:invoiceapp/src/features/view_invoice/presentation/description_section/amount_due_section.dart';
+import 'package:invoiceapp/src/features/view_invoice/presentation/description_section/horizontal_line.dart';
+import 'package:invoiceapp/src/features/view_invoice/presentation/description_section/icon_list_tile.dart';
+import 'package:invoiceapp/src/features/view_invoice/presentation/description_section/middle_section.dart';
 
 class DescriptionCard extends StatelessWidget {
   final InvoiceFormModel invoice;
