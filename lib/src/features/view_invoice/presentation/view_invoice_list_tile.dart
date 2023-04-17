@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:invoiceapp/src/features/invoices/presenation/invoice_list_tile/list_tile_decoration.dart';
 import 'package:invoiceapp/src/features/shared/models/invoice_form_model.dart';
 import 'package:invoiceapp/theme/source_of_truth.dart';
 
@@ -11,26 +12,32 @@ class ViewInvoiceListTile extends StatelessWidget {
   Widget build(BuildContext context) => Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          Text(
-            invoice.billToText['clientName'].toString().trim(),
-            style: const TextStyle(fontSize: 32, fontWeight: FontWeight.w500),
-          ),
+          //  TODO; Maybe remove from the design
+          // Text(
+          //   invoice.billToText['clientName'].toString().trim(),
+          //   style: const TextStyle(fontSize: 32, fontWeight: FontWeight.w500),
+          // ),
           Gaps.gaph6,
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: <Widget>[
-              Text('Invoice ${invoice.invoiceId}'),
-              Gaps.gapw8,
-              _Capsule(
-                child: Center(
-                  child: Text(
-                    invoice.status,
-                    style: const TextStyle(color: Colors.white),
+          Container(
+            padding: const EdgeInsets.only(left: 20, right: 20),
+            decoration: CustomDecoration.decoration(),
+            height: 75,
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+                Text('Invoice ${invoice.invoiceId}'),
+                Gaps.gapw8,
+                _Capsule(
+                  child: Center(
+                    child: Text(
+                      invoice.status,
+                      style: const TextStyle(color: Colors.white),
+                    ),
                   ),
-                ),
-              )
-            ],
+                )
+              ],
+            ),
           ),
         ],
       );
