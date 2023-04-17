@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:invoiceapp/src/features/shared/models/invoice_form_model.dart';
 import 'package:invoiceapp/src/features/view_invoice/presentation/description_section/custom_text_style.dart';
 import 'package:invoiceapp/theme/source_of_truth.dart';
+import 'package:invoiceapp/theme/theme.dart';
 
 class IconListTile extends StatelessWidget {
   final InvoiceFormModel invoice;
@@ -19,7 +20,9 @@ class IconListTile extends StatelessWidget {
           Row(
             children: [
               CircleAvatar(
-                radius: 28,
+                // TODO: Add Navy Blue to CustomTheme.otherCOlors
+                backgroundColor: const Color.fromRGBO(18, 103, 177, 1),
+                radius: 25.625,
                 child: Text(
                   invoice.billToText['clientName']
                       .toString()
