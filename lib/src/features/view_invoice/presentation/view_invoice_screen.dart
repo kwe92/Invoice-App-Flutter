@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:invoiceapp/constants/utils/formatters.dart';
 import 'package:invoiceapp/constants/widgets/base_scaffold/base_scaffold.dart';
+import 'package:invoiceapp/src/features/invoices/presenation/invoice_list_tile/list_tile_decoration.dart';
 import 'package:invoiceapp/src/features/shared/models/invoice_form_model.dart';
 import 'package:invoiceapp/src/features/shared/widgets/invoice_form_screen/presentation/back_button.dart';
+import 'package:invoiceapp/src/features/view_invoice/presentation/view_invoice_list_tile.dart';
 import 'package:invoiceapp/theme/source_of_truth.dart';
 import 'package:invoiceapp/theme/theme.dart';
+
+// TODO: Style Description Card
 
 class ViewInvoiceScreen extends StatelessWidget {
   final InvoiceFormModel invoice;
@@ -23,7 +27,7 @@ class ViewInvoiceScreen extends StatelessWidget {
             ),
             // TODO: D.R.Y
             Gaps.heigth(24),
-            _ListTile(
+            ViewInvoiceListTile(
               invoice: invoice,
             ),
             Gaps.heigth(24),
@@ -39,57 +43,6 @@ class ViewInvoiceScreen extends StatelessWidget {
 
 // TODO: Finish building view invoice screen
 
-class _ListTile extends StatelessWidget {
-  final InvoiceFormModel invoice;
-
-  const _ListTile({required this.invoice, super.key});
-
-  @override
-  Widget build(BuildContext context) => Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          Text(
-            invoice.billToText['clientName'].toString().trim(),
-            style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
-          ),
-          Gaps.gaph6,
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: <Widget>[
-              Text('Invoice ${invoice.invoiceId}'),
-              Gaps.gapw8,
-              _Capsule(
-                child: Center(
-                  child: Text(
-                    invoice.status,
-                    style: const TextStyle(color: Colors.white),
-                  ),
-                ),
-              )
-            ],
-          ),
-        ],
-      );
-}
-
-class _Capsule extends StatelessWidget {
-  final Widget child;
-  const _Capsule({required this.child, super.key});
-
-  @override
-  Widget build(BuildContext context) => Container(
-        width: 75,
-        height: 30,
-        decoration: BoxDecoration(
-          // TODO: Colors from theme
-          color: const Color.fromARGB(255, 131, 222, 134),
-          borderRadius: BorderRadius.circular(16),
-        ),
-        child: child,
-      );
-}
-
 class _DescriptionCard extends StatelessWidget {
   final InvoiceFormModel invoice;
   const _DescriptionCard({required this.invoice, super.key});
@@ -98,38 +51,55 @@ class _DescriptionCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: 315,
-      decoration: BoxDecoration(
-        border: Border.all(color: CustomTheme.lightColors['shade0'] as Color),
-        borderRadius: BorderRadius.circular(12),
-      ),
+      decoration: CustomDecoration.decoration(),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              const Text('Amount due'),
-              Gaps.gaph8,
-              Text(
-                invoice.total.toString(),
-              )
-            ],
-          ),
+          Padding(
+              padding: const EdgeInsets.all(21.25),
+              child: _amountDueSection(invoice)),
           _verticalLine(),
-          _middleSection(invoice),
-          Gaps.gaph12,
-          _iconListTile(invoice)
+          Padding(
+            padding: const EdgeInsets.all(21.25),
+            child: _middleSection(invoice),
+          ),
+          // Gaps.gaph12,
+          Padding(
+            padding:
+                const EdgeInsets.only(left: 21.25, bottom: 21.25, right: 21.25),
+            child: _iconListTile(invoice),
+          )
         ],
       ),
     );
   }
 }
 
+Widget _amountDueSection(InvoiceFormModel invoice) => Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: <Widget>[
+        Text(
+          'Amount due',
+          style: _descriptionCardTitleStyle(),
+        ),
+        Gaps.gaph12,
+        Text(
+          '\$${LocaleFormatter.formatDouble(invoice.total)}',
+          style: TextStyle(
+            color: CustomTheme.otherColors['purple0'],
+            fontSize: 18,
+            fontWeight: FontWeight.w600,
+          ),
+        )
+      ],
+    );
+
 Widget _verticalLine() => Row(
       children: [
         Expanded(
             child: Container(
-          color: CustomTheme.lightColors['shade0'] as Color,
+          color: const Color.fromRGBO(192, 192, 192, 1),
+          // color: CustomTheme.lightColors['shade1'] as Color,
           height: 1,
         )),
       ],
@@ -141,10 +111,17 @@ Widget _middleSection(InvoiceFormModel invoice) => Row(
         _customContainer(Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text('Issued on'),
-            Gaps.gaph6,
+            Text(
+              'Issued on',
+              style: _descriptionCardTitleStyle(),
+            ),
+            Gaps.gaph12,
             Text(
               DateFormatter.dateTimeToString(invoice.createdAt),
+              style: const TextStyle(
+                fontSize: 18,
+                fontWeight: FontWeight.w600,
+              ),
             )
           ],
         )),
@@ -152,9 +129,18 @@ Widget _middleSection(InvoiceFormModel invoice) => Row(
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Text('Due on'),
-              Gaps.gaph6,
-              Text(invoice.billToText['date'])
+              Text(
+                'Due on',
+                style: _descriptionCardTitleStyle(),
+              ),
+              Gaps.gaph12,
+              Text(
+                invoice.billToText['date'],
+                style: const TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.w600,
+                ),
+              )
             ],
           ),
         )
@@ -170,11 +156,15 @@ Widget _customContainer(Widget child) => Expanded(
 Widget _iconListTile(InvoiceFormModel invoice) => Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const Text('Invoice for'),
-        Gaps.gaph10,
+        Text(
+          'Invoice for',
+          style: _descriptionCardTitleStyle(),
+        ),
+        Gaps.gaph12,
         Row(
           children: [
             CircleAvatar(
+              radius: 28,
               child: Text(
                 invoice.billToText['clientName']
                     .toString()
@@ -182,22 +172,30 @@ Widget _iconListTile(InvoiceFormModel invoice) => Column(
                     .substring(0, 1),
               ),
             ),
-            Gaps.gapw6,
+            Gaps.gapw12,
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
                   invoice.billToText['clientName'].toString().trim(),
+                  style: const TextStyle(
+                      fontSize: 21, fontWeight: FontWeight.w500),
                 ),
                 Gaps.gaph4,
                 Text(
                   invoice.billToText['clientEmail'].toString().trim(),
+                  style: _descriptionCardTitleStyle(),
                 )
               ],
             )
           ],
         )
       ],
+    );
+
+TextStyle _descriptionCardTitleStyle() => const TextStyle(
+      fontSize: 18.75,
+      color: Color.fromRGBO(118, 123, 124, 1),
     );
 
 // Widget? _circleAvatar() {
