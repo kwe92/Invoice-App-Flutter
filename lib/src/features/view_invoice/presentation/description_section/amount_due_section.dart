@@ -20,8 +20,9 @@ class AmountDueSection extends StatelessWidget {
           Gaps.gaph12,
           Text(
             '\$${LocaleFormatter.formatDouble(invoice.total)}',
-            style: TextStyle(
-              color: CustomTheme.otherColors['purple0'],
+            style: const TextStyle(
+              // TODO: Add Navy Blue to CustomTheme.otherCOlors
+              color: Color.fromRGBO(18, 103, 177, 1),
               fontSize: 18,
               fontWeight: FontWeight.w600,
             ),
