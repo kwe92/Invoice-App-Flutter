@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:invoiceapp/constants/widgets/base_scaffold/base_scaffold.dart';
 import 'package:invoiceapp/src/features/shared/models/invoice_form_model.dart';
 import 'package:invoiceapp/src/features/shared/widgets/invoice_form_screen/presentation/back_button.dart';
-import 'package:invoiceapp/src/features/view_invoice/presentation/description_section/description_dard.dart';
+import 'package:invoiceapp/src/features/view_invoice/presentation/description_section/description_card.dart';
 import 'package:invoiceapp/src/features/view_invoice/presentation/view_invoice_list_tile.dart';
 import 'package:invoiceapp/theme/source_of_truth.dart';
 import 'package:invoiceapp/theme/theme.dart';
