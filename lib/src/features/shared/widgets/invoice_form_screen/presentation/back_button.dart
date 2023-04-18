@@ -37,7 +37,9 @@ class _BackButton extends StatelessWidget {
   Widget build(BuildContext context) => Row(
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
-          const _BackButtonImage(),
+          _BackButtonImage(
+            showText: showText,
+          ),
           showText == true ? Gaps.gapw8 : const SizedBox(),
           showText == true ? const _BackButtonText() : const SizedBox()
         ],
@@ -45,7 +47,9 @@ class _BackButton extends StatelessWidget {
 }
 
 class _BackButtonImage extends StatelessWidget {
-  const _BackButtonImage({super.key});
+  final bool showText;
+
+  const _BackButtonImage({required this.showText, super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -55,6 +59,8 @@ class _BackButtonImage extends StatelessWidget {
       height: imageSize,
       child: SvgPicture.asset(
         'assets/icon-arrow-left.svg',
+        // TODO: Add Navy Blue to CustomTheme.otherColors
+        color: showText == true ? null : const Color.fromRGBO(18, 103, 177, 1),
       ),
     );
   }
