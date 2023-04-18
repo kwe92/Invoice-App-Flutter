@@ -32,7 +32,9 @@ class EditModal {
                           child) =>
                       _ModalButton(
                     text: const Text('Edit Invoice'),
-                    onPressed: () {
+                    onPressed:
+                        // TODO: Loading controllers and navigating to the edit screen happens from the invocie screen and view invocie screen so should be shared somehow
+                        () {
                       billFromModel.loadControllers(invoice);
                       billToModel.loadControllers(invoice);
 
