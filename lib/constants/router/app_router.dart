@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:invoiceapp/src/features/shared/models/invoice_form_model.dart';
 import 'package:invoiceapp/src/features/view_invoice/presentation/view_invoice_screen.dart';
 import 'package:invoiceapp/src/features/authentication/presentation/profile_screen.dart';
 import 'package:invoiceapp/src/features/authentication/presentation/sign_in_screen.dart';
@@ -43,8 +44,10 @@ Widget _signInScreen(BuildContext context, GoRouterState state) =>
 Widget _profileScreen(BuildContext context, GoRouterState state) =>
     const CustomProfileScreen();
 
-Widget _viewInvoiceScreen(BuildContext context, GoRouterState state) =>
-    const ViewInvoiceScreen();
+Widget _viewInvoiceScreen(BuildContext context, GoRouterState state) {
+  final invoice = state.extra as InvoiceFormModel;
+  return ViewInvoiceScreen(invoice: invoice);
+}
 
 Widget _editInvoice(context, GoRouterState state) {
   final docId = state.extra as String;
