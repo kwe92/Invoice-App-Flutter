@@ -37,7 +37,10 @@ class ViewInvoiceScreen extends StatelessWidget {
                 invoice: invoice,
               ),
               Gaps.heigth(24),
-              const Text('Invoice Items'),
+              const Text(
+                'Invoice Items',
+                style: CustomTextStyle(),
+              ),
               Gaps.heigth(24),
               _itemsContainer(invoice)
             ],
@@ -52,9 +55,15 @@ class ViewInvoiceScreen extends StatelessWidget {
 
 Widget _itemsContainer(InvoiceFormModel invoice) {
   invoice.listItems.forEach((e) => print('FROM _itemsContainer: $e'));
-  final items = invoice.listItems.map(
+  final Iterable<Widget> items = invoice.listItems.map(
     (e) => _itemsListTile(e),
   );
+
+  final double total = invoice.listItems
+      .map(
+        (item) => double.parse(item['total']),
+      )
+      .reduce((double value, double element) => value + element);
 
   return Container(
     decoration: CustomDecoration.decoration(),
@@ -63,7 +72,7 @@ Widget _itemsContainer(InvoiceFormModel invoice) {
       children: <Widget>[
         ...items,
         const HorizontalLine(),
-        _totalSection(),
+        _totalSection(total),
       ],
     ),
   );
@@ -102,8 +111,8 @@ Widget _itemsListTile(Map<String, dynamic> item) => Padding(
       ),
     );
 
-Widget _totalSection() => Container(
-      // TODO: Add Navy Blue to CustomTheme.otherCOlors
+Widget _totalSection(total) => Container(
+      // TODO: Add Navy Blue to CustomTheme.otherColors
 
       height: 46,
       decoration: const BoxDecoration(
@@ -117,14 +126,14 @@ Widget _totalSection() => Container(
         padding: const EdgeInsets.only(left: 12, right: 12),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: const <Widget>[
-            Text(
+          children: <Widget>[
+            const Text(
               'Total',
               style: TextStyle(color: Colors.white, fontSize: 18),
             ),
             Text(
-              '\$9999999.00',
-              style: TextStyle(
+              '\$${total.toString()}',
+              style: const TextStyle(
                 color: Colors.white,
                 fontSize: 18,
                 fontWeight: FontWeight.w500,
