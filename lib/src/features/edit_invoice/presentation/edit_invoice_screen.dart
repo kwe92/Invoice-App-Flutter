@@ -10,17 +10,15 @@ class EditInvoiceScreen extends StatelessWidget {
   final String docId;
   const EditInvoiceScreen({required this.docId, super.key});
   @override
-  Widget build(BuildContext context) {
-    // print('FROM EDIT INVOICE SCREEN: $docId');
-    return Consumer3(
-        builder: (context, BillFromModel billFromModel, BillToModel billToModel,
-                ItemListModel itemsModel, child) =>
+  Widget build(BuildContext context) => Consumer3(
+        builder: (BuildContext context, BillFromModel billFromModel,
+                BillToModel billToModel, ItemListModel itemsModel, child) =>
             InvoiceFormScreen(
-              button: SubmitButton(
-                  firebaseId: docId,
-                  billFromModel: billFromModel,
-                  billToModel: billToModel,
-                  itemsModel: itemsModel),
-            ));
-  }
+          button: SubmitButton(
+              firebaseId: docId,
+              billFromModel: billFromModel,
+              billToModel: billToModel,
+              itemsModel: itemsModel),
+        ),
+      );
 }
