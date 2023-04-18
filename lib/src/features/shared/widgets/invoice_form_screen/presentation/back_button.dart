@@ -7,41 +7,49 @@ import 'package:invoiceapp/theme/source_of_truth.dart';
 import 'package:provider/provider.dart';
 
 class CustomBackButton extends StatelessWidget {
-  const CustomBackButton({super.key});
+  final bool showText;
+  const CustomBackButton({this.showText = true, super.key});
 
   @override
   Widget build(BuildContext context) => Consumer3(
         builder: (context, BillFromModel billFromModel, BillToModel billToModel,
                 ItemListModel itemsModel, child) =>
             GestureDetector(
-          // TODO: Dispose of text form fields on screen change??
           onTap: () {
             billFromModel.clearAllControllers();
             billToModel.clearAllControllers();
             itemsModel.clearItemsState();
             Navigator.pop(context);
           },
-          child: const _BackButton(),
+          child: _BackButton(
+            showText: showText,
+          ),
         ),
       );
 }
 
 class _BackButton extends StatelessWidget {
-  const _BackButton({super.key});
+  final bool showText;
+
+  const _BackButton({required this.showText, super.key});
 
   @override
   Widget build(BuildContext context) => Row(
         mainAxisSize: MainAxisSize.min,
-        children: const <Widget>[
-          _BackButtonImage(),
-          Gaps.gapw8,
-          _BackButtonText()
+        children: <Widget>[
+          _BackButtonImage(
+            showText: showText,
+          ),
+          showText == true ? Gaps.gapw8 : const SizedBox(),
+          showText == true ? const _BackButtonText() : const SizedBox()
         ],
       );
 }
 
 class _BackButtonImage extends StatelessWidget {
-  const _BackButtonImage({super.key});
+  final bool showText;
+
+  const _BackButtonImage({required this.showText, super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -51,6 +59,8 @@ class _BackButtonImage extends StatelessWidget {
       height: imageSize,
       child: SvgPicture.asset(
         'assets/icon-arrow-left.svg',
+        // TODO: Add Navy Blue to CustomTheme.otherColors
+        color: showText == true ? null : const Color.fromRGBO(18, 103, 177, 1),
       ),
     );
   }

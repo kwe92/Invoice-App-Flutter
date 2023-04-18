@@ -10,8 +10,11 @@ class ListTileRightSide extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final nameArray =
-        invoice.billToText['clientName'].split(' ') as List<String>;
+    //TODO: Should be removed as input should never be nul;
+
+    final nameArray = invoice.billToText['clientName'] != null
+        ? invoice.billToText['clientName'].split(' ') as List<String>
+        : [' '];
     final fname = nameArray[0];
     final lname = nameArray.length > 1 ? nameArray[1] : ' ';
     final TextStyle nameStyle =
@@ -24,17 +27,14 @@ class ListTileRightSide extends StatelessWidget {
         Column(
           crossAxisAlignment: CrossAxisAlignment.end,
           children: <Widget>[
-            FittedBox(
-              child: Text(
-                fname,
-                style: nameStyle,
-              ),
+            // TODO: Take care of when user enters long text
+            Text(
+              fname,
+              style: nameStyle,
             ),
-            FittedBox(
-              child: Text(
-                lname,
-                style: nameStyle,
-              ),
+            Text(
+              lname,
+              style: nameStyle,
             )
           ],
         ),

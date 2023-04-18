@@ -2,6 +2,7 @@
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/foundation.dart';
+import 'package:invoiceapp/constants/enums/hash_keys.dart';
 import 'package:invoiceapp/src/features/shared/models/invoice_form_model.dart';
 
 class InvoicesModel extends ChangeNotifier {
@@ -20,7 +21,7 @@ class InvoicesModel extends ChangeNotifier {
   Future<void> _init() async {
     FirebaseFirestore.instance
         .collection('invoices')
-        .orderBy('createdAt')
+        .orderBy(HashKeys.createdAt.name)
         .snapshots()
         .listen(_invoicesCallback);
   }
@@ -28,7 +29,7 @@ class InvoicesModel extends ChangeNotifier {
   void _invoicesCallback(QuerySnapshot snapshot) {
     _invoices = {
       for (final invoice in snapshot.docs as List<QueryDocumentSnapshot<Map?>>)
-        invoice.data()!['invoiceId']:
+        invoice.data()![HashKeys.invoiceId.name]:
             InvoiceFormModel.fromJSON(invoice.data() as Map<String, dynamic>)
     };
 

@@ -24,13 +24,6 @@ class BillFrom extends StatelessWidget {
     final gaph = Gaps.heigth(18);
     const double textInputWidth = 170;
 
-    // if (invoice != null
-    //     // TODO: Implement edit
-    //     // && model.edit == true
-    //     ) {
-    //   model.loadControllers(invoice!);
-    // }
-
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 18.0),
       child: Form(

@@ -32,11 +32,12 @@ class EditModal {
                           child) =>
                       _ModalButton(
                     text: const Text('Edit Invoice'),
-                    onPressed: () {
+                    onPressed:
+                        // TODO: Loading controllers and navigating to the edit screen happens from the invocie screen and view invocie screen so should be shared somehow
+                        () {
                       billFromModel.loadControllers(invoice);
                       billToModel.loadControllers(invoice);
 
-                      // TODO: Implement editing items list
                       for (var item in invoice.listItems) {
                         final model = CustomListItemModel();
 
@@ -64,7 +65,7 @@ class EditModal {
                 Gaps.gaph8,
                 _ModalButton(
                     onPressed: () {
-                      context.push('/viewInvoice');
+                      context.push('/viewInvoice', extra: invoice);
                       Navigator.pop(context);
                     },
                     text: const Text('View Invoice')),

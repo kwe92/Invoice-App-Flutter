@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_final_fields
 
 import 'package:flutter/material.dart';
+import 'package:invoiceapp/constants/enums/hash_keys.dart';
 
 class CustomListItemModel extends ChangeNotifier {
   TextEditingController _itemNameController = TextEditingController();
@@ -15,10 +16,10 @@ class CustomListItemModel extends ChangeNotifier {
 
   Map<String, String> get allControllerText {
     return {
-      'itemName': itemNameController.text,
-      'quantity': quantityController.text,
-      'price': priceController.text,
-      'total': totalController.text,
+      HashKeys.itemName.name: itemNameController.text,
+      HashKeys.quantity.name: quantityController.text,
+      HashKeys.price.name: priceController.text,
+      HashKeys.total.name: totalController.text,
     };
   }
 
@@ -43,15 +44,10 @@ class CustomListItemModel extends ChangeNotifier {
   }
 
   void loadControllers(Map<String, dynamic> item) {
-    print('ITEM FROM loadControllers:$item');
-    print('ITEM: FROM loadControllers:${item["price"]}');
-
-    print('Item keys loadControllers: ${item.keys}');
-    quantityController.text = item['quantity'] ?? '';
-    itemNameController.text = item['itemName'] ?? '';
-    // TODO: Fix the price, it is not displaying even though there is data
-    priceController.text = item['price'] ?? '';
-    totalController.text = item['total'] ?? '';
+    quantityController.text = item[HashKeys.quantity.name] ?? '';
+    itemNameController.text = item[HashKeys.itemName.name] ?? '';
+    priceController.text = item[HashKeys.price.name] ?? '';
+    totalController.text = item[HashKeys.total.name] ?? '';
     notifyListeners();
   }
 }

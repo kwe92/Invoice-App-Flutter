@@ -1,10 +1,8 @@
 // ignore_for_file: prefer_final_fields
 
 import 'dart:math' as math;
-
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:invoiceapp/theme/theme.dart';
 
@@ -20,24 +18,27 @@ class CustomDropDownMenu extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           _DropdownMenu(
-              label: const Text('Payment Terms'),
-              width: 352.5,
-              controller: controller,
-              inputDecorationTheme: InputDecorationTheme(
-                enabledBorder: _border(grey),
-                focusedBorder: _border(purple),
-              ),
-              dropdownMenuEntries: <String>[
-                'Net 1 Day',
-                'Net 7 Days',
-                'Net 14 Days',
-                'Net 30 Days'
-              ].map((String value) {
-                return DropdownMenuEntry<String>(
-                  label: value,
-                  value: value,
-                );
-              }).toList())
+            label: const Text('Payment Terms'),
+            width: 352.5,
+            controller: controller,
+            inputDecorationTheme: InputDecorationTheme(
+              enabledBorder: _border(grey),
+              focusedBorder: _border(purple),
+            ),
+            dropdownMenuEntries: <String>[
+              'Net 1 Day',
+              'Net 7 Days',
+              'Net 14 Days',
+              'Net 30 Days'
+            ]
+                .map(
+                  (String value) => DropdownMenuEntry<String>(
+                    label: value,
+                    value: value,
+                  ),
+                )
+                .toList(),
+          )
         ]);
   }
 }
