@@ -4,6 +4,7 @@ import 'package:invoiceapp/src/features/shared/widgets/invoice_form_screen/domai
 import 'package:invoiceapp/src/features/shared/widgets/invoice_form_screen/domain/bill_to_model.dart';
 import 'package:invoiceapp/src/features/shared/widgets/invoice_form_screen/domain/item_list_model.dart';
 import 'package:invoiceapp/theme/source_of_truth.dart';
+import 'package:invoiceapp/theme/theme.dart';
 import 'package:provider/provider.dart';
 
 class CustomBackButton extends StatelessWidget {
@@ -59,8 +60,7 @@ class _BackButtonImage extends StatelessWidget {
       height: imageSize,
       child: SvgPicture.asset(
         'assets/icon-arrow-left.svg',
-        // TODO: Add Navy Blue to CustomTheme.otherColors
-        color: showText == true ? null : const Color.fromRGBO(18, 103, 177, 1),
+        color: showText == true ? null : CustomTheme.otherColors['blue0'],
       ),
     );
   }

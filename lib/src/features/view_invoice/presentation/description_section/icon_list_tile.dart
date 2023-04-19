@@ -20,8 +20,7 @@ class IconListTile extends StatelessWidget {
           Row(
             children: [
               CircleAvatar(
-                // TODO: Add Navy Blue to CustomTheme.otherCOlors
-                backgroundColor: const Color.fromRGBO(18, 103, 177, 1),
+                backgroundColor: CustomTheme.otherColors['blue0'],
                 radius: 25.625,
                 child: Text(
                   invoice.billToText['clientName']

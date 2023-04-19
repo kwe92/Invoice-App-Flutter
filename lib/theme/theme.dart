@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 class CustomTheme {
   const CustomTheme();
 
-  // static const double mainContentPadding = 18.0;
   static const double mainContentPaddingH = 18.00;
 
   static const EdgeInsets mainContentPadding =
@@ -32,5 +31,6 @@ class CustomTheme {
     'purple1': Color.fromRGBO(146, 119, 255, 1),
     'red0': Color.fromRGBO(236, 87, 87, 1),
     'red1': Color.fromRGBO(255, 151, 151, 1),
+    'blue0': Color.fromRGBO(18, 103, 177, 1)
   };
 }
