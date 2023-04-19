@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:invoiceapp/theme/theme.dart';
 
 class TotalSection extends StatelessWidget {
   final double total;
@@ -6,12 +7,10 @@ class TotalSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Container(
-        // TODO: Add Navy Blue to CustomTheme.otherColors
-
         height: 46,
-        decoration: const BoxDecoration(
-          color: Color.fromRGBO(18, 103, 177, 1),
-          borderRadius: BorderRadius.only(
+        decoration: BoxDecoration(
+          color: CustomTheme.otherColors['blue0'],
+          borderRadius: const BorderRadius.only(
             bottomLeft: Radius.circular(12),
             bottomRight: Radius.circular(12),
           ),
