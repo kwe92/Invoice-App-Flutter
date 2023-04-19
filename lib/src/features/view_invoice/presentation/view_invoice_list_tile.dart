@@ -13,11 +13,6 @@ class ViewInvoiceListTile extends StatelessWidget {
   Widget build(BuildContext context) => Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          //  TODO; Maybe remove from the design
-          // Text(
-          //   invoice.billToText['clientName'].toString().trim(),
-          //   style: const TextStyle(fontSize: 32, fontWeight: FontWeight.w500),
-          // ),
           Gaps.gaph6,
           Container(
             padding: const EdgeInsets.only(left: 20, right: 20),
