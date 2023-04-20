@@ -13,6 +13,7 @@ import 'package:invoiceapp/theme/theme.dart';
 // final _formKey = GlobalKey<FormState>();
 
 class BillTo extends StatelessWidget {
+  // TODO: Remove Keys, either get rid of them or abstract away
   static const formKey = Key('formKey');
   static const streetAddressKey = Key('streetAddressKey');
   static const cityKey = Key('cityKey');
@@ -35,9 +36,6 @@ class BillTo extends StatelessWidget {
     final gaph = Gaps.heigth(18);
     final textStyle = TextStyle(fontSize: 18, color: purple);
     const double textInputWidth = 170;
-    final String initDate = DateFormatter.dateTimeToString(_initDateTime());
-
-    model.setDateControllerText(initDate);
 
     return Form(
       key: BillTo.formKey,
@@ -97,7 +95,7 @@ class BillTo extends StatelessWidget {
               DateTime? newDate = await showDatePicker(
                 context: context,
                 initialDate: _initDateTime(),
-                firstDate: DateTime(2023),
+                firstDate: _initDateTime(),
                 lastDate: DateTime(3000),
               );
               if (newDate != null) {
@@ -171,4 +169,4 @@ class _AddButton extends StatelessWidget {
       );
 }
 
-DateTime _initDateTime() => DateTime(2023);
+DateTime _initDateTime() => DateTime.now();
