@@ -1,23 +1,33 @@
 import 'package:flutter/material.dart';
 import 'package:invoiceapp/theme/theme.dart';
 
-typedef VoidCallback = Function();
+typedef VoidCallback = void Function();
+
+typedef StringCallback = void Function(String);
 
 class CustomTextFormField extends StatelessWidget {
   final String title;
   final TextEditingController controller;
-
+  final bool readOnly;
   final VoidCallback? onTap;
+  final StringCallback? onChanged;
 
   const CustomTextFormField(
-      {required this.title, required this.controller, this.onTap, super.key});
+      {required this.title,
+      required this.controller,
+      this.readOnly = false,
+      this.onTap,
+      this.onChanged,
+      super.key});
 
   @override
   Widget build(BuildContext context) {
     final purple = CustomTheme.otherColors['purple0'] as Color;
     final grey = CustomTheme.lightColors['shade1'] as Color;
     return TextFormField(
+      readOnly: readOnly,
       onTap: onTap,
+      onChanged: onChanged,
       controller: controller,
       decoration: InputDecoration(
         focusColor: purple,
