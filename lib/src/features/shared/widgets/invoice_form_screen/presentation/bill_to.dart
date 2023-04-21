@@ -34,7 +34,10 @@ class BillTo extends StatelessWidget {
   Widget build(BuildContext context) {
     final purple = CustomTheme.otherColors['purple0'] as Color;
     final gaph = Gaps.heigth(18);
-    final textStyle = TextStyle(fontSize: 18, color: purple);
+    final textStyle = TextStyle(
+      fontSize: 18,
+      color: purple,
+    );
     const double textInputWidth = 170;
 
     return Form(
@@ -42,7 +45,10 @@ class BillTo extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          Text('Bill To', style: textStyle),
+          Text(
+            'Bill To',
+            style: textStyle,
+          ),
           gaph,
           CustomTextFormField(
             key: BillTo.clientNameKey,
@@ -68,24 +74,27 @@ class BillTo extends StatelessWidget {
               SizedBox(
                 width: textInputWidth,
                 child: CustomTextFormField(
-                    key: BillTo.cityKey,
-                    title: 'City',
-                    controller: model.cityController),
+                  key: BillTo.cityKey,
+                  title: 'City',
+                  controller: model.cityController,
+                ),
               ),
               SizedBox(
                 width: textInputWidth,
                 child: CustomTextFormField(
-                    key: BillTo.postCodeKey,
-                    title: 'Post Code',
-                    controller: model.postCodeController),
+                  key: BillTo.postCodeKey,
+                  title: 'Post Code',
+                  controller: model.postCodeController,
+                ),
               ),
             ],
           ),
           gaph,
           CustomTextFormField(
-              key: BillTo.countryKey,
-              title: 'Country',
-              controller: model.countryController),
+            key: BillTo.countryKey,
+            title: 'Country',
+            controller: model.countryController,
+          ),
           gaph,
           CustomTextFormField(
             key: BillTo.dateKey,
@@ -105,7 +114,9 @@ class BillTo extends StatelessWidget {
             },
           ),
           gaph,
-          CustomDropDownMenu(controller: model.dropDownMenuController),
+          CustomDropDownMenu(
+            controller: model.dropDownMenuController,
+          ),
           gaph,
           CustomTextFormField(
             key: BillTo.projectDescKey,
@@ -165,7 +176,9 @@ class _AddButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) => OutlinedButton(
         onPressed: onPressed,
-        child: const Text('Add Item'),
+        child: const Text(
+          'Add Item',
+        ),
       );
 }
 

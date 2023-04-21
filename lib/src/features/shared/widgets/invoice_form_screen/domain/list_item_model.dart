@@ -50,4 +50,9 @@ class CustomListItemModel extends ChangeNotifier {
     totalController.text = item[HashKeys.total.name] ?? '';
     notifyListeners();
   }
+
+  void setTotalController(quantity, price) {
+    totalController.text = (num.parse(quantity) * num.parse(price)).toString();
+    notifyListeners();
+  }
 }
