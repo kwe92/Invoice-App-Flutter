@@ -70,7 +70,7 @@ class _BackButtonText extends StatelessWidget {
   const _BackButtonText({super.key});
   @override
   Widget build(BuildContext context) => const Text(
-        'Go Back',
+        'Go Home',
         style: TextStyle(fontSize: 18),
       );
 }
