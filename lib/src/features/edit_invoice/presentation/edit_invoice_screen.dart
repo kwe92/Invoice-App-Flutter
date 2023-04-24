@@ -14,11 +14,7 @@ class EditInvoiceScreen extends StatelessWidget {
         builder: (BuildContext context, BillFromModel billFromModel,
                 BillToModel billToModel, ItemListModel itemsModel, child) =>
             InvoiceFormScreen(
-          button: SubmitButton(
-              firebaseId: docId,
-              billFromModel: billFromModel,
-              billToModel: billToModel,
-              itemsModel: itemsModel),
+          docId: docId,
         ),
       );
 }
