@@ -82,7 +82,7 @@ class CustomListItem extends StatelessWidget {
 class _TextField extends StatelessWidget {
   final double width;
   final String title;
-  final StringCallback? onChanged;
+  final StringCallbackVoid? onChanged;
   final TextEditingController controller;
   final bool readOnly;
   const _TextField(
