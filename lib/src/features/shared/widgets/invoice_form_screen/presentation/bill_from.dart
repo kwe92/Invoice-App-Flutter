@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 import 'package:invoiceapp/src/features/shared/models/invoice_form_model.dart';
 import 'package:invoiceapp/src/features/shared/widgets/custom_text_form_field.dart';
@@ -34,9 +36,7 @@ class BillFrom extends StatelessWidget {
             CustomTextFormField(
               title: 'Street Address',
               controller: model.streetAddController,
-              validator: (s) {
-                if (s == null || s.isEmpty) return 'Please enter a value';
-              },
+              validator: _FormValidators.streetAddress,
             ),
             gaph,
             Row(
@@ -45,18 +45,27 @@ class BillFrom extends StatelessWidget {
                 SizedBox(
                   width: textInputWidth,
                   child: CustomTextFormField(
-                      title: 'City', controller: model.cityController),
+                    title: 'City',
+                    controller: model.cityController,
+                    validator: _FormValidators.city,
+                  ),
                 ),
                 SizedBox(
                   width: textInputWidth,
                   child: CustomTextFormField(
-                      title: 'Post Code', controller: model.postCodeController),
+                    title: 'Post Code',
+                    controller: model.postCodeController,
+                    validator: _FormValidators.postCode,
+                  ),
                 ),
               ],
             ),
             gaph,
             CustomTextFormField(
-                title: 'Country', controller: model.countryController),
+              title: 'Country',
+              controller: model.countryController,
+              validator: _FormValidators.country,
+            ),
             gaph,
           ],
         ),
@@ -65,10 +74,38 @@ class BillFrom extends StatelessWidget {
   }
 }
 
+class _FormValidators {
+  static const emptyText = 'Can not be empty.';
+  static String? streetAddress(String? s) {
+    const pattern = '^[a-zA-Z0-9_.-]*\$';
+    RegExp regex = RegExp(pattern);
+    if (s == null || s.isEmpty) {
+      return emptyText;
+    }
+    if (!regex.hasMatch(s)) {
+      return 'Please enter a valid value.';
+    }
+    return null;
+  }
 
-  // static const formKey = Key('formKey');
-  // static const streetAddressKey = Key('streetAddressKey');
-  // static const cityKey = Key('cityKey');
-  // static const postCodeKey = Key('postCodeKey');
-  // static const countryKey = Key('countryKey');
-  // static const clearTextKey = Key('clearTextKey');
+// TODO: Add RegEx
+
+  static String? city(String? s) {
+    return s == null || s.isEmpty ? emptyText : null;
+  }
+
+  static String? postCode(String? s) {
+    return s == null || s.isEmpty ? emptyText : null;
+  }
+
+  static String? country(String? s) {
+    return s == null || s.isEmpty ? emptyText : null;
+  }
+}
+
+// static const formKey = Key('formKey');
+// static const streetAddressKey = Key('streetAddressKey');
+// static const cityKey = Key('cityKey');
+// static const postCodeKey = Key('postCodeKey');
+// static const countryKey = Key('countryKey');
+// static const clearTextKey = Key('clearTextKey');
