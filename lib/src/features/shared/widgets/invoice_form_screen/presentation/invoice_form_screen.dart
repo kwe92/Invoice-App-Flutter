@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:invoiceapp/constants/widgets/base_scaffold/base_scaffold.dart';
+import 'package:invoiceapp/src/features/new_invoice_screen/presentation/submit_button.dart';
 import 'package:invoiceapp/src/features/shared/widgets/invoice_form_screen/domain/bill_from_model.dart';
 import 'package:invoiceapp/src/features/shared/widgets/invoice_form_screen/domain/bill_to_model.dart';
 import 'package:invoiceapp/src/features/shared/widgets/invoice_form_screen/domain/item_list_model.dart';
@@ -17,17 +18,26 @@ class InvoiceFormScreen extends StatelessWidget {
   static const backButtonKey = Key('backButtonKey');
   static const billFromKey = Key('billFromKey');
 
-  final Widget button;
+  // final Widget button;
+  final String? docId;
 
-  const InvoiceFormScreen({required this.button, Key? key}) : super(key: key);
+  const InvoiceFormScreen({this.docId, Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) => BaseScaffold(
-        key: InvoiceFormScreen.baseScaffoldKey,
-        body: Padding(
-          padding: CustomTheme.mainContentPadding,
-          child: SingleChildScrollView(
-              child: Consumer3(
+  Widget build(BuildContext context) {
+    final billFromFormState = GlobalKey<FormState>();
+    final billToFormState = GlobalKey<FormState>();
+
+    final List<GlobalKey<FormState>> formKeys = [
+      billFromFormState,
+      billToFormState
+    ];
+    return BaseScaffold(
+      key: InvoiceFormScreen.baseScaffoldKey,
+      body: Padding(
+        padding: CustomTheme.mainContentPadding,
+        child: SingleChildScrollView(
+          child: Consumer3(
             builder: (context, BillFromModel billFromModel,
                     BillToModel billToModel, ItemListModel itemsModel, child) =>
                 Column(
@@ -40,18 +50,36 @@ class InvoiceFormScreen extends StatelessWidget {
                   style: TextStyle(fontSize: 26, fontWeight: FontWeight.w400),
                 ),
                 BillFrom(
-                    model: billFromModel, key: InvoiceFormScreen.billFromKey),
+                    model: billFromModel,
+                    formState: billFromFormState,
+                    key: InvoiceFormScreen.billFromKey),
                 BillTo(
                   model: billToModel,
+                  formState: billToFormState,
                   itemsModel: itemsModel,
                 ),
                 Gaps.gaph12,
-                button
+                docId == null
+                    ? SubmitButton(
+                        billFromModel: billFromModel,
+                        billToModel: billToModel,
+                        itemsModel: itemsModel,
+                        formKeys: formKeys,
+                      )
+                    : SubmitButton(
+                        firebaseId: docId,
+                        billFromModel: billFromModel,
+                        billToModel: billToModel,
+                        itemsModel: itemsModel,
+                        formKeys: formKeys,
+                      )
               ],
             ),
-          )),
+          ),
         ),
-      );
+      ),
+    );
+  }
 }
 
 int parseInt(String s) => int.parse(s.replaceAll(RegExp(r'[^0-9]'), ''));
