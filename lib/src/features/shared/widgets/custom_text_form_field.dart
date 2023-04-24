@@ -3,14 +3,16 @@ import 'package:invoiceapp/theme/theme.dart';
 
 typedef VoidCallback = void Function();
 
-typedef StringCallback = void Function(String);
+typedef StringCallbackVoid = void Function(String);
+typedef NullableStringCallback = String? Function(String?);
 
 class CustomTextFormField extends StatelessWidget {
   final String title;
   final TextEditingController controller;
   final bool readOnly;
   final VoidCallback? onTap;
-  final StringCallback? onChanged;
+  final StringCallbackVoid? onChanged;
+  final NullableStringCallback? validator;
 
   const CustomTextFormField(
       {required this.title,
@@ -18,6 +20,7 @@ class CustomTextFormField extends StatelessWidget {
       this.readOnly = false,
       this.onTap,
       this.onChanged,
+      this.validator,
       super.key});
 
   @override
@@ -42,6 +45,7 @@ class CustomTextFormField extends StatelessWidget {
         focusedBorder:
             OutlineInputBorder(borderSide: BorderSide(color: purple)),
       ),
+      validator: validator,
     );
   }
 }
