@@ -4,6 +4,7 @@ import 'package:invoiceapp/src/features/shared/models/invoice_form_model.dart';
 import 'package:invoiceapp/src/features/shared/widgets/invoice_form_screen/presentation/back_button.dart';
 import 'package:invoiceapp/src/features/view_invoice/presentation/description_section/custom_text_style.dart';
 import 'package:invoiceapp/src/features/view_invoice/presentation/description_section/description_card.dart';
+import 'package:invoiceapp/src/features/view_invoice/presentation/edit_button.dart';
 import 'package:invoiceapp/src/features/view_invoice/presentation/invoice_items_section/items_section.dart';
 import 'package:invoiceapp/src/features/view_invoice/presentation/view_invoice_list_tile.dart';
 import 'package:invoiceapp/theme/source_of_truth.dart';
@@ -24,8 +25,14 @@ class ViewInvoiceScreen extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               // TODO: Instatiate Row and create back button edit row
-              const CustomBackButton(
-                showText: false,
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                  const CustomBackButton(
+                    showText: false,
+                  ),
+                  EditButton(invoice: invoice)
+                ],
               ),
               gaph,
               ViewInvoiceListTile(
