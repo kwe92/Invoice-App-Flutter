@@ -394,50 +394,51 @@ class _DropdownMenuState<T> extends State<_DropdownMenu<T>> {
               width: widget.width,
               children: <Widget>[
                 TextField(
-                    focusNode: _textFocusNode,
-                    style: effectiveTextStyle,
-                    controller: _textEditingController,
-                    onEditingComplete: () {
-                      if (currentHighlight != null) {
-                        final DropdownMenuEntry<T> entry =
-                            filteredEntries[currentHighlight!];
-                        if (entry.enabled) {
-                          _textEditingController.text = entry.label;
-                          _textEditingController.selection =
-                              TextSelection.collapsed(
-                                  offset: _textEditingController.text.length);
-                          widget.onSelected?.call(entry.value);
-                        }
-                      } else {
-                        widget.onSelected?.call(null);
+                  readOnly: true,
+                  focusNode: _textFocusNode,
+                  style: effectiveTextStyle,
+                  controller: _textEditingController,
+                  onEditingComplete: () {
+                    if (currentHighlight != null) {
+                      final DropdownMenuEntry<T> entry =
+                          filteredEntries[currentHighlight!];
+                      if (entry.enabled) {
+                        _textEditingController.text = entry.label;
+                        _textEditingController.selection =
+                            TextSelection.collapsed(
+                                offset: _textEditingController.text.length);
+                        widget.onSelected?.call(entry.value);
                       }
-                      if (!widget.enableSearch) {
-                        currentHighlight = null;
-                      }
-                      if (_textEditingController.text.isNotEmpty) {
-                        controller.close();
-                      }
-                    },
-                    onTap: () {
-                      handlePressed(controller);
-                    },
-                    onChanged: (String text) {
-                      controller.open();
-                      setState(() {
-                        filteredEntries = widget.dropdownMenuEntries;
-                        _enableFilter = widget.enableFilter;
-                      });
-                    },
-                    decoration: InputDecoration(
-                      enabled: widget.enabled,
-                      label: widget.label,
-                      hintText: widget.hintText,
-                      prefixIcon: widget.leadingIcon != null
-                          ? Container(
-                              key: _leadingKey, child: widget.leadingIcon)
-                          : null,
-                      suffixIcon: trailingButton,
-                    ).applyDefaults(effectiveInputDecorationTheme)),
+                    } else {
+                      widget.onSelected?.call(null);
+                    }
+                    if (!widget.enableSearch) {
+                      currentHighlight = null;
+                    }
+                    if (_textEditingController.text.isNotEmpty) {
+                      controller.close();
+                    }
+                  },
+                  onTap: () {
+                    handlePressed(controller);
+                  },
+                  onChanged: (String text) {
+                    controller.open();
+                    setState(() {
+                      filteredEntries = widget.dropdownMenuEntries;
+                      _enableFilter = widget.enableFilter;
+                    });
+                  },
+                  decoration: InputDecoration(
+                    enabled: widget.enabled,
+                    label: widget.label,
+                    hintText: widget.hintText,
+                    prefixIcon: widget.leadingIcon != null
+                        ? Container(key: _leadingKey, child: widget.leadingIcon)
+                        : null,
+                    suffixIcon: trailingButton,
+                  ).applyDefaults(effectiveInputDecorationTheme),
+                ),
                 for (Widget c in _initialMenu!) c,
                 trailingButton,
                 leadingButton,
