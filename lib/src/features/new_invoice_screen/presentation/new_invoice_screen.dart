@@ -13,11 +13,6 @@ class NewInvoice extends StatelessWidget {
   Widget build(BuildContext context) => Consumer3(
         builder: (context, BillFromModel billFromModel, BillToModel billToModel,
                 ItemListModel itemsModel, child) =>
-            InvoiceFormScreen(
-          button: SubmitButton(
-              billFromModel: billFromModel,
-              billToModel: billToModel,
-              itemsModel: itemsModel),
-        ),
+            const InvoiceFormScreen(),
       );
 }

@@ -27,8 +27,13 @@ class BillTo extends StatelessWidget {
 
   final BillToModel model;
   final ItemListModel itemsModel;
+  final GlobalKey<FormState> formState;
 
-  const BillTo({required this.model, required this.itemsModel, super.key});
+  const BillTo(
+      {required this.model,
+      required this.formState,
+      required this.itemsModel,
+      super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +46,7 @@ class BillTo extends StatelessWidget {
     const double textInputWidth = 170;
 
     return Form(
-      key: BillTo.formKey,
+      key: formState,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[

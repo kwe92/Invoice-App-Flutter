@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:invoiceapp/src/features/new_invoice_screen/presentation/submit_button.dart';
 import 'package:invoiceapp/src/features/shared/widgets/invoice_form_screen/domain/bill_from_model.dart';
 import 'package:invoiceapp/src/features/shared/widgets/invoice_form_screen/domain/bill_to_model.dart';
 import 'package:invoiceapp/src/features/shared/widgets/invoice_form_screen/domain/item_list_model.dart';
@@ -14,11 +13,7 @@ class EditInvoiceScreen extends StatelessWidget {
         builder: (BuildContext context, BillFromModel billFromModel,
                 BillToModel billToModel, ItemListModel itemsModel, child) =>
             InvoiceFormScreen(
-          button: SubmitButton(
-              firebaseId: docId,
-              billFromModel: billFromModel,
-              billToModel: billToModel,
-              itemsModel: itemsModel),
+          docId: docId,
         ),
       );
 }
