@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:invoiceapp/constants/utils/form_validators.dart';
 import 'package:invoiceapp/constants/utils/formatters.dart';
 import 'package:invoiceapp/constants/utils/random_nums.dart';
 import 'package:invoiceapp/src/features/shared/widgets/custom_text_form_field.dart';
@@ -14,16 +15,6 @@ import 'package:invoiceapp/theme/theme.dart';
 
 class BillTo extends StatelessWidget {
   // TODO: Remove Keys, either get rid of them or abstract away
-  static const formKey = Key('formKey');
-  static const streetAddressKey = Key('streetAddressKey');
-  static const cityKey = Key('cityKey');
-  static const postCodeKey = Key('postCodeKey');
-  static const countryKey = Key('countryKey');
-  static const clearTextKey = Key('clearTextKey');
-  static const clientNameKey = Key('clientNameKey');
-  static const clientEmailKey = Key('clientEmailKey');
-  static const projectDescKey = Key('projectDescKey');
-  static const dateKey = Key('dateKey');
 
   final BillToModel model;
   final ItemListModel itemsModel;
@@ -56,21 +47,20 @@ class BillTo extends StatelessWidget {
           ),
           gaph,
           CustomTextFormField(
-            key: BillTo.clientNameKey,
             title: "Client's Name",
             controller: model.clientNameController,
+            validator: FormValidators.textField,
           ),
           gaph,
           CustomTextFormField(
-            key: BillTo.clientEmailKey,
             title: "Client's Email",
             controller: model.clientEmailController,
           ),
           gaph,
           CustomTextFormField(
-            key: BillTo.streetAddressKey,
             title: 'Street Address',
             controller: model.streetAddController,
+            validator: FormValidators.textNumField,
           ),
           gaph,
           Row(
@@ -79,30 +69,29 @@ class BillTo extends StatelessWidget {
               SizedBox(
                 width: textInputWidth,
                 child: CustomTextFormField(
-                  key: BillTo.cityKey,
                   title: 'City',
                   controller: model.cityController,
+                  validator: FormValidators.textField,
                 ),
               ),
               SizedBox(
                 width: textInputWidth,
                 child: CustomTextFormField(
-                  key: BillTo.postCodeKey,
                   title: 'Post Code',
                   controller: model.postCodeController,
+                  validator: FormValidators.numberField,
                 ),
               ),
             ],
           ),
           gaph,
           CustomTextFormField(
-            key: BillTo.countryKey,
             title: 'Country',
             controller: model.countryController,
+            validator: FormValidators.textField,
           ),
           gaph,
           CustomTextFormField(
-            key: BillTo.dateKey,
             title: 'Invoice Date',
             controller: model.dateController,
             onTap: () async {
@@ -124,9 +113,9 @@ class BillTo extends StatelessWidget {
           ),
           gaph,
           CustomTextFormField(
-            key: BillTo.projectDescKey,
             title: 'Project Description',
             controller: model.projectDescController,
+            validator: FormValidators.textField,
           ),
           gaph,
           Text(
