@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_final_fields
 
 import 'package:flutter/material.dart';
+import 'package:invoiceapp/constants/utils/form_validators.dart';
 import 'package:invoiceapp/src/features/shared/widgets/custom_text_form_field.dart';
 import 'package:invoiceapp/src/features/shared/widgets/invoice_form_screen/domain/list_item_model.dart';
 import 'package:invoiceapp/theme/source_of_truth.dart';
@@ -27,26 +28,33 @@ class CustomListItem extends StatelessWidget {
           CustomTextFormField(
             title: 'Item Name',
             controller: listItemModel.itemNameController,
+            validator: FormValidators.textField,
           ),
           gaph,
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               _TextField(
-                  title: 'Qty.',
-                  controller: listItemModel.quantityController,
-                  onChanged: _onChanged,
-                  width: 65),
+                title: 'Qty.',
+                width: 65,
+                controller: listItemModel.quantityController,
+                onChanged: _onChanged,
+                validator: FormValidators.numberField,
+              ),
               _TextField(
-                  title: 'Price',
-                  controller: listItemModel.priceController,
-                  onChanged: _onChanged,
-                  width: 105),
+                title: 'Price',
+                width: 105,
+                controller: listItemModel.priceController,
+                onChanged: _onChanged,
+                validator: FormValidators.numberField,
+              ),
               _TextField(
-                  title: 'Total',
-                  readOnly: true,
-                  controller: listItemModel.totalController,
-                  width: 152.5),
+                title: 'Total',
+                width: 152.5,
+                readOnly: true,
+                controller: listItemModel.totalController,
+                validator: FormValidators.numberField,
+              ),
             ],
           ),
           gaph,
@@ -85,12 +93,17 @@ class _TextField extends StatelessWidget {
   final StringCallbackVoid? onChanged;
   final TextEditingController controller;
   final bool readOnly;
+
+  // TODO: Refactor: validator
+  final String? Function(String?)? validator;
+
   const _TextField(
       {required this.title,
       required this.controller,
       required this.width,
       this.readOnly = false,
       this.onChanged,
+      this.validator,
       super.key});
 
   @override
@@ -101,6 +114,7 @@ class _TextField extends StatelessWidget {
           controller: controller,
           onChanged: onChanged,
           readOnly: readOnly,
+          validator: validator,
         ),
       );
 }
