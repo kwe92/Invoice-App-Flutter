@@ -25,11 +25,10 @@ class SubmitButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) => OutlinedButton(
         onPressed: () async {
-          final formKey1 = formKeys[0];
-          final formKey2 = formKeys[1];
+          final bool formKey1 = formKeys[0].currentState!.validate();
+          final bool formKey2 = formKeys[1].currentState!.validate();
 
-          if (formKey1.currentState!.validate() &&
-              formKey2.currentState!.validate()) {
+          if (formKey1 && formKey2) {
             final Map<String, String> billFromText =
                 billFromModel.allControllerText;
 
