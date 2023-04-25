@@ -55,6 +55,7 @@ class BillTo extends StatelessWidget {
           CustomTextFormField(
             title: "Client's Email",
             controller: model.clientEmailController,
+            validator: FormValidators.emailField,
           ),
           gaph,
           CustomTextFormField(
