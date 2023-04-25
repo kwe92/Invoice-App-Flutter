@@ -1,6 +1,7 @@
 import 'dart:ffi';
 
 import 'package:flutter/material.dart';
+import 'package:invoiceapp/constants/utils/form_validators.dart';
 import 'package:invoiceapp/src/features/shared/models/invoice_form_model.dart';
 import 'package:invoiceapp/src/features/shared/widgets/custom_text_form_field.dart';
 import 'package:invoiceapp/src/features/shared/widgets/invoice_form_screen/domain/bill_from_model.dart';
@@ -36,7 +37,7 @@ class BillFrom extends StatelessWidget {
             CustomTextFormField(
               title: 'Street Address',
               controller: model.streetAddController,
-              validator: _FormValidators.textNumField,
+              validator: FormValidators.textNumField,
             ),
             gaph,
             Row(
@@ -47,7 +48,7 @@ class BillFrom extends StatelessWidget {
                   child: CustomTextFormField(
                     title: 'City',
                     controller: model.cityController,
-                    validator: _FormValidators.textField,
+                    validator: FormValidators.textField,
                   ),
                 ),
                 SizedBox(
@@ -55,7 +56,7 @@ class BillFrom extends StatelessWidget {
                   child: CustomTextFormField(
                     title: 'Post Code',
                     controller: model.postCodeController,
-                    validator: _FormValidators.numberField,
+                    validator: FormValidators.numberField,
                   ),
                 ),
               ],
@@ -64,7 +65,7 @@ class BillFrom extends StatelessWidget {
             CustomTextFormField(
               title: 'Country',
               controller: model.countryController,
-              validator: _FormValidators.textField,
+              validator: FormValidators.textField,
             ),
             gaph,
           ],
@@ -74,56 +75,7 @@ class BillFrom extends StatelessWidget {
   }
 }
 
-// TODO: Expand RegEx's
 
-class _FormValidators {
-  static const emptyText = 'Can not be empty.';
-
-  static const textNumPattern = '^[a-zA-Z0-9_.- ]*\$';
-
-// TODO: Fix textPattern, its not working correctly. allows user to still inter text with numbers
-
-  static const textPattern = '^[a-zA-Z]';
-
-  static const naturalNumbersPattern = '^[0-9]*\$';
-
-  static final RegExp textNumRegex = RegExp(textNumPattern);
-  static final RegExp textRegex = RegExp(textPattern);
-  static final RegExp numbersRegex = RegExp(naturalNumbersPattern);
-
-  static String? textNumField(String? s) {
-    if (s != null) {
-      print('${textNumRegex.hasMatch(s)}');
-    }
-    if (s == null || s.isEmpty) {
-      return emptyText;
-    }
-    if (!textNumRegex.hasMatch(s)) {
-      return 'Can not contain special characters.';
-    }
-    return null;
-  }
-
-  static String? textField(String? s) {
-    if (s == null || s.isEmpty) {
-      return emptyText;
-    }
-    if (!textRegex.hasMatch(s)) {
-      return 'Please enter a valid value.';
-    }
-    return null;
-  }
-
-  static String? numberField(String? s) {
-    if (s == null || s.isEmpty) {
-      return emptyText;
-    }
-    if (!numbersRegex.hasMatch(s)) {
-      return 'Enter numbers 0 - 9.';
-    }
-    return null;
-  }
-}
 
 // static const formKey = Key('formKey');
 // static const streetAddressKey = Key('streetAddressKey');
