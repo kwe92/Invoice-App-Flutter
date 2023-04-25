@@ -107,8 +107,11 @@ class BillTo extends StatelessWidget {
                     DateFormatter.dateTimeToString(newDate);
               }
             },
+            readOnly: true,
+            validator: FormValidators.dateField,
           ),
           gaph,
+          // Payment Term
           CustomDropDownMenu(
             controller: model.dropDownMenuController,
           ),
