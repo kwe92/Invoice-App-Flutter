@@ -1,28 +1,27 @@
+// Form Field Validators
+
 // TODO: Expand RegEx's
-
+// TODO: Fix _textPattern, its not working correctly. allows user to still inter text with numbers
+// ?? Need to add validators: date, email, payment term
 class FormValidators {
-  static const emptyText = 'Can not be empty.';
+  static const _emptyText = 'Can not be empty.';
 
-  static const textNumPattern = '^[a-zA-Z0-9_.- ]*\$';
+  static const _textNumPattern = '^[a-zA-Z0-9 ]*\$';
+  static const _textPattern = '^[a-zA-Z]*\$';
+  static const _naturalNumbersPattern = '^[0-9]*\$';
 
-// TODO: Fix textPattern, its not working correctly. allows user to still inter text with numbers
-
-  static const textPattern = '^[a-zA-Z]';
-
-  static const naturalNumbersPattern = '^[0-9]*\$';
-
-  static final RegExp textNumRegex = RegExp(textNumPattern);
-  static final RegExp textRegex = RegExp(textPattern);
-  static final RegExp numbersRegex = RegExp(naturalNumbersPattern);
+  static final RegExp _textNumRegex = RegExp(_textNumPattern);
+  static final RegExp _textRegex = RegExp(_textPattern);
+  static final RegExp _numbersRegex = RegExp(_naturalNumbersPattern);
 
   static String? textNumField(String? s) {
     if (s != null) {
-      print('${textNumRegex.hasMatch(s)}');
+      print('${_textNumRegex.hasMatch(s)}');
     }
     if (s == null || s.isEmpty) {
-      return emptyText;
+      return _emptyText;
     }
-    if (!textNumRegex.hasMatch(s)) {
+    if (!_textNumRegex.hasMatch(s)) {
       return 'Can not contain special characters.';
     }
     return null;
@@ -30,9 +29,9 @@ class FormValidators {
 
   static String? textField(String? s) {
     if (s == null || s.isEmpty) {
-      return emptyText;
+      return _emptyText;
     }
-    if (!textRegex.hasMatch(s)) {
+    if (!_textRegex.hasMatch(s)) {
       return 'Please enter a valid value.';
     }
     return null;
@@ -40,9 +39,9 @@ class FormValidators {
 
   static String? numberField(String? s) {
     if (s == null || s.isEmpty) {
-      return emptyText;
+      return _emptyText;
     }
-    if (!numbersRegex.hasMatch(s)) {
+    if (!_numbersRegex.hasMatch(s)) {
       return 'Enter numbers 0 - 9.';
     }
     return null;
