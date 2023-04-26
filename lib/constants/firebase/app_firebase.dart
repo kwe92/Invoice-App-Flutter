@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:invoiceapp/src/features/shared/models/invoice_form_model.dart';
 
 class AppFirebase {
   const AppFirebase();
@@ -19,7 +20,19 @@ class AppFirebase {
 
   static String createDocGetId(path) =>
       FirebaseFirestore.instance.collection(path).doc().id;
+
+  static Future<void> changeStatus(
+      InvoiceFormModel invoice, String status) async {
+    final document = await FirebaseFirestore.instance
+        .collection('invoices')
+        .doc(invoice.docId)
+        .get();
+
+    await document.reference.update({'status': status});
+  }
 }
+
+
 
   // TODO: Remove if load works
   // static Future<void> loadData(
