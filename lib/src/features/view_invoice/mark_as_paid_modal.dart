@@ -32,7 +32,9 @@ class MarkAsPaidmodal {
                   Gaps.gaph12,
                   _ModalButton(
                     text: const Text('Cancel'),
-                    onPressed: () {},
+                    onPressed: () {
+                      context.pop();
+                    },
                   ),
                 ],
               ),
