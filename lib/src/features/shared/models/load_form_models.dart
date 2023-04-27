@@ -16,7 +16,8 @@ class LoadFormControllers {
       BillFromModel billFromModel,
       BillToModel billToModel,
       ItemListModel itemsModel,
-      InvoiceFormModel invoice) {
+      InvoiceFormModel invoice,
+      [bool pop = true]) {
     billFromModel.loadControllers(invoice);
     billToModel.loadControllers(invoice);
 
@@ -36,6 +37,6 @@ class LoadFormControllers {
 
     print('list items: ${invoice.listItems}');
     context.push('/editInvoice', extra: invoice.docId);
-    Navigator.pop(context);
+    pop ? context.pop() : null;
   }
 }
