@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:invoiceapp/constants/firebase/app_firebase.dart';
 import 'package:invoiceapp/src/features/shared/models/invoice_form_model.dart';
+import 'package:invoiceapp/src/features/shared/widgets/modal_button.dart';
 import 'package:invoiceapp/theme/source_of_truth.dart';
 import 'package:invoiceapp/theme/theme.dart';
 
@@ -10,6 +11,10 @@ class MarkAsPaidmodal {
       showModalBottomSheet<void>(
         context: context,
         builder: (BuildContext context) {
+          const pending = 'pending';
+          const paid = 'paid';
+          final buttonStyle = ElevatedButton.styleFrom(
+              backgroundColor: CustomTheme.otherColors['blue0']);
           return Container(
             height: 325,
             color: CustomTheme.lightColors['shade3'],
@@ -18,20 +23,22 @@ class MarkAsPaidmodal {
                 mainAxisAlignment: MainAxisAlignment.center,
                 mainAxisSize: MainAxisSize.min,
                 children: <Widget>[
-                  _ModalButton(
-                    text: invoice.status == 'pending'
-                        ? const Text('Mark as paid')
-                        : const Text('Mark as Pending'),
+                  ModalButton(
+                    text: invoice.status == pending
+                        ? const Text('Mark as $paid')
+                        : const Text('Mark as $pending'),
+                    style: buttonStyle,
                     onPressed: () async {
-                      invoice.status == 'pending'
-                          ? await AppFirebase.changeStatus(invoice, 'paid')
-                          : await AppFirebase.changeStatus(invoice, 'pending');
+                      invoice.status == pending
+                          ? await AppFirebase.changeStatus(invoice, paid)
+                          : await AppFirebase.changeStatus(invoice, pending);
                       context.pushReplacement('/invoices');
                     },
                   ),
                   Gaps.gaph12,
-                  _ModalButton(
+                  ModalButton(
                     text: const Text('Cancel'),
+                    style: buttonStyle,
                     onPressed: () {
                       context.pop();
                     },
@@ -41,22 +48,5 @@ class MarkAsPaidmodal {
             ),
           );
         },
-      );
-}
-
-typedef VoidCallback = void Function();
-
-class _ModalButton extends StatelessWidget {
-  final Widget text;
-  final VoidCallback onPressed;
-  const _ModalButton({required this.text, required this.onPressed, super.key});
-  static final buttonStyle = ElevatedButton.styleFrom(
-      backgroundColor: CustomTheme.otherColors['blue0']);
-
-  @override
-  Widget build(BuildContext context) => SizedBox(
-        width: 175,
-        child: ElevatedButton(
-            style: buttonStyle, onPressed: onPressed, child: text),
       );
 }

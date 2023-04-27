@@ -10,12 +10,10 @@ class HorizontalLine extends StatelessWidget {
         child: Row(
           children: [
             Expanded(
-                //TODO: Maybe Restyle vertical line?
-                child: Container(
-              // color: const Color.fromRGBO(192, 192, 192, 1),
-              // color: CustomTheme.lightColors['shade1'] as Color,
-              height: 2.5,
-            )),
+              child: Container(
+                height: 2.5,
+              ),
+            ),
           ],
         ),
       );

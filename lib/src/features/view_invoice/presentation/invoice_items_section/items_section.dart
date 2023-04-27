@@ -4,7 +4,6 @@ import 'package:invoiceapp/src/features/shared/models/invoice_form_model.dart';
 import 'package:invoiceapp/src/features/view_invoice/presentation/description_section/horizontal_line.dart';
 import 'package:invoiceapp/src/features/view_invoice/presentation/invoice_items_section/items_list_tile.dart';
 import 'package:invoiceapp/src/features/view_invoice/presentation/invoice_items_section/total_section.dart';
-// TODO: Style Items Container and invoice items text
 
 class ItemsSection extends StatelessWidget {
   final InvoiceFormModel invoice;
@@ -29,7 +28,6 @@ class ItemsSection extends StatelessWidget {
     return Container(
       decoration: CustomDecoration.decoration(),
       child: Column(
-        // TODO: Dynamically display items from invoice state
         children: <Widget>[
           ...items,
           const HorizontalLine(),

@@ -11,28 +11,31 @@ class DescriptionCard extends StatelessWidget {
   const DescriptionCard({required this.invoice, super.key});
 
   @override
-  Widget build(BuildContext context) => Container(
-        height: 315,
-        decoration: CustomDecoration.decoration(),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            Padding(
-              padding: const EdgeInsets.all(21.25),
-              child: AmountDueSection(invoice: invoice),
-            ),
-            const HorizontalLine(),
-            Padding(
-              padding: const EdgeInsets.all(21.25),
-              child: MiddleSection(invoice: invoice),
-            ),
-            // Gaps.gaph12,
-            Padding(
-              padding: const EdgeInsets.only(
-                  left: 21.25, bottom: 21.25, right: 21.25),
-              child: IconListTile(invoice: invoice),
-            )
-          ],
-        ),
-      );
+  Widget build(BuildContext context) {
+    const double padding = 21.25;
+    return Container(
+      height: 315,
+      decoration: CustomDecoration.decoration(),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          Padding(
+            padding: const EdgeInsets.all(padding),
+            child: AmountDueSection(invoice: invoice),
+          ),
+          const HorizontalLine(),
+          Padding(
+            padding: const EdgeInsets.all(padding),
+            child: MiddleSection(invoice: invoice),
+          ),
+          // Gaps.gaph12,
+          Padding(
+            padding: const EdgeInsets.only(
+                left: padding, bottom: padding, right: padding),
+            child: IconListTile(invoice: invoice),
+          )
+        ],
+      ),
+    );
+  }
 }
