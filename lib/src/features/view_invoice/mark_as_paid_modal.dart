@@ -11,6 +11,8 @@ class MarkAsPaidmodal {
       showModalBottomSheet<void>(
         context: context,
         builder: (BuildContext context) {
+          const pending = 'pending';
+          const paid = 'paid';
           final buttonStyle = ElevatedButton.styleFrom(
               backgroundColor: CustomTheme.otherColors['blue0']);
           return Container(
@@ -22,14 +24,14 @@ class MarkAsPaidmodal {
                 mainAxisSize: MainAxisSize.min,
                 children: <Widget>[
                   ModalButton(
-                    text: invoice.status == 'pending'
-                        ? const Text('Mark as paid')
-                        : const Text('Mark as Pending'),
+                    text: invoice.status == pending
+                        ? const Text('Mark as $paid')
+                        : const Text('Mark as $pending'),
                     style: buttonStyle,
                     onPressed: () async {
-                      invoice.status == 'pending'
-                          ? await AppFirebase.changeStatus(invoice, 'paid')
-                          : await AppFirebase.changeStatus(invoice, 'pending');
+                      invoice.status == pending
+                          ? await AppFirebase.changeStatus(invoice, paid)
+                          : await AppFirebase.changeStatus(invoice, pending);
                       context.pushReplacement('/invoices');
                     },
                   ),
@@ -48,5 +50,3 @@ class MarkAsPaidmodal {
         },
       );
 }
-
-typedef VoidCallback = void Function();
