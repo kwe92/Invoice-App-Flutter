@@ -9,44 +9,53 @@ class IconListTile extends StatelessWidget {
   const IconListTile({required this.invoice, super.key});
 
   @override
-  Widget build(BuildContext context) => Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const Text(
-            'Invoice for',
-            style: CustomTextStyle(),
-          ),
-          Gaps.gaph12,
-          Row(
-            children: [
-              CircleAvatar(
-                backgroundColor: CustomTheme.otherColors['blue0'],
-                radius: 25.625,
-                child: Text(
-                  invoice.billToText['clientName']
-                      .toString()
-                      .trim()
-                      .substring(0, 1),
-                ),
+  Widget build(BuildContext context) {
+    final String clientname =
+        invoice.billToText['clientName'].toString().trim();
+
+    final String clientInital =
+        invoice.billToText['clientName'].toString().trim().substring(0, 1);
+
+    final String clientEmail =
+        invoice.billToText['clientEmail'].toString().trim();
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        const Text(
+          'Invoice for',
+          style: CustomTextStyle(),
+        ),
+        Gaps.gaph12,
+        Row(
+          children: [
+            CircleAvatar(
+              backgroundColor: CustomTheme.otherColors['blue0'],
+              radius: 25.625,
+              child: Text(
+                clientInital,
               ),
-              Gaps.gapw12,
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    invoice.billToText['clientName'].toString().trim(),
-                    style: const TextStyle(
-                        fontSize: 18, fontWeight: FontWeight.w500),
+            ),
+            Gaps.gapw12,
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  clientname,
+                  style: const TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.w500,
                   ),
-                  Gaps.gaph4,
-                  Text(
-                    invoice.billToText['clientEmail'].toString().trim(),
-                    style: const CustomTextStyle(),
-                  )
-                ],
-              )
-            ],
-          )
-        ],
-      );
+                ),
+                Gaps.gaph4,
+                Text(
+                  clientEmail,
+                  style: const CustomTextStyle(),
+                )
+              ],
+            )
+          ],
+        )
+      ],
+    );
+  }
 }
