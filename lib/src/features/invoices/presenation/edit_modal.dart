@@ -7,6 +7,7 @@ import 'package:invoiceapp/src/features/shared/widgets/invoice_form_screen/domai
 import 'package:invoiceapp/src/features/shared/widgets/invoice_form_screen/domain/item_list_model.dart';
 import 'package:invoiceapp/src/features/shared/widgets/invoice_form_screen/domain/list_item_model.dart';
 import 'package:invoiceapp/src/features/shared/widgets/invoice_form_screen/presentation/list_item.dart';
+import 'package:invoiceapp/src/features/shared/widgets/modal_button.dart';
 import 'package:invoiceapp/theme/source_of_truth.dart';
 import 'package:invoiceapp/theme/theme.dart';
 import 'package:provider/provider.dart';
@@ -16,6 +17,8 @@ class EditModal {
     showModalBottomSheet<void>(
       context: context,
       builder: (BuildContext context) {
+        final buttonStyle = ElevatedButton.styleFrom(
+            backgroundColor: CustomTheme.otherColors['purple0']);
         return Container(
           height: 325,
           color: CustomTheme.lightColors['shade3'],
@@ -30,8 +33,9 @@ class EditModal {
                           BillToModel billToModel,
                           ItemListModel itemsModel,
                           child) =>
-                      _ModalButton(
+                      ModalButton(
                     text: const Text('Edit Invoice'),
+                    style: buttonStyle,
                     onPressed:
                         // TODO: Loading controllers and navigating to the edit screen happens from the invocie screen and view invocie screen so should be shared somehow
                         () {
@@ -63,14 +67,16 @@ class EditModal {
                   ),
                 ),
                 Gaps.gaph8,
-                _ModalButton(
+                ModalButton(
+                    style: buttonStyle,
                     onPressed: () {
                       context.push('/viewInvoice', extra: invoice);
                       Navigator.pop(context);
                     },
                     text: const Text('View Invoice')),
                 Gaps.gaph8,
-                _ModalButton(
+                ModalButton(
+                  style: buttonStyle,
                   text: const Text('Close'),
                   onPressed: () => context.pop(),
                 ),
@@ -81,21 +87,4 @@ class EditModal {
       },
     );
   }
-}
-
-typedef VoidCallback = void Function();
-
-class _ModalButton extends StatelessWidget {
-  final Widget text;
-  final VoidCallback onPressed;
-  const _ModalButton({required this.text, required this.onPressed, super.key});
-  static final buttonStyle = ElevatedButton.styleFrom(
-      backgroundColor: CustomTheme.otherColors['purple0']);
-
-  @override
-  Widget build(BuildContext context) => SizedBox(
-        width: 175,
-        child: ElevatedButton(
-            style: buttonStyle, onPressed: onPressed, child: text),
-      );
 }
