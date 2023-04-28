@@ -2,9 +2,9 @@
 
 class FormValidators {
   static const _emptyText = 'Can not be empty.';
-  static const _textNumPattern = r'^[a-zA-Z0-9 ]*$';
-  static const _textPattern = r'^[a-zA-Z]*$';
-  static const _naturalNumbersPattern = r'^[0-9]+-[0-9]*$';
+  static const _textNumPattern = r'^[a-zA-Z0-9_ ]*$';
+  static const _textPattern = r'^[a-zA-Z_ ]*$';
+  static const _naturalNumbersPattern = r'^[0-9]*$';
   static const _emailPattern = r'^[a-zA-Z0-9]+@[a-zA-Z]+.[a-zA-Z]*$';
   static const _datePattern = r'^[0-9]+-[0-9]+-[0-9]*$';
 
@@ -23,7 +23,7 @@ class FormValidators {
   static String? textField(String? s) => s == null || s.isEmpty
       ? _emptyText
       : !_textRegex.hasMatch(s)
-          ? 'Letters A-Z, no spaces.'
+          ? 'Letters A-Z.'
           : null;
 
   static String? numberField(String? s) => s == null || s.isEmpty
