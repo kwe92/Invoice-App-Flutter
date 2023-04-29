@@ -16,7 +16,10 @@ class AppFirebase {
               .set(data)
           : await FirebaseFirestore.instance.collection(path).doc().set(data);
 
-  static String getCurrentUserId() => FirebaseAuth.instance.currentUser!.uid;
+  static String getCurrentUserId() {
+    print(FirebaseAuth.instance.currentUser!.uid);
+    return FirebaseAuth.instance.currentUser!.uid;
+  }
 
   static String createDocGetId(path) =>
       FirebaseFirestore.instance.collection(path).doc().id;
