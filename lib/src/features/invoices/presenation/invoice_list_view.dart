@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:invoiceapp/src/features/invoices/domain/invoices_model.dart';
 import 'package:invoiceapp/src/features/invoices/presenation/edit_modal.dart';
+import 'package:invoiceapp/src/features/invoices/presenation/invoice_error_screen.dart';
 import 'package:invoiceapp/src/features/invoices/presenation/invoice_list_tile/invoice_list_tile.dart';
 import 'package:invoiceapp/src/features/invoices/presenation/invoice_screen.dart';
 import 'package:invoiceapp/src/features/invoices/presenation/title_icon_list_tile.dart';
@@ -19,11 +20,14 @@ class InvoicesListView extends StatelessWidget {
               const TitleIconListTile(
                 key: InvoiceScreen.titleIconListTileKey,
               ),
-              for (final InvoiceFormModel invoice in model.invoices.values)
-                GestureDetector(
-                  onLongPress: () => EditModal.modal(context, invoice),
-                  child: InvoiceListTile(invoice: invoice),
-                ),
+              if (model.invoices.isNotEmpty)
+                for (final InvoiceFormModel invoice in model.invoices.values)
+                  GestureDetector(
+                    onLongPress: () => EditModal.modal(context, invoice),
+                    child: InvoiceListTile(invoice: invoice),
+                  )
+              else
+                const ErrorScreen(),
             ],
           ),
         ),
