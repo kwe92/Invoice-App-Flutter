@@ -30,6 +30,20 @@ class AppFirebase {
 
     await document.reference.update({'status': status});
   }
+
+  static Future<void> fetchAndListenInvoices(
+      {required String collection,
+      required String fieldName,
+      required String orderBy,
+      required Object isEqualTo,
+      required callBack}) async {
+    await FirebaseFirestore.instance
+        .collection('invoices')
+        .orderBy(orderBy)
+        .where(fieldName, isEqualTo: isEqualTo)
+        .snapshots()
+        .listen(callBack);
+  }
 }
 
 
