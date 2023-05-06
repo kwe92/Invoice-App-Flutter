@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:invoiceapp/src/features/shared/models/invoice_form_model.dart';
 
+// TODO: Figureout how to track when user changed and update the invoices from firebase
 class AppFirebase {
   const AppFirebase();
 
