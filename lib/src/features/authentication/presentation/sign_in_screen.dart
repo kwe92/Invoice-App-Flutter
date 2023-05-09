@@ -13,8 +13,8 @@ class CustomSignInScreen extends StatelessWidget {
           body: SignInScreen(
             providers: _providers,
             actions: [
-              AuthStateChangeAction<SignedIn>((context, state) {
-                AppFirebase.reloadUser();
+              AuthStateChangeAction<SignedIn>((context, state) async {
+                await AppFirebase.reloadUser();
                 context.go('/invoices');
               }),
             ],

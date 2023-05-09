@@ -10,8 +10,8 @@ class AppFirebase {
       ? await FirebaseFirestore.instance.collection(path).doc(docId).set(data)
       : await FirebaseFirestore.instance.collection(path).doc().set(data);
 
-  static String getCurrentUserId() {
-    print(FirebaseAuth.instance.currentUser!.uid);
+  static Future<String> getCurrentUserId() async {
+    await AppFirebase.reloadUser();
     return FirebaseAuth.instance.currentUser!.uid;
   }
 
