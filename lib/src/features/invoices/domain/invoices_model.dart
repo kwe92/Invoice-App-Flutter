@@ -7,27 +7,20 @@ import 'package:invoiceapp/constants/firebase/app_firebase.dart';
 import 'package:invoiceapp/src/features/shared/models/invoice_form_model.dart';
 
 class InvoicesModel extends ChangeNotifier {
-  // TODO: Figure out how to make it a Map
-  // Map<String, Object> _invoices = {};
-  // List _invoices = [];
   Map _invoices = {};
 
-  // List get invoices => _invoices;
   Map get invoices => _invoices;
 
   InvoicesModel() {
-    AppFirebase.fetchAndListenInvoices(
-        collection: 'invoices',
-        fieldName: 'userId',
-        orderBy: HashKeys.createdAt.name,
-        isEqualTo: AppFirebase.getCurrentUserId(),
-        callBack: _invoicesCallback);
+    AppFirebase.getCurrentUserId().then(
+      (userId) => AppFirebase.fetchAndListenInvoices(
+          collection: 'invoices', fieldName: 'userId', orderBy: HashKeys.createdAt.name, isEqualTo: userId, callBack: _invoicesCallback),
+    );
   }
   void _invoicesCallback(QuerySnapshot snapshot) {
     _invoices = {
       for (final invoice in snapshot.docs as List<QueryDocumentSnapshot<Map?>>)
-        invoice.data()![HashKeys.invoiceId.name]:
-            InvoiceFormModel.fromJSON(invoice.data() as Map<String, dynamic>)
+        invoice.data()![HashKeys.invoiceId.name]: InvoiceFormModel.fromJSON(invoice.data() as Map<String, dynamic>)
     };
 
     notifyListeners();
