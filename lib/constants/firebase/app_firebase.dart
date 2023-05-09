@@ -11,7 +11,7 @@ class AppFirebase {
       : await FirebaseFirestore.instance.collection(path).doc().set(data);
 
   static Future<String> getCurrentUserId() async {
-    await AppFirebase.reloadUser();
+    // await AppFirebase.reloadUser();
     return FirebaseAuth.instance.currentUser!.uid;
   }
 
@@ -37,9 +37,7 @@ class AppFirebase {
         .listen(callBack);
   }
 
-  static Future<void> reloadUser() async {
-    FirebaseAuth.instance.currentUser!.reload();
-  }
+  static Future<void> reloadUser() async => FirebaseAuth.instance.currentUser!.reload();
 }
 
 
