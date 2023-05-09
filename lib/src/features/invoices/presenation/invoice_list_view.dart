@@ -20,7 +20,7 @@ class InvoicesListView extends StatelessWidget {
               const TitleIconListTile(
                 key: InvoiceScreen.titleIconListTileKey,
               ),
-              if (model.invoices.isNotEmpty)
+              if (model.invoices.values.isNotEmpty)
                 for (final InvoiceFormModel invoice in model.invoices.values)
                   GestureDetector(
                     onLongPress: () => EditModal.modal(context, invoice),

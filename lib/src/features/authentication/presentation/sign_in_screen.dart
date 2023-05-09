@@ -1,6 +1,7 @@
 import 'package:firebase_ui_auth/firebase_ui_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:invoiceapp/constants/firebase/app_firebase.dart';
 
 class CustomSignInScreen extends StatelessWidget {
   static final _providers = [EmailAuthProvider()];
@@ -12,7 +13,8 @@ class CustomSignInScreen extends StatelessWidget {
           body: SignInScreen(
             providers: _providers,
             actions: [
-              AuthStateChangeAction<SignedIn>((context, state) {
+              AuthStateChangeAction<SignedIn>((context, state) async {
+                await AppFirebase.reloadUser();
                 context.go('/invoices');
               }),
             ],

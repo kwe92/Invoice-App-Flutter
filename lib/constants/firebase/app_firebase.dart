@@ -2,31 +2,23 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:invoiceapp/src/features/shared/models/invoice_form_model.dart';
 
+// TODO: Figureout how to track when user changed and update the invoices from firebase
 class AppFirebase {
   const AppFirebase();
 
-  static Future<void> loadData(
-          {required String path,
-          required Map<String, dynamic> data,
-          String? docId}) async =>
-      docId != null
-          ? await FirebaseFirestore.instance
-              .collection(path)
-              .doc(docId)
-              .set(data)
-          : await FirebaseFirestore.instance.collection(path).doc().set(data);
+  static Future<void> loadData({required String path, required Map<String, dynamic> data, String? docId}) async => docId != null
+      ? await FirebaseFirestore.instance.collection(path).doc(docId).set(data)
+      : await FirebaseFirestore.instance.collection(path).doc().set(data);
 
-  static String getCurrentUserId() => FirebaseAuth.instance.currentUser!.uid;
+  static Future<String> getCurrentUserId() async {
+    // await AppFirebase.reloadUser();
+    return FirebaseAuth.instance.currentUser!.uid;
+  }
 
-  static String createDocGetId(path) =>
-      FirebaseFirestore.instance.collection(path).doc().id;
+  static String createDocGetId(path) => FirebaseFirestore.instance.collection(path).doc().id;
 
-  static Future<void> changeStatus(
-      InvoiceFormModel invoice, String status) async {
-    final document = await FirebaseFirestore.instance
-        .collection('invoices')
-        .doc(invoice.docId)
-        .get();
+  static Future<void> changeStatus(InvoiceFormModel invoice, String status) async {
+    final document = await FirebaseFirestore.instance.collection('invoices').doc(invoice.docId).get();
 
     await document.reference.update({'status': status});
   }
@@ -44,6 +36,8 @@ class AppFirebase {
         .snapshots()
         .listen(callBack);
   }
+
+  static Future<void> reloadUser() async => FirebaseAuth.instance.currentUser!.reload();
 }
 
 
