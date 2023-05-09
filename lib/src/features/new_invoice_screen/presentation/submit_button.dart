@@ -23,64 +23,60 @@ class SubmitButton extends StatelessWidget {
       super.key});
 
   @override
-  Widget build(BuildContext context) => OutlinedButton(
-        onPressed: () async {
-          final bool formKey1 = formKeys[0].currentState!.validate();
-          final bool formKey2 = formKeys[1].currentState!.validate();
+  Widget build(BuildContext context) => FutureBuilder(
+        future: AppFirebase.getCurrentUserId(),
+        builder: (context, snapshot) => OutlinedButton(
+          onPressed: () async {
+            final bool formKey1 = formKeys[0].currentState!.validate();
+            final bool formKey2 = formKeys[1].currentState!.validate();
 
-          if (formKey1 && formKey2) {
-            final Map<String, String> billFromText =
-                billFromModel.allControllerText;
+            if (formKey1 && formKey2) {
+              final Map<String, String> billFromText = billFromModel.allControllerText;
 
-            final Map<String, String> billToText =
-                billToModel.allControllerText;
+              final Map<String, String> billToText = billToModel.allControllerText;
 
-            final List<Map<String, String>> itemslist = itemsModel
-                .itemModels.values
-                .map((value) => value.allControllerText)
-                .toList();
+              final List<Map<String, String>> itemslist = itemsModel.itemModels.values.map((value) => value.allControllerText).toList();
 
-            final double total = itemsModel.itemModels.values
-                .map((value) => double.parse(value.totalController.text))
-                .toList()
-                .reduce((value, element) => value + element);
+              final double total = itemsModel.itemModels.values
+                  .map((value) => double.parse(value.totalController.text))
+                  .toList()
+                  .reduce((value, element) => value + element);
 
-            final DateTime createdDate = DateTime.now();
+              final DateTime createdDate = DateTime.now();
 
-            final String paymentTerm = billToModel.dropDownMenuController.text;
+              final String paymentTerm = billToModel.dropDownMenuController.text;
 
-            const path = 'invoices';
+              const path = 'invoices';
 
-            // TODO: Called when user is editing and doesnt need to be | low priority but stull bad I think
-            final docId = AppFirebase.createDocGetId(path);
+              // TODO: Called when user is editing and doesnt need to be | low priority but stull bad I think
+              final docId = AppFirebase.createDocGetId(path);
 
-            final formData = InvoiceFormModel(
-                    invoiceId: _createId(),
-                    userId: AppFirebase.getCurrentUserId(),
-                    docId: firebaseId == null ? docId : firebaseId!,
-                    createdAt: createdDate,
-                    paymentDue: _paymentDue(createdDate, paymentTerm),
-                    status: InvoiceStatus.pending.name,
-                    billFromText: billFromText,
-                    billToText: billToText,
-                    listItems: itemslist,
-                    total: total)
-                .toMap();
+              final formData = InvoiceFormModel(
+                      invoiceId: _createId(),
+                      userId: snapshot.data!,
+                      docId: firebaseId == null ? docId : firebaseId!,
+                      createdAt: createdDate,
+                      paymentDue: _paymentDue(createdDate, paymentTerm),
+                      status: InvoiceStatus.pending.name,
+                      billFromText: billFromText,
+                      billToText: billToText,
+                      listItems: itemslist,
+                      total: total)
+                  .toMap();
 
-            firebaseId == null
-                ? await AppFirebase.loadData(
-                    path: path, docId: docId, data: formData)
-                : await AppFirebase.loadData(
-                    path: path, docId: firebaseId, data: formData);
+              firebaseId == null
+                  ? await AppFirebase.loadData(path: path, docId: docId, data: formData)
+                  : await AppFirebase.loadData(path: path, docId: firebaseId, data: formData);
 
-            billFromModel.clearAllControllers();
-            billToModel.clearAllControllers();
-            itemsModel.clearItemsState();
+              billFromModel.clearAllControllers();
+              billToModel.clearAllControllers();
+              itemsModel.clearItemsState();
 
-            context.pop();
-          }
-        },
-        child: const Text('Save & Send'),
+              context.pop();
+            }
+          },
+          child: const Text('Save & Send'),
+        ),
       );
 }
 
