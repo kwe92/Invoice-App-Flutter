@@ -12,10 +12,7 @@ class InvoicesModel extends ChangeNotifier {
   Map get invoices => _invoices;
 
   InvoicesModel() {
-    AppFirebase.getCurrentUserId().then(
-      (userId) => AppFirebase.fetchAndListenInvoices(
-          collection: 'invoices', fieldName: 'userId', orderBy: HashKeys.createdAt.name, isEqualTo: userId, callBack: _invoicesCallback),
-    );
+    _init();
   }
   void _invoicesCallback(QuerySnapshot snapshot) {
     _invoices = {
@@ -25,4 +22,9 @@ class InvoicesModel extends ChangeNotifier {
 
     notifyListeners();
   }
+
+  void _init() => AppFirebase.getCurrentUserId().then(
+        (userId) => AppFirebase.fetchAndListenInvoices(
+            collection: 'invoices', fieldName: 'userId', orderBy: HashKeys.createdAt.name, isEqualTo: userId, callBack: _invoicesCallback),
+      );
 }
