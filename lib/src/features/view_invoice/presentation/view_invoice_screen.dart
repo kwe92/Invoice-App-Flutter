@@ -11,6 +11,8 @@ import 'package:invoiceapp/src/features/view_invoice/presentation/view_invoice_l
 import 'package:invoiceapp/theme/source_of_truth.dart';
 import 'package:invoiceapp/theme/theme.dart';
 
+// TODO: Inital of detail card needs a color change
+
 class ViewInvoiceScreen extends StatelessWidget {
   final InvoiceFormModel invoice;
   const ViewInvoiceScreen({required this.invoice, super.key});
