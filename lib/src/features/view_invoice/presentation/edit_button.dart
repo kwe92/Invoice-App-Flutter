@@ -13,14 +13,11 @@ class EditButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Consumer3(
-        builder: (context, BillFromModel billFromModel, BillToModel billToModel,
-                ItemListModel itemsModel, child) =>
-            IconButton(
-          color: CustomTheme.otherColors['blue0'],
+        builder: (context, BillFromModel billFromModel, BillToModel billToModel, ItemListModel itemsModel, child) => IconButton(
+          color: CustomTheme.otherColors['purple0'],
           icon: const Icon(Icons.edit),
           onPressed: () {
-            LoadFormControllers.load(context, billFromModel, billToModel,
-                itemsModel, invoice, false);
+            LoadFormControllers.load(context, billFromModel, billToModel, itemsModel, invoice, false);
           },
         ),
       );
