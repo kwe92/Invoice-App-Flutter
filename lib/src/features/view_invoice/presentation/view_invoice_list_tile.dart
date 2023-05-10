@@ -8,8 +8,7 @@ class ViewInvoiceListTile extends StatelessWidget {
   final InvoiceFormModel invoice;
   final VoidCallback onLongPress;
 
-  const ViewInvoiceListTile(
-      {required this.invoice, required this.onLongPress, super.key});
+  const ViewInvoiceListTile({required this.invoice, required this.onLongPress, super.key});
 
   @override
   Widget build(BuildContext context) => GestureDetector(
