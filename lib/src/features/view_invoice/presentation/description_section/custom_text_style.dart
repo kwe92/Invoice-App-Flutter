@@ -8,4 +8,8 @@ class CustomTextStyle extends TextStyle {
 
   @override
   Color? get color => const Color.fromRGBO(118, 123, 124, 1);
+
+  // ?? FontWeight or not??
+  // @override
+  // FontWeight? get fontWeight => FontWeight.w500;
 }
