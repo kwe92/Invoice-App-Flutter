@@ -13,9 +13,7 @@ class CustomBackButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Consumer3(
-        builder: (context, BillFromModel billFromModel, BillToModel billToModel,
-                ItemListModel itemsModel, child) =>
-            GestureDetector(
+        builder: (context, BillFromModel billFromModel, BillToModel billToModel, ItemListModel itemsModel, child) => GestureDetector(
           onTap: () {
             billFromModel.clearAllControllers();
             billToModel.clearAllControllers();
@@ -60,7 +58,7 @@ class _BackButtonImage extends StatelessWidget {
       height: imageSize,
       child: SvgPicture.asset(
         'assets/icon-arrow-left.svg',
-        color: showText == true ? null : CustomTheme.otherColors['blue0'],
+        color: showText == true ? null : CustomTheme.otherColors['purple0'],
       ),
     );
   }

@@ -16,25 +16,27 @@ class DescriptionCard extends StatelessWidget {
     return Container(
       height: 315,
       decoration: CustomDecoration.decoration(),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          Padding(
-            padding: const EdgeInsets.all(padding),
-            child: AmountDueSection(invoice: invoice),
-          ),
-          const HorizontalLine(),
-          Padding(
-            padding: const EdgeInsets.all(padding),
-            child: MiddleSection(invoice: invoice),
-          ),
-          // Gaps.gaph12,
-          Padding(
-            padding: const EdgeInsets.only(
-                left: padding, bottom: padding, right: padding),
-            child: IconListTile(invoice: invoice),
-          )
-        ],
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 17.25),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Padding(
+              padding: const EdgeInsets.all(padding),
+              child: AmountDueSection(invoice: invoice),
+            ),
+            const HorizontalLine(),
+            Padding(
+              padding: const EdgeInsets.all(padding),
+              child: MiddleSection(invoice: invoice),
+            ),
+            // Gaps.gaph12,
+            Padding(
+              padding: const EdgeInsets.only(left: padding, bottom: padding, right: padding),
+              child: IconListTile(invoice: invoice),
+            )
+          ],
+        ),
       ),
     );
   }

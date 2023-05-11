@@ -10,14 +10,11 @@ class IconListTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final String clientname =
-        invoice.billToText['clientName'].toString().trim();
+    final String clientname = invoice.billToText['clientName'].toString().trim();
 
-    final String clientInital =
-        invoice.billToText['clientName'].toString().trim().substring(0, 1);
+    final String clientInital = invoice.billToText['clientName'].toString().trim().substring(0, 1);
 
-    final String clientEmail =
-        invoice.billToText['clientEmail'].toString().trim();
+    final String clientEmail = invoice.billToText['clientEmail'].toString().trim();
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -29,10 +26,11 @@ class IconListTile extends StatelessWidget {
         Row(
           children: [
             CircleAvatar(
-              backgroundColor: CustomTheme.otherColors['blue0'],
+              backgroundColor: CustomTheme.otherColors['purple0'],
               radius: 25.625,
               child: Text(
                 clientInital,
+                style: const TextStyle(color: Colors.white, fontSize: 18),
               ),
             ),
             Gaps.gapw12,

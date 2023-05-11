@@ -1,7 +1,7 @@
 import 'package:flutter/widgets.dart';
 import 'package:invoiceapp/constants/enums/status.dart';
 import 'package:invoiceapp/src/features/shared/models/invoice_form_model.dart';
-import 'package:invoiceapp/theme/source_of_truth.dart';
+import 'package:invoiceapp/src/features/shared/widgets/status_indicator.dart';
 import 'package:invoiceapp/theme/theme.dart';
 
 class ListTileRightSide extends StatelessWidget {
@@ -12,14 +12,10 @@ class ListTileRightSide extends StatelessWidget {
   Widget build(BuildContext context) {
     //TODO: Should be removed as input should never be nul;
 
-    final nameArray = invoice.billToText['clientName'] != null
-        ? invoice.billToText['clientName'].split(' ') as List<String>
-        : [' '];
+    final nameArray = invoice.billToText['clientName'] != null ? invoice.billToText['clientName'].split(' ') as List<String> : [' '];
     final fname = nameArray[0];
     final lname = nameArray.length > 1 ? nameArray[1] : ' ';
-    final TextStyle nameStyle =
-        TextStyle(color: CustomTheme.lightColors['shade0']);
-    const double circleSize = 10;
+    final TextStyle nameStyle = TextStyle(color: CustomTheme.lightColors['shade0']);
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       crossAxisAlignment: CrossAxisAlignment.end,
@@ -38,33 +34,7 @@ class ListTileRightSide extends StatelessWidget {
             )
           ],
         ),
-        Container(
-          height: 46.75,
-          width: 108,
-          color: const Color.fromARGB(28, 118, 238, 122),
-          child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                Container(
-                  width: circleSize,
-                  height: circleSize,
-                  decoration: const BoxDecoration(
-                    color: Color.fromARGB(255, 81, 215, 85),
-                    borderRadius: BorderRadius.all(
-                      Radius.circular(50),
-                    ),
-                  ),
-                ),
-                Gaps.gapw10,
-                FittedBox(
-                  child: Text(
-                    invoice.status,
-                    style: const TextStyle(
-                        color: Color.fromARGB(255, 92, 205, 95)),
-                  ),
-                )
-              ]),
-        )
+        StatusIndicator(size: 10, status: invoice.status),
       ],
     );
   }
@@ -73,7 +43,5 @@ class ListTileRightSide extends StatelessWidget {
 // TODO: FInish implementing statusCOlor function
 
 Color? _statusColor(String status) {
-  final statusColors = {
-    InvoiceStatus.paid.name: const Color.fromARGB(255, 81, 215, 85)
-  };
+  final statusColors = {InvoiceStatus.paid.name: const Color.fromARGB(255, 81, 215, 85)};
 }
