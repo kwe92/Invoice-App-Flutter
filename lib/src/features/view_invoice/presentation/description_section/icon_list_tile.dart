@@ -30,6 +30,7 @@ class IconListTile extends StatelessWidget {
               radius: 25.625,
               child: Text(
                 clientInital,
+                style: const TextStyle(color: Colors.white, fontSize: 18),
               ),
             ),
             Gaps.gapw12,
