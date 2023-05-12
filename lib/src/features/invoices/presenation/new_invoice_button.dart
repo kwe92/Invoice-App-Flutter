@@ -12,11 +12,8 @@ class NewInvoiceButton extends StatelessWidget {
   const NewInvoiceButton({super.key});
 
   @override
-  Widget build(BuildContext context) => Consumer3(builder: (context,
-          BillFromModel billFromModel,
-          BillToModel billToModel,
-          ItemListModel itemsModel,
-          child) {
+  Widget build(BuildContext context) =>
+      Consumer3(builder: (context, BillFromModel billFromModel, BillToModel billToModel, ItemListModel itemsModel, child) {
         return GestureDetector(
           onTap: () {
             context.push('/newInvoice');
