@@ -12,14 +12,17 @@ class StatusIndicator extends StatelessWidget {
     return Container(
       height: 46.75,
       width: 108,
-      color: const Color.fromARGB(28, 118, 238, 122),
+      decoration: BoxDecoration(
+        color: status == 'paid' ? const Color.fromARGB(28, 118, 238, 122) : const Color.fromRGBO(255, 143, 0, 0.15),
+        borderRadius: BorderRadius.circular(8),
+      ),
       child: Row(mainAxisAlignment: MainAxisAlignment.center, children: <Widget>[
         Container(
           width: size,
           height: size,
-          decoration: const BoxDecoration(
-            color: Color.fromARGB(255, 81, 215, 85),
-            borderRadius: BorderRadius.all(
+          decoration: BoxDecoration(
+            color: status == 'paid' ? const Color.fromARGB(255, 81, 215, 85) : const Color.fromRGBO(255, 143, 0, 1),
+            borderRadius: const BorderRadius.all(
               Radius.circular(50),
             ),
           ),
@@ -28,9 +31,11 @@ class StatusIndicator extends StatelessWidget {
         FittedBox(
           child: Text(
             status,
-            style: const TextStyle(color: Color.fromARGB(255, 92, 205, 95)),
+            style: TextStyle(
+              color: status == 'paid' ? const Color.fromARGB(255, 92, 205, 95) : const Color.fromRGBO(255, 143, 0, 1),
+            ),
           ),
-        )
+        ),
       ]),
     );
   }
