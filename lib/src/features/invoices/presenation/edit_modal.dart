@@ -15,8 +15,6 @@ class EditModal {
     showModalBottomSheet<void>(
       context: context,
       builder: (BuildContext context) {
-        final buttonStyle = ElevatedButton.styleFrom(
-            backgroundColor: CustomTheme.otherColors['purple0']);
         return Container(
           height: 325,
           color: CustomTheme.lightColors['shade3'],
@@ -26,34 +24,21 @@ class EditModal {
               mainAxisSize: MainAxisSize.min,
               children: <Widget>[
                 Consumer3(
-                  builder: (context,
-                          BillFromModel billFromModel,
-                          BillToModel billToModel,
-                          ItemListModel itemsModel,
-                          child) =>
-                      ModalButton(
-                    text: const Text('Edit Invoice'),
-                    style: buttonStyle,
-                    onPressed:
-                        // TODO: Loading controllers and navigating to the edit screen happens from the invocie screen and view invocie screen so should be shared somehow
-                        () {
-                      LoadFormControllers.load(context, billFromModel,
-                          billToModel, itemsModel, invoice);
-                    },
+                  builder: (context, BillFromModel billFromModel, BillToModel billToModel, ItemListModel itemsModel, child) => ModalButton(
+                    text: 'Edit Invoice',
+                    onPressed: () => LoadFormControllers.load(context, billFromModel, billToModel, itemsModel, invoice),
                   ),
                 ),
-                Gaps.gaph8,
+                Gaps.gaph16,
                 ModalButton(
-                    style: buttonStyle,
                     onPressed: () {
                       context.push('/viewInvoice', extra: invoice);
                       Navigator.pop(context);
                     },
-                    text: const Text('View Invoice')),
-                Gaps.gaph8,
+                    text: 'View Invoice'),
+                Gaps.gaph16,
                 ModalButton(
-                  style: buttonStyle,
-                  text: const Text('Close'),
+                  text: 'Close',
                   onPressed: () => context.pop(),
                 ),
               ],
