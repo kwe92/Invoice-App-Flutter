@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:invoiceapp/src/features/invoices/domain/filter_button_model.dart';
 import 'package:invoiceapp/src/features/invoices/domain/invoices_model.dart';
 import 'package:invoiceapp/src/features/invoices/presenation/filter_button.dart';
 import 'package:invoiceapp/src/features/invoices/presenation/new_invoice_button.dart';
@@ -49,11 +50,14 @@ class _Title extends StatelessWidget {
             'Invoices',
             style: TextStyle(fontSize: 24.725, fontWeight: FontWeight.w500, letterSpacing: -1),
           ),
-          Consumer(
-            builder: (context, InvoicesModel model, _) => Text(
-              '${model.invoices.length} invoices',
-              style: TextStyle(color: CustomTheme.lightColors['shade0']),
-            ),
+          Consumer2(
+            builder: (context, InvoicesModel model, FilterButtonModel filterModel, _) {
+              final int invoiceCount = InvoicesModel.getInvoices(filterModel.dropdownValue).length;
+              return Text(
+                invoiceCount == 1 ? '$invoiceCount invoice' : '$invoiceCount invoices',
+                style: TextStyle(color: CustomTheme.lightColors['shade0']),
+              );
+            },
           )
         ],
       );
