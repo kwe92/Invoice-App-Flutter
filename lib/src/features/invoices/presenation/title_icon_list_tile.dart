@@ -7,7 +7,6 @@ import 'package:invoiceapp/theme/theme.dart';
 import 'package:provider/provider.dart';
 
 class TitleIconListTile extends StatelessWidget {
-  static const newInvoiceButtonKey = Key('newInvoiceButtonKey');
   const TitleIconListTile({super.key});
 
   @override
@@ -27,12 +26,10 @@ class _NewInvoiceListTile extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
-              children: <Widget>[
-                ...FilterButton.filterButton,
+              children: const <Widget>[
+                FilterButton(),
                 Gaps.gapw12,
-                const NewInvoiceButton(
-                  key: TitleIconListTile.newInvoiceButtonKey,
-                ),
+                NewInvoiceButton(),
               ],
             )
           ],
@@ -50,10 +47,7 @@ class _Title extends StatelessWidget {
         children: <Widget>[
           const Text(
             'Invoices',
-            style: TextStyle(
-                fontSize: 24.725,
-                fontWeight: FontWeight.w500,
-                letterSpacing: -1),
+            style: TextStyle(fontSize: 24.725, fontWeight: FontWeight.w500, letterSpacing: -1),
           ),
           Consumer(
             builder: (context, InvoicesModel model, _) => Text(

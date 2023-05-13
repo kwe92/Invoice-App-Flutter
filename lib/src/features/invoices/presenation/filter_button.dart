@@ -1,19 +1,85 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
-import 'package:invoiceapp/theme/source_of_truth.dart';
+import 'package:provider/provider.dart';
 
-class FilterButton {
-  static final List<Widget> filterButton = [
-    const Text(
-      'Filter',
-      style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
-    ),
-    Gaps.gapw8,
-    SizedBox(
-      width: 16,
-      height: 16,
-      child: SvgPicture.asset('assets/icon-arrow-down.svg'),
-    ),
-  ];
-  const FilterButton();
+class FilterButton extends StatelessWidget {
+  const FilterButton({super.key});
+
+  @override
+  Widget build(BuildContext context) => const DropdownButtonExample();
 }
+
+const List<String> list = <String>['all', 'pending', 'paid'];
+
+class DropdownButtonExample extends StatelessWidget {
+  const DropdownButtonExample({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Consumer(builder: (BuildContext context, model, _) {
+      return DropdownButton<String>(
+        //  TODO: Implement
+        value: '',
+        icon: const Icon(Icons.arrow_downward),
+        elevation: 16,
+        style: const TextStyle(color: Colors.deepPurple),
+        underline: Container(
+          height: 2,
+          color: Colors.deepPurpleAccent,
+        ),
+        onChanged: (String? value) {
+          //  TODO: Implement
+        },
+        items: list.map<DropdownMenuItem<String>>((String value) {
+          return DropdownMenuItem<String>(
+            value: value,
+            child: FittedBox(
+              child: Text(value),
+            ),
+          );
+        }).toList(),
+      );
+    });
+  }
+}
+
+
+
+
+// class DropdownButtonExample extends StatefulWidget {
+//   const DropdownButtonExample({super.key});
+
+//   @override
+//   State<DropdownButtonExample> createState() => _DropdownButtonExampleState();
+// }
+
+// class _DropdownButtonExampleState extends State<DropdownButtonExample> {
+//   String dropdownValue = list.first;
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return DropdownButton<String>(
+//       value: dropdownValue,
+//       icon: const Icon(Icons.arrow_downward),
+//       elevation: 16,
+//       style: const TextStyle(color: Colors.deepPurple),
+//       underline: Container(
+//         height: 2,
+//         color: Colors.deepPurpleAccent,
+//       ),
+//       onChanged: (String? value) {
+//         // This is called when the user selects an item.
+//         setState(() {
+//           dropdownValue = value!;
+//         });
+//       },
+//       items: list.map<DropdownMenuItem<String>>((String value) {
+//         return DropdownMenuItem<String>(
+//           value: value,
+//           child: FittedBox(
+//             child: Text(value),
+//           ),
+//         );
+//       }).toList(),
+//     );
+//   }
+// }

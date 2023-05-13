@@ -15,11 +15,8 @@ class InvoicesListView extends StatelessWidget {
         padding: const EdgeInsets.only(top: 24.0),
         child: Consumer(
           builder: (BuildContext context, InvoicesModel model, _) => ListView(
-            key: InvoiceScreen.listViewKey,
             children: <Widget>[
-              const TitleIconListTile(
-                key: InvoiceScreen.titleIconListTileKey,
-              ),
+              const TitleIconListTile(),
               if (model.invoices.values.isNotEmpty)
                 for (final InvoiceFormModel invoice in model.invoices.values)
                   GestureDetector(
