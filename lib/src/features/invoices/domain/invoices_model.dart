@@ -7,7 +7,9 @@ import 'package:invoiceapp/constants/firebase/app_firebase.dart';
 import 'package:invoiceapp/src/features/shared/models/invoice_form_model.dart';
 
 class InvoicesModel extends ChangeNotifier {
-  Map _invoices = {};
+  static Map _invoices = {};
+
+  Map unfilteredInvoices = {};
 
   Map get invoices => _invoices;
 
@@ -17,7 +19,9 @@ class InvoicesModel extends ChangeNotifier {
   void _invoicesCallback(QuerySnapshot snapshot) {
     _invoices = {
       for (final invoice in snapshot.docs as List<QueryDocumentSnapshot<Map?>>)
-        invoice.data()![HashKeys.invoiceId.name]: InvoiceFormModel.fromJSON(invoice.data() as Map<String, dynamic>)
+        invoice.data()![HashKeys.invoiceId.name]: InvoiceFormModel.fromJSON(
+          invoice.data() as Map<String, dynamic>,
+        )
     };
 
     notifyListeners();
@@ -25,6 +29,17 @@ class InvoicesModel extends ChangeNotifier {
 
   void _init() => AppFirebase.getCurrentUserId().then(
         (userId) => AppFirebase.fetchAndListenInvoices(
-            collection: 'invoices', fieldName: 'userId', orderBy: HashKeys.createdAt.name, isEqualTo: userId, callBack: _invoicesCallback),
+          collection: 'invoices',
+          fieldName: 'userId',
+          orderBy: HashKeys.createdAt.name,
+          isEqualTo: userId,
+          callBack: _invoicesCallback,
+        ),
       );
+
+  static Iterable getInvoices(String status) => status == 'all'
+      ? _invoices.values
+      : status == 'pending'
+          ? _invoices.values.where((invoice) => invoice.status == 'pending')
+          : _invoices.values.where((invoice) => invoice.status == 'paid');
 }

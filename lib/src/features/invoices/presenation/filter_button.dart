@@ -1,19 +1,39 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
-import 'package:invoiceapp/theme/source_of_truth.dart';
+import 'package:invoiceapp/src/features/invoices/domain/filter_button_model.dart';
+import 'package:provider/provider.dart';
 
-class FilterButton {
-  static final List<Widget> filterButton = [
-    const Text(
-      'Filter',
-      style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
-    ),
-    Gaps.gapw8,
-    SizedBox(
-      width: 16,
-      height: 16,
-      child: SvgPicture.asset('assets/icon-arrow-down.svg'),
-    ),
-  ];
-  const FilterButton();
+class FilterButton extends StatelessWidget {
+  const FilterButton({super.key});
+
+  @override
+  Widget build(BuildContext context) => const DropdownButtonExample();
+}
+
+class DropdownButtonExample extends StatelessWidget {
+  const DropdownButtonExample({super.key});
+
+  @override
+  Widget build(BuildContext context) => Consumer(
+        builder: (BuildContext context, FilterButtonModel model, _) => DropdownButton<String>(
+          value: model.dropdownValue,
+          icon: const Icon(Icons.arrow_downward),
+          elevation: 16,
+          style: const TextStyle(color: Colors.deepPurple),
+          underline: Container(
+            height: 2,
+            color: Colors.deepPurpleAccent,
+          ),
+          onChanged: (String? value) => model.setValue(value!),
+          items: FilterButtonModel.dropdownOptions
+              .map<DropdownMenuItem<String>>(
+                (String value) => DropdownMenuItem<String>(
+                  value: value,
+                  child: FittedBox(
+                    child: Text(value),
+                  ),
+                ),
+              )
+              .toList(),
+        ),
+      );
 }
