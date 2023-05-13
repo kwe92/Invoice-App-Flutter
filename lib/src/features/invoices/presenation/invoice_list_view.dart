@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:invoiceapp/src/features/invoices/domain/filter_button_model.dart';
 import 'package:invoiceapp/src/features/invoices/domain/invoices_model.dart';
 import 'package:invoiceapp/src/features/invoices/presenation/edit_modal.dart';
 import 'package:invoiceapp/src/features/invoices/presenation/invoice_error_screen.dart';
@@ -13,12 +14,14 @@ class InvoicesListView extends StatelessWidget {
   @override
   Widget build(BuildContext context) => Padding(
         padding: const EdgeInsets.only(top: 24.0),
-        child: Consumer(
-          builder: (BuildContext context, InvoicesModel model, _) => ListView(
+        child: Consumer2(
+          builder: (BuildContext context, InvoicesModel model, FilterButtonModel filterModel, _) => ListView(
             children: <Widget>[
               const TitleIconListTile(),
               if (model.invoices.values.isNotEmpty)
-                for (final InvoiceFormModel invoice in model.invoices.values)
+                for (final InvoiceFormModel invoice in InvoicesModel.getInvoices(
+                  filterModel.dropdownValue,
+                ))
                   GestureDetector(
                     onLongPress: () => EditModal.modal(context, invoice),
                     child: InvoiceListTile(invoice: invoice),
