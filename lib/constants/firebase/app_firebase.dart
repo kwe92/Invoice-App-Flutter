@@ -2,7 +2,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:invoiceapp/src/features/shared/models/invoice_form_model.dart';
 
-// TODO: Figureout how to track when user changed and update the invoices from firebase
 class AppFirebase {
   const AppFirebase();
 
@@ -10,10 +9,11 @@ class AppFirebase {
       ? await FirebaseFirestore.instance.collection(path).doc(docId).set(data)
       : await FirebaseFirestore.instance.collection(path).doc().set(data);
 
-  static Future<String> getCurrentUserId() async {
-    // await AppFirebase.reloadUser();
-    return FirebaseAuth.instance.currentUser!.uid;
-  }
+  static Future<String> getCurrentUserId() async => FirebaseAuth.instance.currentUser!.uid;
+
+  static Future<String> getCurrentUserInital() async => FirebaseAuth.instance.currentUser!.displayName != null
+      ? FirebaseAuth.instance.currentUser!.displayName!.substring(0, 1)
+      : FirebaseAuth.instance.currentUser!.email!.substring(0, 1);
 
   static String createDocGetId(path) => FirebaseFirestore.instance.collection(path).doc().id;
 
@@ -39,17 +39,3 @@ class AppFirebase {
 
   static Future<void> reloadUser() async => FirebaseAuth.instance.currentUser!.reload();
 }
-
-
-
-  // TODO: Remove if load works
-  // static Future<void> loadData(
-  //     {required String path,
-  //     required Map<String, dynamic> data,
-  //     String? docId}) async {
-  //   if (docId != null) {
-  //     await FirebaseFirestore.instance.collection(path).doc(docId).set(data);
-  //     return;
-  //   }
-  //   await FirebaseFirestore.instance.collection(path).doc().set(data);
-  // }
