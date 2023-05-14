@@ -5,8 +5,7 @@ class CustomTheme {
 
   static const double mainContentPaddingH = 18.00;
 
-  static const EdgeInsets mainContentPadding =
-      EdgeInsets.symmetric(horizontal: mainContentPaddingH, vertical: 28);
+  static const EdgeInsets mainContentPadding = EdgeInsets.symmetric(horizontal: mainContentPaddingH, vertical: 28);
 
   static const double appBarHeight = 58;
 
