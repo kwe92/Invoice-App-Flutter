@@ -4,13 +4,16 @@ class FormValidators {
   static const _emptyText = 'Can not be empty.';
   static const _textNumPattern = r'^[a-zA-Z0-9_ ]*$';
   static const _textPattern = r'^[a-zA-Z_ ]*$';
-  static const _naturalNumbersPattern = r'^[0-9]*$';
+  static const _intPattern = r'^[0-9]*$';
+  static const _doublePattern = r'^[0-9.]*$';
+
   static const _emailPattern = r'^[a-zA-Z0-9]+@[a-zA-Z]+.[a-zA-Z]*$';
   static const _datePattern = r'^[0-9]+-[0-9]+-[0-9]*$';
 
   static final RegExp _textNumRegex = RegExp(_textNumPattern);
   static final RegExp _textRegex = RegExp(_textPattern);
-  static final RegExp _numbersRegex = RegExp(_naturalNumbersPattern);
+  static final RegExp _intRegex = RegExp(_intPattern);
+  static final RegExp _doubleRegex = RegExp(_doublePattern);
   static final RegExp _emailRegex = RegExp(_emailPattern);
   static final RegExp _dateRegex = RegExp(_datePattern);
 
@@ -26,10 +29,16 @@ class FormValidators {
           ? 'Letters A-Z.'
           : null;
 
-  static String? numberField(String? s) => s == null || s.isEmpty
+  static String? intField(String? s) => s == null || s.isEmpty
       ? _emptyText
-      : !_numbersRegex.hasMatch(s)
-          ? 'Numbers 0 - 9, no spaces.'
+      : !_intRegex.hasMatch(s)
+          ? 'int only 0 - 9, no spaces.'
+          : null;
+
+  static String? doubleField(String? s) => s == null || s.isEmpty
+      ? _emptyText
+      : !_doubleRegex.hasMatch(s)
+          ? 'Numbers like: 42 or 3.14, no spaces.'
           : null;
 
   static String? emailField(String? s) => s == null || s.isEmpty

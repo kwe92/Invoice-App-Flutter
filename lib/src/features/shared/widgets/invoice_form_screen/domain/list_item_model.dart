@@ -19,7 +19,7 @@ class CustomListItemModel extends ChangeNotifier {
       HashKeys.itemName.name: itemNameController.text,
       HashKeys.quantity.name: quantityController.text,
       HashKeys.price.name: priceController.text,
-      HashKeys.total.name: totalController.text,
+      HashKeys.total.name: double.parse(totalController.text).toStringAsFixed(2),
     };
   }
 
@@ -52,7 +52,7 @@ class CustomListItemModel extends ChangeNotifier {
   }
 
   void setTotalController(quantity, price) {
-    totalController.text = (num.parse(quantity) * num.parse(price)).toString();
+    totalController.text = (num.parse(quantity) * num.parse(price)).toStringAsFixed(2);
     notifyListeners();
   }
 }
