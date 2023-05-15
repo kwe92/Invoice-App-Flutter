@@ -22,7 +22,7 @@ class ListTileLeftSide extends StatelessWidget {
                 style: TextStyle(color: CustomTheme.lightColors['shade0']),
               ),
               Gaps.gaph8,
-              Text(invoice.total.toString()),
+              Text('\$${invoice.total.toStringAsFixed(2)}'),
             ],
           )
         ],
