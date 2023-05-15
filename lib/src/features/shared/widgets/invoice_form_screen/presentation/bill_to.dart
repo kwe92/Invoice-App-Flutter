@@ -14,21 +14,16 @@ import 'package:invoiceapp/theme/theme.dart';
 // final _formKey = GlobalKey<FormState>();
 
 class BillTo extends StatelessWidget {
-  // TODO: Remove Keys, either get rid of them or abstract away
-
   final BillToModel model;
   final ItemListModel itemsModel;
   final GlobalKey<FormState> formState;
 
-  const BillTo(
-      {required this.model,
-      required this.formState,
-      required this.itemsModel,
-      super.key});
+  const BillTo({required this.model, required this.formState, required this.itemsModel, super.key});
 
   @override
   Widget build(BuildContext context) {
-    final purple = CustomTheme.otherColors['purple0'] as Color;
+    final Color purple = CustomTheme.otherColors['purple0'] as Color;
+    final Color lighterPurple = CustomTheme.otherColors['purple1'] as Color;
     final gaph = Gaps.heigth(18);
     final textStyle = TextStyle(
       fontSize: 18,
@@ -101,10 +96,18 @@ class BillTo extends StatelessWidget {
                 initialDate: _initDateTime(),
                 firstDate: _initDateTime(),
                 lastDate: DateTime(3000),
+                builder: (BuildContext context, child) => Theme(
+                    data: ThemeData().copyWith(
+                      colorScheme: ColorScheme.dark(
+                        onSurface: Colors.black,
+                        surface: lighterPurple,
+                        primary: lighterPurple,
+                      ),
+                    ),
+                    child: child as Widget),
               );
               if (newDate != null) {
-                model.dateController.text =
-                    DateFormatter.dateTimeToString(newDate);
+                model.dateController.text = DateFormatter.dateTimeToString(newDate);
               }
             },
             readOnly: true,
@@ -135,8 +138,7 @@ class BillTo extends StatelessWidget {
               Expanded(child: _AddButton(
                 onPressed: () {
                   final model = CustomListItemModel();
-                  final String index =
-                      RandomRange.integer(1001, 999999).toString();
+                  final String index = RandomRange.integer(1001, 999999).toString();
                   final listItem = CustomListItem(
                     listItemModel: model,
                     index: index,
@@ -144,16 +146,13 @@ class BillTo extends StatelessWidget {
                   );
 
                   final Map<String, CustomListItem> entry = {index: listItem};
-                  final Map<String, CustomListItemModel> itemModelEntry = {
-                    index: model
-                  };
+                  final Map<String, CustomListItemModel> itemModelEntry = {index: model};
 
                   itemsModel.addItem(entry);
                   itemsModel.addItemModel(itemModelEntry);
 
                   itemsModel.itemModels.forEach((key, value) {
-                    print(
-                        'FROM invoice_from_modal itemNameController text: ${value.itemNameController.text}');
+                    print('FROM invoice_from_modal itemNameController text: ${value.itemNameController.text}');
                   });
                 },
               )),

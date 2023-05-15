@@ -9,43 +9,52 @@ import 'package:invoiceapp/src/features/shared/widgets/invoice_form_screen/domai
 import 'package:invoiceapp/src/features/shared/widgets/invoice_form_screen/domain/bill_to_model.dart';
 import 'package:invoiceapp/src/features/shared/widgets/invoice_form_screen/domain/item_list_model.dart';
 import 'package:invoiceapp/src/features/shared/widgets/invoice_form_screen/domain/list_item_model.dart';
+import 'package:invoiceapp/theme/theme.dart';
 import 'package:provider/provider.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   configureDependencies();
-  runApp(MultiProvider(
-    providers: [
-      ChangeNotifierProvider(
-        create: _billFromNotifier,
-      ),
-      ChangeNotifierProvider(
-        create: _billToNotifier,
-      ),
-      ChangeNotifierProvider(
-        create: _itemListNotifier,
-      ),
-      ChangeNotifierProvider(
-        create: _customListItemModelNotifier,
-      ),
-      ChangeNotifierProvider(
-        create: _appState,
-      ),
-      ChangeNotifierProvider(
-        create: _invoicesNotifier,
-      ),
-      ChangeNotifierProvider(
-        create: _filterNotifier,
-      )
-    ],
-    child: _child,
-  ));
+  runApp(
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(
+          create: _billFromNotifier,
+        ),
+        ChangeNotifierProvider(
+          create: _billToNotifier,
+        ),
+        ChangeNotifierProvider(
+          create: _itemListNotifier,
+        ),
+        ChangeNotifierProvider(
+          create: _customListItemModelNotifier,
+        ),
+        ChangeNotifierProvider(
+          create: _appState,
+        ),
+        ChangeNotifierProvider(
+          create: _invoicesNotifier,
+        ),
+        ChangeNotifierProvider(
+          create: _filterNotifier,
+        )
+      ],
+      child: _child,
+    ),
+  );
 }
 
 final _child = MaterialApp.router(
+  theme: ThemeData(
+    primarySwatch: appTheme,
+  ),
   routerConfig: appRouter.router,
 );
+
+final MaterialColor appTheme = CustomTheme.createMaterialColor(CustomTheme.otherColors['purple0'] as Color);
+
 BillFromModel _billFromNotifier(context) => BillFromModel();
 
 BillToModel _billToNotifier(context) => BillToModel();
