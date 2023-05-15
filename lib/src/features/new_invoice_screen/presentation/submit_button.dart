@@ -13,6 +13,7 @@ class SubmitButton extends StatelessWidget {
   final BillToModel billToModel;
   final ItemListModel itemsModel;
   final String? firebaseId;
+  final String? invoiceId;
   final List<GlobalKey<FormState>> formKeys;
   const SubmitButton(
       {required this.billFromModel,
@@ -20,6 +21,7 @@ class SubmitButton extends StatelessWidget {
       required this.itemsModel,
       required this.formKeys,
       this.firebaseId,
+      this.invoiceId,
       super.key});
 
   @override
@@ -52,7 +54,7 @@ class SubmitButton extends StatelessWidget {
               final docId = AppFirebase.createDocGetId(path);
 
               final formData = InvoiceFormModel(
-                      invoiceId: _createId(),
+                      invoiceId: invoiceId != null ? invoiceId as String : _createId(),
                       userId: snapshot.data!,
                       docId: firebaseId == null ? docId : firebaseId!,
                       createdAt: createdDate,
