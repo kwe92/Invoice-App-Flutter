@@ -17,10 +17,12 @@ class _ListTilePadded extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Padding(
-      padding: const EdgeInsets.only(
+        padding: const EdgeInsets.only(
           left: CustomTheme.mainContentPaddingH,
           right: CustomTheme.mainContentPaddingH,
           top: 24.0,
-          bottom: 0),
-      child: InvoiceListTileBody(invoice: invoice));
+          bottom: 0,
+        ),
+        child: InvoiceListTileBody(invoice: invoice),
+      );
 }
