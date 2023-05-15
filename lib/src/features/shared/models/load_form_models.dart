@@ -12,11 +12,7 @@ class LoadFormControllers {
   const LoadFormControllers();
 
   static void load(
-      BuildContext context,
-      BillFromModel billFromModel,
-      BillToModel billToModel,
-      ItemListModel itemsModel,
-      InvoiceFormModel invoice,
+      BuildContext context, BillFromModel billFromModel, BillToModel billToModel, ItemListModel itemsModel, InvoiceFormModel invoice,
       [bool pop = true]) {
     billFromModel.loadControllers(invoice);
     billToModel.loadControllers(invoice);
@@ -28,15 +24,14 @@ class LoadFormControllers {
       final String index = RandomRange.integer(1001, 999999).toString();
       final Map<String, CustomListItemModel> itemModelEntry = {index: model};
 
-      final listItem = CustomListItem(
-          index: index, onPress: itemsModel.removeItem, listItemModel: model);
+      final listItem = CustomListItem(index: index, onPress: itemsModel.removeItem, listItemModel: model);
 
       itemsModel.addItem({index: listItem});
       itemsModel.addItemModel(itemModelEntry);
     }
 
     print('list items: ${invoice.listItems}');
-    context.push('/editInvoice', extra: invoice.docId);
+    context.push('/editInvoice', extra: <String, String>{'docId': invoice.docId, 'invoiceId': invoice.invoiceId});
     pop ? context.pop() : null;
   }
 }
