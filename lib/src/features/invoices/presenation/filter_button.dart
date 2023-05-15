@@ -20,7 +20,7 @@ class DropdownButtonExample extends StatelessWidget {
     return Consumer(
       builder: (BuildContext context, FilterButtonModel model, _) => DropdownButton<String>(
         value: model.dropdownValue,
-        icon: const Icon(Icons.arrow_downward),
+        icon: const Icon(Icons.arrow_drop_down),
         elevation: 16,
         style: TextStyle(color: purple),
         underline: Container(
