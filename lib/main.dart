@@ -48,11 +48,13 @@ Future<void> main() async {
 
 final _child = MaterialApp.router(
   theme: ThemeData(
-      // TODO: Need to create custom MaterialColor to change primarySwatch color
-      // primarySwatch: CustomTheme.otherColors['purple0'] as MaterialColor,
-      ),
+    primarySwatch: appTheme,
+  ),
   routerConfig: appRouter.router,
 );
+
+final MaterialColor appTheme = CustomTheme.createMaterialColor(CustomTheme.otherColors['purple0'] as Color);
+
 BillFromModel _billFromNotifier(context) => BillFromModel();
 
 BillToModel _billToNotifier(context) => BillToModel();
