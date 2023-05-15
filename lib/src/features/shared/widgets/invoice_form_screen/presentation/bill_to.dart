@@ -75,7 +75,7 @@ class BillTo extends StatelessWidget {
                 child: CustomTextFormField(
                   title: 'Post Code',
                   controller: model.postCodeController,
-                  validator: FormValidators.numberField,
+                  validator: FormValidators.intField,
                 ),
               ),
             ],
