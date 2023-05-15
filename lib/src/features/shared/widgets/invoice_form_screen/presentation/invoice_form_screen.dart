@@ -20,27 +20,23 @@ class InvoiceFormScreen extends StatelessWidget {
 
   // final Widget button;
   final String? docId;
+  final String? invoiceId;
 
-  const InvoiceFormScreen({this.docId, Key? key}) : super(key: key);
+  const InvoiceFormScreen({this.docId, this.invoiceId, Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     final billFromFormState = GlobalKey<FormState>();
     final billToFormState = GlobalKey<FormState>();
 
-    final List<GlobalKey<FormState>> formKeys = [
-      billFromFormState,
-      billToFormState
-    ];
+    final List<GlobalKey<FormState>> formKeys = [billFromFormState, billToFormState];
     return BaseScaffold(
       key: InvoiceFormScreen.baseScaffoldKey,
       body: Padding(
         padding: CustomTheme.mainContentPadding,
         child: SingleChildScrollView(
           child: Consumer3(
-            builder: (context, BillFromModel billFromModel,
-                    BillToModel billToModel, ItemListModel itemsModel, child) =>
-                Column(
+            builder: (context, BillFromModel billFromModel, BillToModel billToModel, ItemListModel itemsModel, child) => Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 const CustomBackButton(),
@@ -49,10 +45,7 @@ class InvoiceFormScreen extends StatelessWidget {
                   'New Invoice',
                   style: TextStyle(fontSize: 26, fontWeight: FontWeight.w400),
                 ),
-                BillFrom(
-                    model: billFromModel,
-                    formState: billFromFormState,
-                    key: InvoiceFormScreen.billFromKey),
+                BillFrom(model: billFromModel, formState: billFromFormState, key: InvoiceFormScreen.billFromKey),
                 BillTo(
                   model: billToModel,
                   formState: billToFormState,
@@ -72,6 +65,7 @@ class InvoiceFormScreen extends StatelessWidget {
                         billToModel: billToModel,
                         itemsModel: itemsModel,
                         formKeys: formKeys,
+                        invoiceId: invoiceId,
                       )
               ],
             ),

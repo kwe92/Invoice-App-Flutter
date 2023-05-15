@@ -7,13 +7,14 @@ import 'package:provider/provider.dart';
 
 class EditInvoiceScreen extends StatelessWidget {
   final String docId;
-  const EditInvoiceScreen({required this.docId, super.key});
+  final String? invoiceId;
+  const EditInvoiceScreen({required this.docId, this.invoiceId, super.key});
   @override
   Widget build(BuildContext context) => Consumer3(
-        builder: (BuildContext context, BillFromModel billFromModel,
-                BillToModel billToModel, ItemListModel itemsModel, child) =>
+        builder: (BuildContext context, BillFromModel billFromModel, BillToModel billToModel, ItemListModel itemsModel, child) =>
             InvoiceFormScreen(
           docId: docId,
+          invoiceId: invoiceId,
         ),
       );
 }
