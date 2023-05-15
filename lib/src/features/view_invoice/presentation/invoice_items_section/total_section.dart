@@ -30,7 +30,7 @@ class TotalSection extends StatelessWidget {
               style: TextStyle(color: Colors.white, fontSize: fontSize),
             ),
             Text(
-              '\$${total.toString()}',
+              '\$${total.toStringAsFixed(2)}',
               style: const TextStyle(
                 color: Colors.white,
                 fontSize: fontSize,
