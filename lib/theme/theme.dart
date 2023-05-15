@@ -33,6 +33,7 @@ class CustomTheme {
     'blue0': Color.fromRGBO(18, 103, 177, 1)
   };
 
+// Created a custom MaterColor and can be used anywhere
   static MaterialColor createMaterialColor(Color color) {
     List strengths = <double>[.05];
     Map<int, Color> swatch = {};
