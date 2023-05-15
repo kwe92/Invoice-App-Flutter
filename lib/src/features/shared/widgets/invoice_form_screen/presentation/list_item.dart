@@ -55,11 +55,9 @@ class CustomListItem extends StatelessWidget {
           ),
           gaph,
           OutlinedButton(
-            onPressed: () {
-              onPress(
-                index,
-              );
-            },
+            onPressed: () => onPress(
+              index,
+            ),
             child: const Text(
               'Remove Item',
             ),
@@ -71,7 +69,6 @@ class CustomListItem extends StatelessWidget {
 
   // Used to make the total price | Could be implemented better
   void _onChanged(String text) {
-    print('from _onChanged ${text.isEmpty}');
     final qnty = listItemModel.quantityController.text;
     final price = listItemModel.priceController.text;
     if (qnty.isNotEmpty && price.isNotEmpty) {
