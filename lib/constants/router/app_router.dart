@@ -32,17 +32,13 @@ class AppRouter {
   ]);
 }
 
-Widget _invoiceScreen(BuildContext context, GoRouterState state) =>
-    const InvoiceScreen();
+Widget _invoiceScreen(BuildContext context, GoRouterState state) => const InvoiceScreen();
 
-Widget _newInvoiceScreen(BuildContext context, GoRouterState state) =>
-    const NewInvoice();
+Widget _newInvoiceScreen(BuildContext context, GoRouterState state) => const NewInvoice();
 
-Widget _signInScreen(BuildContext context, GoRouterState state) =>
-    const CustomSignInScreen();
+Widget _signInScreen(BuildContext context, GoRouterState state) => const CustomSignInScreen();
 
-Widget _profileScreen(BuildContext context, GoRouterState state) =>
-    const CustomProfileScreen();
+Widget _profileScreen(BuildContext context, GoRouterState state) => const CustomProfileScreen();
 
 Widget _viewInvoiceScreen(BuildContext context, GoRouterState state) {
   final invoice = state.extra as InvoiceFormModel;
@@ -50,9 +46,12 @@ Widget _viewInvoiceScreen(BuildContext context, GoRouterState state) {
 }
 
 Widget _editInvoice(context, GoRouterState state) {
-  final docId = state.extra as String;
+  final Map stateObj = state.extra as Map;
+  final String docId = stateObj['docId'];
+  final String invoiceId = stateObj['invoiceId'];
   print('DOC ID: $docId');
   return EditInvoiceScreen(
     docId: docId,
+    invoiceId: invoiceId,
   );
 }
