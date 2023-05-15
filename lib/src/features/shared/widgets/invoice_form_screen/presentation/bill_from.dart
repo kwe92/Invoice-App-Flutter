@@ -13,8 +13,7 @@ class BillFrom extends StatelessWidget {
   final InvoiceFormModel? invoice;
   final GlobalKey<FormState> formState;
 
-  const BillFrom(
-      {required this.model, required this.formState, this.invoice, super.key});
+  const BillFrom({required this.model, required this.formState, this.invoice, super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -56,7 +55,7 @@ class BillFrom extends StatelessWidget {
                   child: CustomTextFormField(
                     title: 'Post Code',
                     controller: model.postCodeController,
-                    validator: FormValidators.numberField,
+                    validator: FormValidators.intField,
                   ),
                 ),
               ],
