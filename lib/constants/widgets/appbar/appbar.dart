@@ -19,6 +19,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSize {
         child: AppBar(backgroundColor: CustomTheme.darkColors['shade3'], leading: AppIcon(radius: _radius), actions: [
           Row(
             children: [
+              // Image.asset('assets/white_sun.jpeg'),
               SvgPicture.asset('assets/icon-moon.svg'),
               Gaps.width(21),
               Container(
@@ -28,13 +29,12 @@ class CustomAppBar extends StatelessWidget implements PreferredSize {
               ),
               Gaps.width(21),
               GestureDetector(
-                onTap: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute<void>(
-                        builder: (BuildContext context) => const CustomProfileScreen(),
-                      ));
-                },
+                onTap: () => Navigator.push(
+                  context,
+                  MaterialPageRoute<void>(
+                    builder: (BuildContext context) => const CustomProfileScreen(),
+                  ),
+                ),
                 child: SizedBox(
                   height: 34,
                   width: 34,
