@@ -12,11 +12,7 @@ class CustomListItem extends StatelessWidget {
   final String index;
   final VoidCallback onPress;
   final CustomListItemModel listItemModel;
-  const CustomListItem(
-      {required this.index,
-      required this.onPress,
-      required this.listItemModel,
-      super.key});
+  const CustomListItem({required this.index, required this.onPress, required this.listItemModel, super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -39,21 +35,21 @@ class CustomListItem extends StatelessWidget {
                 width: 65,
                 controller: listItemModel.quantityController,
                 onChanged: _onChanged,
-                validator: FormValidators.numberField,
+                validator: FormValidators.intField,
               ),
               _TextField(
                 title: 'Price',
                 width: 105,
                 controller: listItemModel.priceController,
                 onChanged: _onChanged,
-                validator: FormValidators.numberField,
+                validator: FormValidators.doubleField,
               ),
               _TextField(
                 title: 'Total',
                 width: 152.5,
                 readOnly: true,
                 controller: listItemModel.totalController,
-                validator: FormValidators.numberField,
+                validator: FormValidators.doubleField,
               ),
             ],
           ),
