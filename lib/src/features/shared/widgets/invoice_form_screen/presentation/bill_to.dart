@@ -29,7 +29,7 @@ class BillTo extends StatelessWidget {
       fontSize: 18,
       color: purple,
     );
-    const double textInputWidth = 170;
+    final double textInputWidth = MediaQuery.of(context).size.width < 385 ? 162.5 : 170;
 
     return Form(
       key: formState,
