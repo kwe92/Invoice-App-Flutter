@@ -19,7 +19,7 @@ class BillFrom extends StatelessWidget {
   Widget build(BuildContext context) {
     final purple = CustomTheme.otherColors['purple0'] as Color;
     final gaph = Gaps.heigth(18);
-    const double textInputWidth = 170;
+    final double textInputWidth = MediaQuery.of(context).size.width < 385 ? 162.5 : 170;
 
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 18.0),
