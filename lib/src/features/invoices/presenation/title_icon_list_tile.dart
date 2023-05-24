@@ -18,16 +18,16 @@ class _NewInvoiceListTile extends StatelessWidget {
   const _NewInvoiceListTile({super.key});
 
   @override
-  Widget build(BuildContext context) => Padding(
+  Widget build(BuildContext context) => const Padding(
         padding: CustomTheme.mainContentPadding,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            const _Title(),
+            _Title(),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
-              children: const <Widget>[
+              children: <Widget>[
                 FilterButton(),
                 Gaps.gapw12,
                 NewInvoiceButton(),

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:invoiceapp/src/features/new_invoice_screen/presentation/submit_button.dart';
 import 'package:invoiceapp/src/features/shared/widgets/invoice_form_screen/domain/bill_from_model.dart';
 import 'package:invoiceapp/src/features/shared/widgets/invoice_form_screen/domain/bill_to_model.dart';
 import 'package:invoiceapp/src/features/shared/widgets/invoice_form_screen/domain/item_list_model.dart';
@@ -11,8 +10,7 @@ class NewInvoice extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Consumer3(
-        builder: (context, BillFromModel billFromModel, BillToModel billToModel,
-                ItemListModel itemsModel, child) =>
+        builder: (context, BillFromModel billFromModel, BillToModel billToModel, ItemListModel itemsModel, child) =>
             const InvoiceFormScreen(),
       );
 }

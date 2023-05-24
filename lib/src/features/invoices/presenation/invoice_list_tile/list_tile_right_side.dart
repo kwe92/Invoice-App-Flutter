@@ -1,5 +1,4 @@
 import 'package:flutter/widgets.dart';
-import 'package:invoiceapp/constants/enums/status.dart';
 import 'package:invoiceapp/src/features/shared/models/invoice_form_model.dart';
 import 'package:invoiceapp/src/features/shared/widgets/status_indicator.dart';
 import 'package:invoiceapp/theme/theme.dart';
@@ -42,6 +41,3 @@ class ListTileRightSide extends StatelessWidget {
 
 // TODO: FInish implementing statusCOlor function
 
-Color? _statusColor(String status) {
-  final statusColors = {InvoiceStatus.paid.name: const Color.fromARGB(255, 81, 215, 85)};
-}
