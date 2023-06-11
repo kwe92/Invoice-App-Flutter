@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:go_router/go_router.dart';
 import 'package:invoiceapp/src/features/shared/widgets/invoice_form_screen/domain/bill_from_model.dart';
 import 'package:invoiceapp/src/features/shared/widgets/invoice_form_screen/domain/bill_to_model.dart';
 import 'package:invoiceapp/src/features/shared/widgets/invoice_form_screen/domain/item_list_model.dart';
@@ -15,11 +16,12 @@ class NewInvoiceButton extends StatelessWidget {
       Consumer3(builder: (context, BillFromModel billFromModel, BillToModel billToModel, ItemListModel itemsModel, child) {
         return GestureDetector(
           onTap: () {
-            throw Exception();
-            // context.push('/newInvoice');
-            // billFromModel.clearAllControllers();
-            // billToModel.clearAllControllers();
-            // itemsModel.clearItemsState();
+            // ?? why was this put here??
+            // throw Exception();
+            context.push('/newInvoice');
+            billFromModel.clearAllControllers();
+            billToModel.clearAllControllers();
+            itemsModel.clearItemsState();
           },
           child: Container(
             width: 118,
