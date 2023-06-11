@@ -145,6 +145,7 @@ class BillTo extends StatelessWidget {
                     onPress: itemsModel.removeItem,
                   );
 
+                  // TODO: should be a Record
                   final Map<String, CustomListItem> entry = {index: listItem};
                   final Map<String, CustomListItemModel> itemModelEntry = {index: model};
 

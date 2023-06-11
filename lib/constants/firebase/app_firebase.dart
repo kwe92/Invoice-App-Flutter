@@ -4,7 +4,7 @@ import 'package:invoiceapp/src/features/shared/models/invoice_form_model.dart';
 
 class AppFirebase {
   const AppFirebase();
-
+  // TODO: create record//TODO: create record } data
   static Future<void> loadData({required String path, required Map<String, dynamic> data, String? docId}) async => docId != null
       ? await FirebaseFirestore.instance.collection(path).doc(docId).set(data)
       : await FirebaseFirestore.instance.collection(path).doc().set(data);

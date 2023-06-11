@@ -17,8 +17,8 @@ class BillFromModel extends ChangeNotifier {
   TextEditingController get countryController => _countryController;
   bool get edit => _edit;
 
+  // TODO: Replace with record
   Map<String, String> get allControllerText => {
-        // TODO: Place all Hash Table keys that are repeated in an ENUM
         'streetAdd': streetAddController.text,
         'city': cityController.text,
         'postCode': postCodeController.text,

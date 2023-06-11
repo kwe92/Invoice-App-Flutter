@@ -4,6 +4,7 @@ import 'package:invoiceapp/src/features/view_invoice/presentation/description_se
 import 'package:invoiceapp/theme/source_of_truth.dart';
 
 class ItemsListTile extends StatelessWidget {
+  // TODO: item should be a record
   final Map<String, dynamic> item;
   const ItemsListTile({required this.item, super.key});
 

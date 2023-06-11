@@ -46,6 +46,8 @@ Widget _viewInvoiceScreen(BuildContext context, GoRouterState state) {
 }
 
 Widget _editInvoice(context, GoRouterState state) {
+  // TODO: create record
+
   final Map stateObj = state.extra as Map;
   final String docId = stateObj['docId'];
   final String invoiceId = stateObj['invoiceId'];

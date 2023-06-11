@@ -14,6 +14,7 @@ class CustomListItemModel extends ChangeNotifier {
   TextEditingController get priceController => _priceController;
   TextEditingController get totalController => _totalController;
 
+  //TODO: create record
   Map<String, String> get allControllerText {
     return {
       HashKeys.itemName.name: itemNameController.text,

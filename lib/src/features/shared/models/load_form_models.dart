@@ -22,6 +22,8 @@ class LoadFormControllers {
 
       model.loadControllers(item);
       final String index = RandomRange.integer(1001, 999999).toString();
+
+      //TODO: create record???
       final Map<String, CustomListItemModel> itemModelEntry = {index: model};
 
       final listItem = CustomListItem(index: index, onPress: itemsModel.removeItem, listItemModel: model);
@@ -31,6 +33,7 @@ class LoadFormControllers {
     }
 
     print('list items: ${invoice.listItems}');
+    //TODO: create record???
     context.push('/editInvoice', extra: <String, String>{'docId': invoice.docId, 'invoiceId': invoice.invoiceId});
     pop ? context.pop() : null;
   }
