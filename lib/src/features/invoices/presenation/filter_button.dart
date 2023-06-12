@@ -15,7 +15,7 @@ class DropdownButtonExample extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final Color purple = CustomTheme.otherColors['purple0'] as Color;
+    final Color purple = CustomTheme.otherColors.purple0;
 
     return Consumer(
       builder: (BuildContext context, FilterButtonModel model, _) => DropdownButton<String>(

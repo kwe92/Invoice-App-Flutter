@@ -55,7 +55,7 @@ class _Title extends StatelessWidget {
               final int invoiceCount = InvoicesModel.getInvoices(filterModel.dropdownValue).length;
               return Text(
                 invoiceCount == 1 ? '$invoiceCount invoice' : '$invoiceCount invoices',
-                style: TextStyle(color: CustomTheme.lightColors['shade0']),
+                style: TextStyle(color: CustomTheme.lightColors.shade0),
               );
             },
           )
