@@ -13,7 +13,7 @@ class ModalButton extends StatelessWidget {
           width: 175,
           height: 62,
           decoration: BoxDecoration(
-            color: CustomTheme.otherColors['purple0'],
+            color: CustomTheme.otherColors.purple0,
             borderRadius: BorderRadius.circular(50),
           ),
           child: Center(
