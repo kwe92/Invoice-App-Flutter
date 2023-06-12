@@ -32,4 +32,35 @@ class CreateFormRecords {
         listItems: json['listItems'],
         total: json['total'],
       );
+
+  static Map<String, dynamic> invoiceFormJSON(InvoiceFormRecord invoice) => {
+        'invoiceId': invoice.invoiceId,
+        'userId': invoice.userId,
+        'docId': invoice.docId,
+        'createdAt': invoice.createdAt,
+        'paymentDue': invoice.paymentDue,
+        'status': invoice.status,
+        'billToText': CreateFormRecords.billToJSON(invoice.billToText),
+        'billFromText': CreateFormRecords.billFromJSON(invoice.billFromText),
+        'listItems': invoice.listItems,
+        'total': invoice.total,
+      };
+
+  static Map<String, dynamic> billFromJSON(BillFromRecord billFrom) => {
+        'streetAdd': billFrom.streetAdd,
+        'city': billFrom.city,
+        'postCode': billFrom.postCode,
+        'country': billFrom.country,
+      };
+  static Map<String, dynamic> billToJSON(BillToRecord billTo) => {
+        'streetAdd': billTo.streetAdd,
+        'city': billTo.city,
+        'postCode': billTo.postCode,
+        'country': billTo.country,
+        'clientName': billTo.clientName,
+        'clientEmail': billTo.clientEmail,
+        'projectDesc': billTo.projectDesc,
+        'date': billTo.date,
+        'paymentTerm': billTo.paymentTerm,
+      };
 }
