@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:invoiceapp/src/features/shared/records/records.dart';
 
-// TODO: Turn theme into a Record??
-
 class CustomTheme {
   const CustomTheme();
 
