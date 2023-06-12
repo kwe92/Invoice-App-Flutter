@@ -26,7 +26,7 @@ class IconListTile extends StatelessWidget {
         Row(
           children: [
             CircleAvatar(
-              backgroundColor: CustomTheme.otherColors['purple0'],
+              backgroundColor: CustomTheme.otherColors.purple0,
               radius: 25.625,
               child: Text(
                 clientInital,

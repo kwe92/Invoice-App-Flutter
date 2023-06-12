@@ -21,7 +21,7 @@ class AmountDueSection extends StatelessWidget {
           Text(
             '\$${LocaleFormatter.formatDouble(invoice.total)}',
             style: TextStyle(
-              color: CustomTheme.otherColors['purple0'],
+              color: CustomTheme.otherColors.purple0,
               fontSize: 18,
               fontWeight: FontWeight.w600,
             ),
