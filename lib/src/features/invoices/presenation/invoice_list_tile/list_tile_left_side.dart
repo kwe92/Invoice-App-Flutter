@@ -19,7 +19,7 @@ class ListTileLeftSide extends StatelessWidget {
             children: <Widget>[
               Text(
                 'Due ${DateFormatter.dateTimeToString(invoice.paymentDue)}',
-                style: TextStyle(color: CustomTheme.lightColors['shade0']),
+                style: TextStyle(color: CustomTheme.lightColors.shade0),
               ),
               Gaps.gaph8,
               Text('\$${invoice.total.toStringAsFixed(2)}'),

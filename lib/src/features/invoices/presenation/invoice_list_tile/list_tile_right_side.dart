@@ -14,7 +14,7 @@ class ListTileRightSide extends StatelessWidget {
     final nameArray = invoice.billToText.clientName.split(' ');
     final fname = nameArray[0];
     final lname = nameArray.length > 1 ? nameArray[1] : ' ';
-    final TextStyle nameStyle = TextStyle(color: CustomTheme.lightColors['shade0']);
+    final TextStyle nameStyle = TextStyle(color: CustomTheme.lightColors.shade0);
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       crossAxisAlignment: CrossAxisAlignment.end,
