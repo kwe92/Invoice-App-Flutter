@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:invoiceapp/constants/utils/random_nums.dart';
-import 'package:invoiceapp/src/features/shared/models/invoice_form_model.dart';
+import 'package:invoiceapp/src/features/shared/records/records.dart';
 import 'package:invoiceapp/src/features/shared/widgets/invoice_form_screen/domain/bill_from_model.dart';
 import 'package:invoiceapp/src/features/shared/widgets/invoice_form_screen/domain/bill_to_model.dart';
 import 'package:invoiceapp/src/features/shared/widgets/invoice_form_screen/domain/item_list_model.dart';
@@ -12,7 +12,7 @@ class LoadFormControllers {
   const LoadFormControllers();
 
   static void load(
-      BuildContext context, BillFromModel billFromModel, BillToModel billToModel, ItemListModel itemsModel, InvoiceFormModel invoice,
+      BuildContext context, BillFromModel billFromModel, BillToModel billToModel, ItemListModel itemsModel, InvoiceFormRecord invoice,
       [bool pop = true]) {
     billFromModel.loadControllers(invoice);
     billToModel.loadControllers(invoice);
