@@ -46,3 +46,10 @@ typedef OtherColorsRecord = ({
   Color red1,
   Color blue0,
 });
+
+typedef InvoiceItemRecord = ({
+  String itemName,
+  double quantity,
+  double price,
+  double total,
+});
