@@ -4,7 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/foundation.dart';
 import 'package:invoiceapp/constants/enums/hash_keys.dart';
 import 'package:invoiceapp/constants/firebase/app_firebase.dart';
-import 'package:invoiceapp/src/features/shared/models/invoice_form_model.dart';
+import 'package:invoiceapp/src/features/shared/records/get_records.dart';
 
 class InvoicesModel extends ChangeNotifier {
   static Map _invoices = {};
@@ -19,9 +19,10 @@ class InvoicesModel extends ChangeNotifier {
   void _invoicesCallback(QuerySnapshot snapshot) {
     _invoices = {
       for (final invoice in snapshot.docs as List<QueryDocumentSnapshot<Map?>>)
-        invoice.data()![HashKeys.invoiceId.name]: InvoiceFormModel.fromJSON(
-          invoice.data() as Map<String, dynamic>,
-        )
+        invoice.data()![HashKeys.invoiceId.name]: CreateRecords.invoiceFormRecord(invoice.data() as Map<String, dynamic>)
+      //     InvoiceFormModel.fromJSON(
+      //   invoice.data() as Map<String, dynamic>,
+      // )
     };
 
     notifyListeners();

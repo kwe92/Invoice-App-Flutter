@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+// TODO: Turn theme into a Record??
+
 class CustomTheme {
   const CustomTheme();
 
@@ -10,6 +12,8 @@ class CustomTheme {
   static const double appBarHeight = 58;
 
   static const Size appBarSize = Size.fromHeight(appBarHeight);
+
+  // TODO: create record for all colors
 
   static const Map<String, Color> darkColors = {
     'shade0': Color.fromRGBO(12, 14, 22, 1),

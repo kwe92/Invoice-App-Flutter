@@ -5,7 +5,7 @@ import 'package:invoiceapp/src/features/invoices/presenation/edit_modal.dart';
 import 'package:invoiceapp/src/features/invoices/presenation/invoice_error_screen.dart';
 import 'package:invoiceapp/src/features/invoices/presenation/invoice_list_tile/invoice_list_tile.dart';
 import 'package:invoiceapp/src/features/invoices/presenation/title_icon_list_tile.dart';
-import 'package:invoiceapp/src/features/shared/models/invoice_form_model.dart';
+import 'package:invoiceapp/src/features/shared/records/records.dart';
 import 'package:provider/provider.dart';
 
 class InvoicesListView extends StatelessWidget {
@@ -18,7 +18,7 @@ class InvoicesListView extends StatelessWidget {
             children: <Widget>[
               const TitleIconListTile(),
               if (model.invoices.values.isNotEmpty)
-                for (final InvoiceFormModel invoice in InvoicesModel.getInvoices(
+                for (final InvoiceFormRecord invoice in InvoicesModel.getInvoices(
                   filterModel.dropdownValue,
                 ))
                   GestureDetector(

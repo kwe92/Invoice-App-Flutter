@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:invoiceapp/constants/widgets/base_scaffold/base_scaffold.dart';
-import 'package:invoiceapp/src/features/shared/models/invoice_form_model.dart';
+import 'package:invoiceapp/src/features/shared/records/records.dart';
 import 'package:invoiceapp/src/features/shared/widgets/invoice_form_screen/presentation/back_button.dart';
 import 'package:invoiceapp/src/features/view_invoice/presentation/mark_as_paid_modal.dart';
 import 'package:invoiceapp/src/features/view_invoice/presentation/description_section/custom_text_style.dart';
@@ -12,7 +12,7 @@ import 'package:invoiceapp/theme/source_of_truth.dart';
 import 'package:invoiceapp/theme/theme.dart';
 
 class ViewInvoiceScreen extends StatelessWidget {
-  final InvoiceFormModel invoice;
+  final InvoiceFormRecord invoice;
   const ViewInvoiceScreen({required this.invoice, super.key});
 
   @override

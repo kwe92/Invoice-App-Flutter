@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:invoiceapp/src/features/invoices/presenation/invoice_list_tile/list_tile_body.dart';
-import 'package:invoiceapp/src/features/shared/models/invoice_form_model.dart';
+import 'package:invoiceapp/src/features/shared/records/records.dart';
 import 'package:invoiceapp/theme/theme.dart';
 
 class InvoiceListTile extends StatelessWidget {
-  final InvoiceFormModel invoice;
+  final InvoiceFormRecord invoice;
   const InvoiceListTile({required this.invoice, super.key});
 
   @override
@@ -12,7 +12,7 @@ class InvoiceListTile extends StatelessWidget {
 }
 
 class _ListTilePadded extends StatelessWidget {
-  final InvoiceFormModel invoice;
+  final InvoiceFormRecord invoice;
   const _ListTilePadded({required this.invoice, super.key});
 
   @override

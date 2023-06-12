@@ -1,7 +1,7 @@
 // ignore_for_file: prefer_final_fields
 
 import 'package:flutter/material.dart';
-import 'package:invoiceapp/src/features/shared/models/invoice_form_model.dart';
+import 'package:invoiceapp/src/features/shared/records/records.dart';
 
 class BillToModel extends ChangeNotifier {
   TextEditingController _streetAddController = TextEditingController();
@@ -24,8 +24,8 @@ class BillToModel extends ChangeNotifier {
   TextEditingController get dateController => _dateController;
   TextEditingController get dropDownMenuController => _dropDownMenuController;
 
+//TODO: create record
   Map<String, String> get allControllerText => {
-        // TODO: Place all Hash Table keys that are repeated in an ENUM
         'streetAdd': streetAddController.text,
         'city': cityController.text,
         'postCode': postCodeController.text,
@@ -37,8 +37,7 @@ class BillToModel extends ChangeNotifier {
         'paymentTerm': dropDownMenuController.text,
       };
 
-  void setDateControllerText(String date) =>
-      date.isNotEmpty ? dateController.text = date : null;
+  void setDateControllerText(String date) => date.isNotEmpty ? dateController.text = date : null;
 
   void clearStreetController() {
     streetAddController.clear();
@@ -98,16 +97,16 @@ class BillToModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  void loadControllers(InvoiceFormModel invoice) {
-    streetAddController.text = invoice.billToText['streetAdd'];
-    cityController.text = invoice.billToText['city'];
-    postCodeController.text = invoice.billToText['postCode'];
-    countryController.text = invoice.billToText['country'];
-    clientNameController.text = invoice.billToText['clientName'];
-    clientEmailController.text = invoice.billToText['clientEmail'];
-    projectDescController.text = invoice.billToText['projectDesc'];
-    dateController.text = invoice.billToText['date'];
-    dropDownMenuController.text = invoice.billToText['paymentTerm'];
+  void loadControllers(InvoiceFormRecord invoice) {
+    streetAddController.text = invoice.billToText.streetAdd;
+    cityController.text = invoice.billToText.city;
+    postCodeController.text = invoice.billToText.postCode;
+    countryController.text = invoice.billToText.country;
+    clientNameController.text = invoice.billToText.clientName;
+    clientEmailController.text = invoice.billToText.clientEmail;
+    projectDescController.text = invoice.billToText.projectDesc;
+    dateController.text = invoice.billToText.date;
+    dropDownMenuController.text = invoice.billToText.paymentTerm;
     notifyListeners();
   }
 }

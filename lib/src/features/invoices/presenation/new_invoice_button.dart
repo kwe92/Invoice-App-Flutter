@@ -16,6 +16,8 @@ class NewInvoiceButton extends StatelessWidget {
       Consumer3(builder: (context, BillFromModel billFromModel, BillToModel billToModel, ItemListModel itemsModel, child) {
         return GestureDetector(
           onTap: () {
+            // ?? why was this put here??
+            // throw Exception();
             context.push('/newInvoice');
             billFromModel.clearAllControllers();
             billToModel.clearAllControllers();

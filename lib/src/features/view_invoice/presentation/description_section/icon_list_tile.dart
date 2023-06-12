@@ -1,20 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:invoiceapp/src/features/shared/models/invoice_form_model.dart';
+import 'package:invoiceapp/src/features/shared/records/records.dart';
 import 'package:invoiceapp/src/features/view_invoice/presentation/description_section/custom_text_style.dart';
 import 'package:invoiceapp/theme/source_of_truth.dart';
 import 'package:invoiceapp/theme/theme.dart';
 
 class IconListTile extends StatelessWidget {
-  final InvoiceFormModel invoice;
+  final InvoiceFormRecord invoice;
   const IconListTile({required this.invoice, super.key});
 
   @override
   Widget build(BuildContext context) {
-    final String clientname = invoice.billToText['clientName'].toString().trim();
+    final String clientname = invoice.billToText.clientName.trim();
 
-    final String clientInital = invoice.billToText['clientName'].toString().trim().substring(0, 1);
+    final String clientInital = clientname.substring(0, 1);
 
-    final String clientEmail = invoice.billToText['clientEmail'].toString().trim();
+    final String clientEmail = invoice.billToText.clientEmail.trim();
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
