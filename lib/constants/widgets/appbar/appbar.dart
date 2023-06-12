@@ -16,7 +16,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSize {
   @override
   Widget build(BuildContext context) => PreferredSize(
         preferredSize: CustomTheme.appBarSize,
-        child: AppBar(backgroundColor: CustomTheme.darkColors['shade3'], leading: AppIcon(radius: _radius), actions: [
+        child: AppBar(backgroundColor: CustomTheme.darkColors.shade3, leading: AppIcon(radius: _radius), actions: [
           Row(
             children: [
               // Image.asset('assets/white_sun.jpeg'),
@@ -25,7 +25,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSize {
               Container(
                 height: 56,
                 width: 1,
-                color: CustomTheme.lightColors['shade0'],
+                color: CustomTheme.lightColors.shade0,
               ),
               Gaps.width(21),
               GestureDetector(
@@ -39,7 +39,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSize {
                   height: 34,
                   width: 34,
                   child: CircleAvatar(
-                    backgroundColor: CustomTheme.otherColors['purple0'],
+                    backgroundColor: CustomTheme.otherColors.purple0,
                     child: FutureBuilder(
                       future: AppFirebase.getCurrentUserInital(),
                       builder: (context, snapshot) => Text(

@@ -9,7 +9,7 @@ class BaseScaffold extends StatelessWidget {
   @override
   Widget build(BuildContext context) => SafeArea(
         child: Scaffold(
-            backgroundColor: CustomTheme.lightColors['shade3'],
+            backgroundColor: CustomTheme.lightColors.shade3,
             appBar: const CustomAppBar(
               preferredSize: CustomTheme.appBarSize,
             ),
