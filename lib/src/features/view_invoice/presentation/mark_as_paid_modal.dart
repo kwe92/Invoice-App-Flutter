@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:invoiceapp/constants/firebase/app_firebase.dart';
-import 'package:invoiceapp/src/features/shared/models/invoice_form_model.dart';
+import 'package:invoiceapp/src/features/shared/records/records.dart';
 import 'package:invoiceapp/src/features/shared/widgets/modal_button.dart';
 import 'package:invoiceapp/theme/source_of_truth.dart';
 import 'package:invoiceapp/theme/theme.dart';
 
 class MarkAsPaidmodal {
-  static void modal(BuildContext context, InvoiceFormModel invoice) => showModalBottomSheet<void>(
+  static void modal(BuildContext context, InvoiceFormRecord invoice) => showModalBottomSheet<void>(
         context: context,
         builder: (BuildContext context) {
           const String pending = 'pending';
