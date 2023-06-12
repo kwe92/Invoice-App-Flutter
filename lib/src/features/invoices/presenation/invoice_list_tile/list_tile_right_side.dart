@@ -1,17 +1,17 @@
 import 'package:flutter/widgets.dart';
-import 'package:invoiceapp/src/features/shared/models/invoice_form_model.dart';
+import 'package:invoiceapp/src/features/shared/records/records.dart';
 import 'package:invoiceapp/src/features/shared/widgets/status_indicator.dart';
 import 'package:invoiceapp/theme/theme.dart';
 
 class ListTileRightSide extends StatelessWidget {
-  final InvoiceFormModel invoice;
+  final InvoiceFormRecord invoice;
   const ListTileRightSide({required this.invoice, super.key});
 
   @override
   Widget build(BuildContext context) {
     //TODO: Should be removed as input should never be nul;
 
-    final nameArray = invoice.billToText['clientName'] != null ? invoice.billToText['clientName'].split(' ') as List<String> : [' '];
+    final nameArray = invoice.billToText.clientName.split(' ');
     final fname = nameArray[0];
     final lname = nameArray.length > 1 ? nameArray[1] : ' ';
     final TextStyle nameStyle = TextStyle(color: CustomTheme.lightColors['shade0']);
