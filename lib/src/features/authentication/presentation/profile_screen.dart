@@ -13,7 +13,7 @@ class CustomProfileScreen extends StatelessWidget {
         child: Scaffold(
           appBar: AppBar(
             title: const Text('Profile Screen'),
-            backgroundColor: CustomTheme.darkColors['shade3'],
+            backgroundColor: CustomTheme.darkColors.shade3,
           ),
           body: ProfileScreen(
             providers: _providers,

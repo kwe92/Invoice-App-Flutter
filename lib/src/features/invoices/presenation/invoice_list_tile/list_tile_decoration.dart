@@ -8,9 +8,9 @@ class CustomDecoration {
   static decoration() {
     const double offsetVal = 2;
     const double blur = 12;
-    final Color shadowColor = CustomTheme.lightColors['shade2'] as Color;
+    final Color shadowColor = CustomTheme.lightColors.shade2;
     return BoxDecoration(
-      color: CustomTheme.lightColors['shade3'],
+      color: CustomTheme.lightColors.shade3,
       borderRadius: BorderRadius.circular(12),
       boxShadow: <BoxShadow>[
         BoxShadow(

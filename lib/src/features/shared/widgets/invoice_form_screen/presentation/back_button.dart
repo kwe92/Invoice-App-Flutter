@@ -58,7 +58,7 @@ class _BackButtonImage extends StatelessWidget {
       height: imageSize,
       child: SvgPicture.asset(
         'assets/icon-arrow-left.svg',
-        color: showText == true ? null : CustomTheme.otherColors['purple0'],
+        color: showText == true ? null : CustomTheme.otherColors.purple0,
       ),
     );
   }

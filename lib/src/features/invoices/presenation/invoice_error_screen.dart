@@ -11,21 +11,18 @@ class ErrorScreen extends StatelessWidget {
         children: <Widget>[
           Padding(
             padding: const EdgeInsets.only(top: 34.25, bottom: 32),
-            child: SizedBox(
-                child: SvgPicture.asset('assets/illustration-empty.svg')),
+            child: SizedBox(child: SvgPicture.asset('assets/illustration-empty.svg')),
           ),
           const Text(
             'There is nothing here',
-            style: TextStyle(
-                fontSize: 26, fontWeight: FontWeight.w500, letterSpacing: -0.5),
+            style: TextStyle(fontSize: 26, fontWeight: FontWeight.w500, letterSpacing: -0.5),
           ),
           Gaps.gaph16,
           SizedBox(
               width: 206,
               child: Text(
                 'Click the new button to get started creating an invoice',
-                style: TextStyle(
-                    fontSize: 16, color: CustomTheme.lightColors['shade0']),
+                style: TextStyle(fontSize: 16, color: CustomTheme.lightColors.shade0),
               )),
         ],
       );

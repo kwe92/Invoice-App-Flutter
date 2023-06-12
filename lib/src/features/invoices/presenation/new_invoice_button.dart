@@ -27,7 +27,7 @@ class NewInvoiceButton extends StatelessWidget {
             width: 118,
             height: 58,
             decoration: BoxDecoration(
-              color: CustomTheme.otherColors['purple0'],
+              color: CustomTheme.otherColors.purple0,
               borderRadius: BorderRadius.circular(50),
             ),
             child: Row(
@@ -61,7 +61,7 @@ class NewInvoiceButton extends StatelessWidget {
                     'New',
                     style: TextStyle(
                       fontSize: 22,
-                      color: CustomTheme.lightColors['shade3'],
+                      color: CustomTheme.lightColors.shade3,
                       fontWeight: FontWeight.w400,
                     ),
                   ),

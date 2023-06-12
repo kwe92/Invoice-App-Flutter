@@ -1,3 +1,5 @@
+import 'package:flutter/material.dart';
+
 typedef BillFromRecord = ({
   String streetAdd,
   String city,
@@ -28,4 +30,19 @@ typedef InvoiceFormRecord = ({
   BillFromRecord billFromText,
   List listItems,
   double total,
+});
+
+typedef ThemeShadesRecord = ({
+  Color shade0,
+  Color shade1,
+  Color shade2,
+  Color shade3,
+});
+
+typedef OtherColorsRecord = ({
+  Color purple0,
+  Color purple1,
+  Color red0,
+  Color red1,
+  Color blue0,
 });

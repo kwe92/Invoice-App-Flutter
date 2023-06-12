@@ -62,7 +62,7 @@ final _child = MaterialApp.router(
   routerConfig: appRouter.router,
 );
 
-final MaterialColor appTheme = CustomTheme.createMaterialColor(CustomTheme.otherColors['purple0'] as Color);
+final MaterialColor appTheme = CustomTheme.createMaterialColor(CustomTheme.otherColors.purple0);
 
 BillFromModel _billFromNotifier(context) => BillFromModel();
 

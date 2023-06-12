@@ -22,8 +22,8 @@ class BillTo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final Color purple = CustomTheme.otherColors['purple0'] as Color;
-    final Color lighterPurple = CustomTheme.otherColors['purple1'] as Color;
+    final Color purple = CustomTheme.otherColors.purple0;
+    final Color lighterPurple = CustomTheme.otherColors.purple1;
     final gaph = Gaps.heigth(18);
     final textStyle = TextStyle(
       fontSize: 18,

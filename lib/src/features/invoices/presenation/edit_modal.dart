@@ -17,7 +17,7 @@ class EditModal {
       builder: (BuildContext context) {
         return Container(
           height: 325,
-          color: CustomTheme.lightColors['shade3'],
+          color: CustomTheme.lightColors.shade3,
           child: Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,

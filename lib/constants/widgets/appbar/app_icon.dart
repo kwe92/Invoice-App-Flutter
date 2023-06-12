@@ -9,7 +9,7 @@ class AppIcon extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final Color topColorIconBox = CustomTheme.otherColors['purple0'] as Color;
+    final Color topColorIconBox = CustomTheme.otherColors.purple0;
 
     return Stack(
       children: [
@@ -74,7 +74,7 @@ class _BottomBox extends StatelessWidget {
   @override
   Widget build(BuildContext context) => Container(
         decoration: BoxDecoration(
-          color: CustomTheme.otherColors['purple1'] as Color,
+          color: CustomTheme.otherColors.purple1,
           borderRadius: BorderRadius.only(
             bottomRight: radius,
             topLeft: radius,

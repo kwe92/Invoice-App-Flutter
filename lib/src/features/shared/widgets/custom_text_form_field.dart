@@ -15,18 +15,12 @@ class CustomTextFormField extends StatelessWidget {
   final NullableStringCallback? validator;
 
   const CustomTextFormField(
-      {required this.title,
-      required this.controller,
-      this.readOnly = false,
-      this.onTap,
-      this.onChanged,
-      this.validator,
-      super.key});
+      {required this.title, required this.controller, this.readOnly = false, this.onTap, this.onChanged, this.validator, super.key});
 
   @override
   Widget build(BuildContext context) {
-    final purple = CustomTheme.otherColors['purple0'] as Color;
-    final grey = CustomTheme.lightColors['shade1'] as Color;
+    final purple = CustomTheme.otherColors.purple0;
+    final grey = CustomTheme.lightColors.shade1;
     return TextFormField(
       readOnly: readOnly,
       onTap: onTap,
@@ -38,12 +32,8 @@ class CustomTextFormField extends StatelessWidget {
           title,
           style: TextStyle(color: grey),
         ),
-        border: OutlineInputBorder(
-            borderSide:
-                BorderSide(color: CustomTheme.lightColors['shade1'] as Color),
-            borderRadius: BorderRadius.circular(6)),
-        focusedBorder:
-            OutlineInputBorder(borderSide: BorderSide(color: purple)),
+        border: OutlineInputBorder(borderSide: BorderSide(color: CustomTheme.lightColors.shade1), borderRadius: BorderRadius.circular(6)),
+        focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: purple)),
       ),
       validator: validator,
     );

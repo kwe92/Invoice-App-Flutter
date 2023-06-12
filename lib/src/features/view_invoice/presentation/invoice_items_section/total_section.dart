@@ -14,7 +14,7 @@ class TotalSection extends StatelessWidget {
     return Container(
       height: 46,
       decoration: BoxDecoration(
-        color: CustomTheme.otherColors['purple0'],
+        color: CustomTheme.otherColors.purple0,
         borderRadius: const BorderRadius.only(
           bottomLeft: Radius.circular(radiusSize),
           bottomRight: Radius.circular(radiusSize),

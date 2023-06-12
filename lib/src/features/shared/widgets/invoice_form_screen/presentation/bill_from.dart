@@ -15,7 +15,7 @@ class BillFrom extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final purple = CustomTheme.otherColors['purple0'] as Color;
+    final purple = CustomTheme.otherColors.purple0;
     final gaph = Gaps.heigth(18);
     final double textInputWidth = MediaQuery.of(context).size.width < 385 ? 162.5 : 170;
 
