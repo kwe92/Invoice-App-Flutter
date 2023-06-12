@@ -1,7 +1,7 @@
 // ignore_for_file: prefer_final_fields
 
 import 'package:flutter/material.dart';
-import 'package:invoiceapp/src/features/shared/models/invoice_form_model.dart';
+import 'package:invoiceapp/src/features/shared/records/records.dart';
 
 class BillFromModel extends ChangeNotifier {
   TextEditingController _streetAddController = TextEditingController();
@@ -53,11 +53,11 @@ class BillFromModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  void loadControllers(InvoiceFormModel invoice) {
-    streetAddController.text = invoice.billFromText['streetAdd'];
-    cityController.text = invoice.billFromText['city'];
-    postCodeController.text = invoice.billFromText['postCode'];
-    countryController.text = invoice.billFromText['country'];
+  void loadControllers(InvoiceFormRecord invoice) {
+    streetAddController.text = invoice.billFromText.streetAdd;
+    cityController.text = invoice.billFromText.city;
+    postCodeController.text = invoice.billFromText.postCode;
+    countryController.text = invoice.billFromText.country;
     notifyListeners();
   }
 }
