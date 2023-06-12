@@ -1,6 +1,6 @@
 import 'package:invoiceapp/src/features/shared/records/records.dart';
 
-class CreateRecords {
+class CreateFormRecords {
   static BillFromRecord billFromRecord(Map<String, dynamic> json) => (
         streetAdd: json['streetAdd'],
         city: json['city'],
@@ -27,8 +27,8 @@ class CreateRecords {
         createdAt: json['createdAt'].toDate(),
         paymentDue: json['paymentDue'].toDate(),
         status: json['status'],
-        billToText: CreateRecords.billToRecord(json["billToText"]),
-        billFromText: CreateRecords.billFromRecord(json["billFromText"]),
+        billToText: CreateFormRecords.billToRecord(json["billToText"]),
+        billFromText: CreateFormRecords.billFromRecord(json["billFromText"]),
         listItems: json['listItems'],
         total: json['total'],
       );
