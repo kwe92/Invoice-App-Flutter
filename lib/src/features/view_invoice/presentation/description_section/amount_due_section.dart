@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:invoiceapp/constants/utils/formatters.dart';
-import 'package:invoiceapp/src/features/shared/models/invoice_form_model.dart';
+import 'package:invoiceapp/src/features/shared/records/records.dart';
 import 'package:invoiceapp/src/features/view_invoice/presentation/description_section/custom_text_style.dart';
 import 'package:invoiceapp/theme/source_of_truth.dart';
 import 'package:invoiceapp/theme/theme.dart';
 
 class AmountDueSection extends StatelessWidget {
-  final InvoiceFormModel invoice;
+  final InvoiceFormRecord invoice;
   const AmountDueSection({required this.invoice, super.key});
 
   @override
