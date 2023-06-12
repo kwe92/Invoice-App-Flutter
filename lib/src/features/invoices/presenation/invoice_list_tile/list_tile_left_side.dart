@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:invoiceapp/constants/utils/formatters.dart';
-import 'package:invoiceapp/src/features/shared/models/invoice_form_model.dart';
+import 'package:invoiceapp/src/features/shared/records/records.dart';
 import 'package:invoiceapp/theme/source_of_truth.dart';
 import 'package:invoiceapp/theme/theme.dart';
 
 class ListTileLeftSide extends StatelessWidget {
-  final InvoiceFormModel invoice;
+  final InvoiceFormRecord invoice;
   const ListTileLeftSide({required this.invoice, super.key});
 
   @override
