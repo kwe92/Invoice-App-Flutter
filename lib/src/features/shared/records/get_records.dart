@@ -20,17 +20,24 @@ class CreateFormRecords {
         paymentTerm: json['paymentTerm']
       );
 
-  static InvoiceFormRecord invoiceFormRecord(Map<String, dynamic> json) => (
+  static InvoiceFormRecord invoiceFormRecord(Map<dynamic, dynamic> json) => (
         invoiceId: json['invoiceId'],
         userId: json['userId'],
         docId: json['docId'],
-        createdAt: json['createdAt'].toDate(),
-        paymentDue: json['paymentDue'].toDate(),
+        createdAt: json['createdAt'].runtimeType == DateTime ? json['createdAt'] : json['createdAt'].toDate(),
+        paymentDue: json['paymentDue'].runtimeType == DateTime ? json['paymentDue'] : json['paymentDue'].toDate(),
         status: json['status'],
         billToText: CreateFormRecords.billToRecord(json["billToText"]),
         billFromText: CreateFormRecords.billFromRecord(json["billFromText"]),
         listItems: json['listItems'],
         total: json['total'],
+      );
+
+  static InvoiceItemRecord invoiceItemRecord(Map<dynamic, dynamic> json) => (
+        itemName: json['itemName'],
+        price: double.parse(json['price']),
+        quantity: double.parse(json['quantity']),
+        total: double.parse(json['total']),
       );
 
   static Map<String, dynamic> invoiceFormJSON(InvoiceFormRecord invoice) => {
