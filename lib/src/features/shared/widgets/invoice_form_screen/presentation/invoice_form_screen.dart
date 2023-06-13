@@ -45,7 +45,11 @@ class InvoiceFormScreen extends StatelessWidget {
                   'New Invoice',
                   style: TextStyle(fontSize: 26, fontWeight: FontWeight.w400),
                 ),
-                BillFrom(model: billFromModel, formState: billFromFormState, key: InvoiceFormScreen.billFromKey),
+                BillFrom(
+                  model: billFromModel,
+                  formState: billFromFormState,
+                  key: InvoiceFormScreen.billFromKey,
+                ),
                 BillTo(
                   model: billToModel,
                   formState: billToFormState,

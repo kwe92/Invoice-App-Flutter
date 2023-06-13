@@ -19,7 +19,7 @@ class InvoicesModel extends ChangeNotifier {
   void _invoicesCallback(QuerySnapshot snapshot) {
     _invoices = {
       for (final invoice in snapshot.docs as List<QueryDocumentSnapshot<Map?>>)
-        invoice.data()![HashKeys.invoiceId.name]: CreateRecords.invoiceFormRecord(invoice.data() as Map<String, dynamic>)
+        invoice.data()![HashKeys.invoiceId.name]: CreateFormRecords.invoiceFormRecord(invoice.data() as Map<String, dynamic>)
       //     InvoiceFormModel.fromJSON(
       //   invoice.data() as Map<String, dynamic>,
       // )
