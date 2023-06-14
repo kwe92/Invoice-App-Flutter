@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:invoiceapp/src/features/shared/records/get_records.dart';
-import 'package:invoiceapp/src/features/shared/records/records.dart';
 import 'package:invoiceapp/src/features/view_invoice/presentation/view_invoice_screen.dart';
 import 'package:invoiceapp/src/features/authentication/presentation/profile_screen.dart';
 import 'package:invoiceapp/src/features/authentication/presentation/sign_in_screen.dart';
@@ -51,8 +50,6 @@ Widget _viewInvoiceScreen(BuildContext context, GoRouterState state) {
 }
 
 Widget _editInvoice(context, GoRouterState state) {
-  // TODO: create record
-
   final Map stateObj = state.extra as Map;
   final String docId = stateObj['docId'];
   final String invoiceId = stateObj['invoiceId'];
