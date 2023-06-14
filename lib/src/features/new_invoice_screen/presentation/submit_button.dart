@@ -34,7 +34,7 @@ class SubmitButton extends StatelessWidget {
             final bool formKey2 = formKeys[1].currentState!.validate();
 
             if (formKey1 && formKey2) {
-              final Map<String, String> billFromText = billFromModel.allControllerText;
+              final BillFromRecord billFromText = billFromModel.allControllerText;
 
               final Map<String, String> billToText = billToModel.allControllerText;
 
@@ -61,7 +61,7 @@ class SubmitButton extends StatelessWidget {
                 createdAt: createdDate,
                 paymentDue: _paymentDue(createdDate, paymentTerm),
                 status: InvoiceStatus.pending.name,
-                billFromText: CreateFormRecords.billFromRecord(billFromText),
+                billFromText: billFromText,
                 billToText: CreateFormRecords.billToRecord(billToText),
                 listItems: itemslist,
                 total: total
