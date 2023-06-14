@@ -3,7 +3,8 @@ import 'package:go_router/go_router.dart';
 import 'package:invoiceapp/constants/enums/status.dart';
 import 'package:invoiceapp/constants/firebase/app_firebase.dart';
 import 'package:invoiceapp/constants/utils/random_nums.dart';
-import 'package:invoiceapp/src/features/shared/models/invoice_form_model.dart';
+import 'package:invoiceapp/src/features/shared/records/get_records.dart';
+import 'package:invoiceapp/src/features/shared/records/records.dart';
 import 'package:invoiceapp/src/features/shared/widgets/invoice_form_screen/domain/bill_from_model.dart';
 import 'package:invoiceapp/src/features/shared/widgets/invoice_form_screen/domain/bill_to_model.dart';
 import 'package:invoiceapp/src/features/shared/widgets/invoice_form_screen/domain/item_list_model.dart';
@@ -33,7 +34,7 @@ class SubmitButton extends StatelessWidget {
             final bool formKey2 = formKeys[1].currentState!.validate();
 
             if (formKey1 && formKey2) {
-              final Map<String, String> billFromText = billFromModel.allControllerText;
+              final BillFromRecord billFromText = billFromModel.allControllerText;
 
               final Map<String, String> billToText = billToModel.allControllerText;
 
@@ -53,18 +54,18 @@ class SubmitButton extends StatelessWidget {
               // TODO: Called when user is editing and doesnt need to be | low priority but stull bad I think
               final docId = AppFirebase.createDocGetId(path);
 
-              final formData = InvoiceFormModel(
-                      invoiceId: invoiceId != null ? invoiceId as String : _createId(),
-                      userId: snapshot.data!,
-                      docId: firebaseId == null ? docId : firebaseId!,
-                      createdAt: createdDate,
-                      paymentDue: _paymentDue(createdDate, paymentTerm),
-                      status: InvoiceStatus.pending.name,
-                      billFromText: billFromText,
-                      billToText: billToText,
-                      listItems: itemslist,
-                      total: total)
-                  .toMap();
+              final InvoiceFormRecord formData = (
+                invoiceId: invoiceId != null ? invoiceId as String : _createId(),
+                userId: snapshot.data!,
+                docId: firebaseId == null ? docId : firebaseId!,
+                createdAt: createdDate,
+                paymentDue: _paymentDue(createdDate, paymentTerm),
+                status: InvoiceStatus.pending.name,
+                billFromText: billFromText,
+                billToText: CreateFormRecords.billToRecord(billToText),
+                listItems: itemslist,
+                total: total
+              );
 
               firebaseId == null
                   ? await AppFirebase.loadData(path: path, docId: docId, data: formData)

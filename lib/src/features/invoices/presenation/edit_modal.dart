@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:invoiceapp/src/features/shared/models/load_form_models.dart';
+import 'package:invoiceapp/src/features/shared/records/get_records.dart';
 import 'package:invoiceapp/src/features/shared/records/records.dart';
 import 'package:invoiceapp/src/features/shared/widgets/invoice_form_screen/domain/bill_from_model.dart';
 import 'package:invoiceapp/src/features/shared/widgets/invoice_form_screen/domain/bill_to_model.dart';
@@ -26,13 +27,22 @@ class EditModal {
                 Consumer3(
                   builder: (context, BillFromModel billFromModel, BillToModel billToModel, ItemListModel itemsModel, child) => ModalButton(
                     text: 'Edit Invoice',
-                    onPressed: () => LoadFormControllers.load(context, billFromModel, billToModel, itemsModel, invoice),
+                    onPressed: () => LoadFormControllers.load(
+                      context,
+                      billFromModel,
+                      billToModel,
+                      itemsModel,
+                      invoice,
+                    ),
                   ),
                 ),
                 Gaps.gaph16,
                 ModalButton(
                     onPressed: () {
-                      context.push('/viewInvoice', extra: invoice);
+                      context.push(
+                        '/viewInvoice',
+                        extra: CreateFormRecords.invoiceFormJSON(invoice),
+                      );
                       Navigator.pop(context);
                     },
                     text: 'View Invoice'),

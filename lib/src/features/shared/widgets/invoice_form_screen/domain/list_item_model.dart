@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:invoiceapp/constants/enums/hash_keys.dart';
+import 'package:invoiceapp/src/features/shared/records/records.dart';
 
 class CustomListItemModel extends ChangeNotifier {
   TextEditingController _itemNameController = TextEditingController();
@@ -44,11 +45,11 @@ class CustomListItemModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  void loadControllers(Map<String, dynamic> item) {
-    quantityController.text = item[HashKeys.quantity.name] ?? '';
-    itemNameController.text = item[HashKeys.itemName.name] ?? '';
-    priceController.text = item[HashKeys.price.name] ?? '';
-    totalController.text = item[HashKeys.total.name] ?? '';
+  void loadControllers(InvoiceItemRecord item) {
+    quantityController.text = item.quantity.toString();
+    itemNameController.text = item.itemName;
+    priceController.text = item.price.toString();
+    totalController.text = item.total.toString();
     notifyListeners();
   }
 

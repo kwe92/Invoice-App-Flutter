@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:invoiceapp/constants/utils/random_nums.dart';
+import 'package:invoiceapp/src/features/shared/records/get_records.dart';
 import 'package:invoiceapp/src/features/shared/records/records.dart';
 import 'package:invoiceapp/src/features/shared/widgets/invoice_form_screen/domain/bill_from_model.dart';
 import 'package:invoiceapp/src/features/shared/widgets/invoice_form_screen/domain/bill_to_model.dart';
@@ -20,13 +21,19 @@ class LoadFormControllers {
     for (var item in invoice.listItems) {
       final model = CustomListItemModel();
 
-      model.loadControllers(item);
+      model.loadControllers(
+        CreateFormRecords.invoiceItemRecord(item),
+      );
       final String index = RandomRange.integer(1001, 999999).toString();
 
       //TODO: create record???
       final Map<String, CustomListItemModel> itemModelEntry = {index: model};
 
-      final listItem = CustomListItem(index: index, onPress: itemsModel.removeItem, listItemModel: model);
+      final listItem = CustomListItem(
+        index: index,
+        onPress: itemsModel.removeItem,
+        listItemModel: model,
+      );
 
       itemsModel.addItem({index: listItem});
       itemsModel.addItemModel(itemModelEntry);
@@ -34,7 +41,10 @@ class LoadFormControllers {
 
     print('list items: ${invoice.listItems}');
     //TODO: create record???
-    context.push('/editInvoice', extra: <String, String>{'docId': invoice.docId, 'invoiceId': invoice.invoiceId});
+    context.push(
+      '/editInvoice',
+      extra: <String, String>{'docId': invoice.docId, 'invoiceId': invoice.invoiceId},
+    );
     pop ? context.pop() : null;
   }
 }

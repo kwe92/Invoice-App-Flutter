@@ -18,12 +18,12 @@ class BillFromModel extends ChangeNotifier {
   bool get edit => _edit;
 
   // TODO: Replace with record
-  Map<String, String> get allControllerText => {
-        'streetAdd': streetAddController.text,
-        'city': cityController.text,
-        'postCode': postCodeController.text,
-        'country': countryController.text
-      };
+  BillFromRecord get allControllerText => (
+        streetAdd: streetAddController.text,
+        city: cityController.text,
+        postCode: postCodeController.text,
+        country: countryController.text,
+      );
 
   void clearStreetController() {
     _streetAddController.clear();

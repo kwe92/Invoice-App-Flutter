@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:invoiceapp/src/features/invoices/presenation/invoice_list_tile/list_tile_decoration.dart';
+import 'package:invoiceapp/src/features/shared/records/get_records.dart';
 import 'package:invoiceapp/src/features/shared/records/records.dart';
 import 'package:invoiceapp/src/features/view_invoice/presentation/description_section/horizontal_line.dart';
 import 'package:invoiceapp/src/features/view_invoice/presentation/invoice_items_section/items_list_tile.dart';
@@ -16,7 +17,9 @@ class ItemsSection extends StatelessWidget {
     );
 
     final Iterable<Widget> items = invoice.listItems.map(
-      (item) => ItemsListTile(item: item),
+      (item) => ItemsListTile(
+        item: CreateFormRecords.invoiceItemRecord(item),
+      ),
     );
 
     final double total = invoice.listItems

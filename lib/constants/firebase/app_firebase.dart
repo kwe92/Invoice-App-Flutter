@@ -1,13 +1,24 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:invoiceapp/src/features/shared/records/get_records.dart';
 import 'package:invoiceapp/src/features/shared/records/records.dart';
+
+// TODO: Finish
+typedef FirebaseLoadRecord = ({
+  String path,
+});
 
 class AppFirebase {
   const AppFirebase();
   // TODO: create record//TODO: create record } data
-  static Future<void> loadData({required String path, required Map<String, dynamic> data, String? docId}) async => docId != null
-      ? await FirebaseFirestore.instance.collection(path).doc(docId).set(data)
-      : await FirebaseFirestore.instance.collection(path).doc().set(data);
+
+  static Future<void> loadData({required String path, required InvoiceFormRecord data, String? docId}) async => docId != null
+      ? await FirebaseFirestore.instance.collection(path).doc(docId).set(
+            CreateFormRecords.invoiceFormJSON(data),
+          )
+      : await FirebaseFirestore.instance.collection(path).doc().set(
+            CreateFormRecords.invoiceFormJSON(data),
+          );
 
   static Future<String> getCurrentUserId() async => FirebaseAuth.instance.currentUser!.uid;
 

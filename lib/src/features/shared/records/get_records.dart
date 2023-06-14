@@ -1,6 +1,6 @@
 import 'package:invoiceapp/src/features/shared/records/records.dart';
 
-class CreateRecords {
+class CreateFormRecords {
   static BillFromRecord billFromRecord(Map<String, dynamic> json) => (
         streetAdd: json['streetAdd'],
         city: json['city'],
@@ -20,16 +20,54 @@ class CreateRecords {
         paymentTerm: json['paymentTerm']
       );
 
-  static InvoiceFormRecord invoiceFormRecord(Map<String, dynamic> json) => (
+  static InvoiceFormRecord invoiceFormRecord(Map<dynamic, dynamic> json) => (
         invoiceId: json['invoiceId'],
         userId: json['userId'],
         docId: json['docId'],
-        createdAt: json['createdAt'].toDate(),
-        paymentDue: json['paymentDue'].toDate(),
+        createdAt: json['createdAt'].runtimeType == DateTime ? json['createdAt'] : json['createdAt'].toDate(),
+        paymentDue: json['paymentDue'].runtimeType == DateTime ? json['paymentDue'] : json['paymentDue'].toDate(),
         status: json['status'],
-        billToText: CreateRecords.billToRecord(json["billToText"]),
-        billFromText: CreateRecords.billFromRecord(json["billFromText"]),
+        billToText: CreateFormRecords.billToRecord(json["billToText"]),
+        billFromText: CreateFormRecords.billFromRecord(json["billFromText"]),
         listItems: json['listItems'],
         total: json['total'],
       );
+
+  static InvoiceItemRecord invoiceItemRecord(Map<dynamic, dynamic> json) => (
+        itemName: json['itemName'],
+        price: double.parse(json['price']),
+        quantity: double.parse(json['quantity']),
+        total: double.parse(json['total']),
+      );
+
+  static Map<String, dynamic> invoiceFormJSON(InvoiceFormRecord invoice) => {
+        'invoiceId': invoice.invoiceId,
+        'userId': invoice.userId,
+        'docId': invoice.docId,
+        'createdAt': invoice.createdAt,
+        'paymentDue': invoice.paymentDue,
+        'status': invoice.status,
+        'billToText': CreateFormRecords.billToJSON(invoice.billToText),
+        'billFromText': CreateFormRecords.billFromJSON(invoice.billFromText),
+        'listItems': invoice.listItems,
+        'total': invoice.total,
+      };
+
+  static Map<String, dynamic> billFromJSON(BillFromRecord billFrom) => {
+        'streetAdd': billFrom.streetAdd,
+        'city': billFrom.city,
+        'postCode': billFrom.postCode,
+        'country': billFrom.country,
+      };
+  static Map<String, dynamic> billToJSON(BillToRecord billTo) => {
+        'streetAdd': billTo.streetAdd,
+        'city': billTo.city,
+        'postCode': billTo.postCode,
+        'country': billTo.country,
+        'clientName': billTo.clientName,
+        'clientEmail': billTo.clientEmail,
+        'projectDesc': billTo.projectDesc,
+        'date': billTo.date,
+        'paymentTerm': billTo.paymentTerm,
+      };
 }
