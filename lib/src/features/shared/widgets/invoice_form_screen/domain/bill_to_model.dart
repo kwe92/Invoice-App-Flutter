@@ -24,18 +24,17 @@ class BillToModel extends ChangeNotifier {
   TextEditingController get dateController => _dateController;
   TextEditingController get dropDownMenuController => _dropDownMenuController;
 
-//TODO: create record
-  Map<String, String> get allControllerText => {
-        'streetAdd': streetAddController.text,
-        'city': cityController.text,
-        'postCode': postCodeController.text,
-        'country': countryController.text,
-        'clientName': clientNameController.text,
-        'clientEmail': clientEmailController.text,
-        'projectDesc': projectDescController.text,
-        'date': dateController.text,
-        'paymentTerm': dropDownMenuController.text,
-      };
+  BillToRecord get allControllerText => (
+        streetAdd: streetAddController.text,
+        city: cityController.text,
+        postCode: postCodeController.text,
+        country: countryController.text,
+        clientName: clientNameController.text,
+        clientEmail: clientEmailController.text,
+        projectDesc: projectDescController.text,
+        date: dateController.text,
+        paymentTerm: dropDownMenuController.text,
+      );
 
   void setDateControllerText(String date) => date.isNotEmpty ? dateController.text = date : null;
 
