@@ -12,7 +12,12 @@ class CustomListItem extends StatelessWidget {
   final String index;
   final VoidCallback onPress;
   final CustomListItemModel listItemModel;
-  const CustomListItem({required this.index, required this.onPress, required this.listItemModel, super.key});
+  const CustomListItem({
+    required this.index,
+    required this.onPress,
+    required this.listItemModel,
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {

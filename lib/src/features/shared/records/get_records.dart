@@ -36,7 +36,7 @@ class CreateFormRecords {
   static InvoiceItemRecord invoiceItemRecord(Map<dynamic, dynamic> json) => (
         itemName: json['itemName'],
         price: double.parse(json['price']),
-        quantity: double.parse(json['quantity']),
+        quantity: int.parse(json['quantity']),
         total: double.parse(json['total']),
       );
 

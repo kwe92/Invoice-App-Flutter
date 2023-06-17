@@ -68,8 +68,16 @@ class SubmitButton extends StatelessWidget {
               );
 
               firebaseId == null
-                  ? await AppFirebase.loadData(path: path, docId: docId, data: formData)
-                  : await AppFirebase.loadData(path: path, docId: firebaseId, data: formData);
+                  ? await AppFirebase.loadData(
+                      path: path,
+                      docId: docId,
+                      data: formData,
+                    )
+                  : await AppFirebase.loadData(
+                      path: path,
+                      docId: firebaseId,
+                      data: formData,
+                    );
 
               billFromModel.clearAllControllers();
               billToModel.clearAllControllers();

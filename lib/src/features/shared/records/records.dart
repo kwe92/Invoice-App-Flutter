@@ -49,7 +49,7 @@ typedef OtherColorsRecord = ({
 
 typedef InvoiceItemRecord = ({
   String itemName,
-  double quantity,
+  int quantity,
   double price,
   double total,
 });
