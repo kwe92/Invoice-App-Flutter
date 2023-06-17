@@ -3,7 +3,6 @@ import 'package:go_router/go_router.dart';
 import 'package:invoiceapp/constants/enums/status.dart';
 import 'package:invoiceapp/constants/firebase/app_firebase.dart';
 import 'package:invoiceapp/constants/utils/random_nums.dart';
-import 'package:invoiceapp/src/features/shared/records/get_records.dart';
 import 'package:invoiceapp/src/features/shared/records/records.dart';
 import 'package:invoiceapp/src/features/shared/widgets/invoice_form_screen/domain/bill_from_model.dart';
 import 'package:invoiceapp/src/features/shared/widgets/invoice_form_screen/domain/bill_to_model.dart';
@@ -36,12 +35,14 @@ class SubmitButton extends StatelessWidget {
             if (formKey1 && formKey2) {
               final BillFromRecord billFromText = billFromModel.allControllerText;
 
-              final Map<String, String> billToText = billToModel.allControllerText;
+              final BillToRecord billToText = billToModel.allControllerText;
 
               final List<Map<String, String>> itemslist = itemsModel.itemModels.values.map((value) => value.allControllerText).toList();
 
               final double total = itemsModel.itemModels.values
-                  .map((value) => double.parse(value.totalController.text))
+                  .map(
+                    (value) => double.parse(value.totalController.text),
+                  )
                   .toList()
                   .reduce((value, element) => value + element);
 
@@ -62,7 +63,7 @@ class SubmitButton extends StatelessWidget {
                 paymentDue: _paymentDue(createdDate, paymentTerm),
                 status: InvoiceStatus.pending.name,
                 billFromText: billFromText,
-                billToText: CreateFormRecords.billToRecord(billToText),
+                billToText: billToText,
                 listItems: itemslist,
                 total: total
               );
